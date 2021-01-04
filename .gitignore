@@ -1,0 +1,11 @@
+/venv/
+/.idea/
+.env
+core/__pycache__/
+/static
+farmers/__pycache__/
+farmers/migrations/__pycache__/
+farmers/views/__pycache__/
+core/migrations/__pycache__/
+core/views/__pycache__/
+/media/products/

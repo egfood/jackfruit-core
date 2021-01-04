@@ -1,0 +1,54 @@
+{% extends 'farmer/app-base.html' %}
+
+{% block title %}Страница Фермера{% endblock %}
+{% block h1 %}Страница Фермера{% endblock %}
+
+{% block page_content %}
+
+    <h3>Каталог вашей продукции {{ user.first_name }}</h3>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Продукция</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Вес цены (гр.)</th>
+                <th scope="col">Упаковка</th>
+                <th scope="col">Минимальный заказ (гр.)</th>
+                <th scope="col">Доступен</th>
+                <th scope="col"><a href="{% url 'farmer:add_product' %}" title="Добавить"><i class="far fa-plus-square">
+                    Добавить</i></a></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.weight_per_price }}</td>
+                    <td>{{ item.packaging }}</td>
+                    <td>{{ item.min_weight }}</td>
+                    <td>
+                        {% if item.is_visible %}
+                            Да
+                        {% else %}
+                            Нет
+                        {% endif %}</td>
+                    <td>
+                        <a href="{% url 'farmer:update_product' pk=item.pk %}" title="Редактировать"><i
+                                class="fas fa-pencil-alt"></i></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'farmer:delete_product' pk=item.pk %}" title="Удалить"><i
+                                class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

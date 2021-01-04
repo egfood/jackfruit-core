@@ -1,0 +1,190 @@
+{% extends 'buyer/app-base.html' %}
+
+{% block title %}Доставки и цены{% endblock %}
+{% block h1 %}Доставки и цены{% endblock %}
+
+{% block page_content %}
+
+    <div class="row">
+
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        Последние {{ COUNT_ITEMS_ON_DELIVERY_DASHBOARD }} доставок <b>в офис</b>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% for delivery in food_office_deliveries %}
+
+                        <div class="card border-left-{{ delivery.card_color }} shadow py-0 mt-3">
+                            <div class="card-body py-2">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs text-{{ delivery.card_color }} text-uppercase mb-1">
+                                            <span>{{ delivery.aggregated_state }}</span>
+                                            {% if delivery.order_total %}
+                                                <span class="pl-4">На сумму: {{ delivery.order_total }} BYN</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="h5 mb-0 text-gray-800">
+                                            {{ delivery.date|date:'j E Y' }}
+                                        </div>
+                                    </div>
+
+                                    {% if delivery.is_show_edit_button %}
+                                        <div class="col-auto">
+                                            <a href="{% url 'buyer:office_order_by_delivery' delivery_pk=delivery.pk %}"
+                                               class="btn btn-success btn-icon-split btn-sm mr-4">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-edit"></i>
+                                                </span>
+                                                <span class="text">Изменить</span>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if delivery.is_show_new_order_button %}
+                                        <div class="col-auto">
+                                            <a href="{% url 'buyer:office_order_by_delivery' delivery_pk=delivery.pk %}"
+                                               class="btn btn-primary btn-icon-split btn-sm mr-4">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </span>
+                                                <span class="text">Заказ в офис</span>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-auto">
+                                        <i class="fas {{ delivery.card_icon }} fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% empty %}
+                        <h6>Доставки не заданы</h6>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        Последние {{ COUNT_ITEMS_ON_DELIVERY_DASHBOARD }} доставок <b>домой</b>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% for delivery in food_office_deliveries %}
+
+                        <div class="card border-left-{{ delivery.card_color }} shadow py-0 mt-3">
+                            <div class="card-body py-2">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs text-{{ delivery.card_color }} text-uppercase mb-1">
+                                            <span>{{ delivery.aggregated_state }}</span>
+                                            {% if delivery.order_total %}
+                                                <span class="pl-4">На сумму: {{ delivery.order_total }} BYN</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="h5 mb-0 text-gray-800">
+                                            {{ delivery.date|date:'j E Y' }}
+                                        </div>
+                                    </div>
+
+                                    {% if delivery.is_show_edit_button %}
+                                        <div class="col-auto">
+                                            <a href="{% url 'buyer:home_order_by_delivery' delivery_pk=delivery.pk %}"
+                                               class="btn btn-success btn-icon-split btn-sm mr-4">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-edit"></i>
+                                                </span>
+                                                <span class="text">Изменить</span>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if delivery.is_show_new_order_button %}
+                                        <div class="col-auto">
+                                            <a href="{% url 'buyer:home_order_by_delivery' delivery_pk=delivery.pk %}"
+                                               class="btn btn-primary btn-icon-split btn-sm mr-4">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </span>
+                                                <span class="text">Заказ в домой</span>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-auto">
+                                        <i class="fas {{ delivery.card_icon }} fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% empty %}
+                        <h6>Доставки не заданы</h6>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>  <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Цены</h6>
+                </div>
+                <div class="card-body">
+
+                    {% for food in food_prices %}
+
+                        <div class="card border-left-success shadow py-0 mt-3">
+                            <div class="card-body py-2">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            {{ food.name }}, {{ food.get_weight_per_price_display }},
+                                            упаковка: {{ food.get_packaging_value }}
+                                        </div>
+                                        <div>
+                                            <span class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ food.price }} BYN
+                                            </span>
+                                            <span>
+                                                (<small>поставщик: </small>{{ food.supplier_id.first_name }})
+                                            </span>
+                                        </div>
+                                        <div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-credit-card fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% empty %}
+                        <h6>Цены на продукты не заданы.</h6>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>  <!-- /.row -->
+
+{% endblock %}
