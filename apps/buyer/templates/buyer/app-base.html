@@ -1,0 +1,31 @@
+{% extends 'core/base-with-sidebar.html' %}
+
+{% block left_sidebar_navigation %}
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ app_home_url }}">
+            <i class="fas fa-th"></i>
+            <span>Доставки и цены</span></a>
+    </li>
+
+    {% if nearest_delivery_pk %}
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'buyer:office_order_by_delivery' nearest_delivery_pk %}">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Ближайший заказ в офис</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'buyer:home_order_by_delivery' nearest_delivery_pk %}">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Ближайший заказ домой</span></a>
+        </li>
+    {% endif %}
+
+{% endblock %}
