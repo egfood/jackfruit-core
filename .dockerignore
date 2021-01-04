@@ -1,0 +1,9 @@
+.git*
+.idea
+*docker*
+Dockerfile
+Makefile
+*.md
+*.env
+**/static
+**/__pycache__

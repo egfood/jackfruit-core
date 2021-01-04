@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+
+{% block content %}
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <a class="navbar-brand" href="{% url 'root_page' %}">
+                        <img src="{% static 'core/img/logo_green_480.svg' %}" width="30" height="30"
+                             class="d-inline-block align-top" alt="Green food logo svg" loading="lazy">
+                        Epam Green Food
+                    </a>
+                    <!-- Nav Telegram link -->
+                    {% include "core/blocks/telegram-link.html" %}
+                    <!-- End of Nav Telegram link -->
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">
+                            {% block page_title %}
+                                {{ flatpage.title }}
+                            {% endblock %}
+                        </h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body shadow mb-4">
+                                {% block flatpage_content %}
+                                    {{ flatpage.content }}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="text-center my-auto">
+                        <a href="{% url 'signup' %}" class="btn btn-success btn-icon-split btn-sm">
+                            <span class="icon text-white-50">
+                                <i class="far fa-id-card"></i>
+                            </span>
+                            <span class="text">Регистрация</span>
+                        </a>
+
+                        <a href="{% url 'login' %}" class="btn btn-success btn-icon-split btn-sm ml-4">
+                            <span class="icon text-white-50">
+                                <i class="far fa-sign-in-alt"></i>
+                            </span>
+                            <span class="text">Войти</span>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#body-js">
+        <i class="fas fa-angle-up"></i>
+    </a>
+{% endblock %}

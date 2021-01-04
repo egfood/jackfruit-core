@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    {% include "core/blocks/analytics.html" %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <base href="/">
+    <title>{% block title %}Заказы зелени и овощей{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'core/img/favicon_green.ico' %}"/>
+    <link href="{% static 'core/vendors/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendors/sb-admin-2/css/sb-admin-2.min.css' %}" rel="stylesheet">
+    {#    <link href="{% static 'datatable/dataTables.bootstrap4.min.css' %}" rel="stylesheet">#}
+    <link href="{% static 'core/css/core.css' %}" rel="stylesheet">
+
+    {% block custom_page_styles %}{% endblock %} {#  Styles for the Page in app. #}
+</head>
+
+<body id="body-js" class="{% block body_classes %}bg-gradient-success{% endblock %}">
+
+{% block content %}{% endblock %}
+
+{% block modals %}{% endblock %}
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#body-js">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% block footer_scripts %}
+    <script src="{% static 'core/vendors/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'core/vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'core/vendors/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'core/vendors/sb-admin-2/js/sb-admin-2.min.js' %}"></script>
+    {#    <script src="{% static 'core/js/bootstrap_custom_init.js' %}"></script>#}
+    {#    <script src="{% static 'datatable/jquery.dataTables.min.js' %}"></script>#}
+    {#    <script src="{% static 'datatable/dataTables.bootstrap4.min.js' %}"></script>#}
+    {#    <script src="{% static 'core/js/pugs_datatable_settings.js' %}"></script>#}
+{% endblock %}
+
+{% block custom_page_footer_scripts %}{% endblock %}
+
+</body>
+</html>
