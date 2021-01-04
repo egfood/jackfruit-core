@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}Регистрация в системе заказов зелени и овощей{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Регистрация в системе</h1>
+                            </div>
+
+                            {% bootstrap_messages %}
+
+                            <form class="user" method="post" action="{% url 'signup' %}">
+
+                                {% csrf_token %}
+                                {% bootstrap_form user_creation_form required_css_class="font-weight-bold text-dark" %}
+                                {% bootstrap_form user_creation_profile_form required_css_class="font-weight-bold text-dark" %}
+
+                                {% buttons %}
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Регистрация
+                                    </button>
+                                {% endbuttons %}
+
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="{% url 'forgot_password' %}">Забыли пароль?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="{% url 'login' %}">Уже есть аккаунт?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

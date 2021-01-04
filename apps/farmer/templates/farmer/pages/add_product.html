@@ -1,0 +1,26 @@
+{% extends 'farmer/app-base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}Страница Фермера{% endblock %}
+{% block h1 %}Страница Фермера{% endblock %}
+
+{% block page_content %}
+    <h3> Приветствую {{ user.first_name }}</h3>
+    <h3>Добавить продукт</h3>
+    <div class="row">
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% bootstrap_form_errors form layout='inline' %}
+
+            {% bootstrap_form form layout='inline' %}
+
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            {% endbuttons %}
+        </form>
+
+    </div>
+
+{% endblock %}
