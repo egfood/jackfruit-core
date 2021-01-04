@@ -1,0 +1,33 @@
+{% extends 'core/base-with-sidebar.html' %}
+
+{% block left_sidebar_navigation %}
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ app_home_url }}">
+            <i class="fas fa-th"></i>
+            <span>Главная</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'farmer:add_product' %}">
+            <i class="fas fa-plus-square"></i>
+            <span>Добавить продукт</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'farmer:add_product' %}">
+            <i class="fas fa-plus-square"></i>
+            <span>Мои заказы</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'farmer:add_product' %}">
+            <i class="fas fa-plus-square"></i>
+            <span>Статистика</span></a>
+    </li>
+
+{% endblock %}

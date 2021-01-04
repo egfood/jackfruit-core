@@ -1,0 +1,18 @@
+{% extends 'farmer/app-base.html' %}
+
+{% block title %}Страница Фермера{% endblock %}
+{% block h1 %}Страница Фермера{% endblock %}
+
+{% block page_content %}
+    <h3> Приветствую {{ user.first_name }}</h3>
+    <h3>Удалить продукт {{ object.name }} (id: {{ object.pk }})</h3>
+    <div class="row">
+
+        <form method="post">{% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <button type="submit" class="btn btn-primary">Удалить</button>
+        </form>
+
+    </div>
+
+{% endblock %}

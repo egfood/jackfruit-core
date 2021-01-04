@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:9.6.18-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=egreen
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8055
+    volumes:
+      - .:/code
+    env_file: dev.env
+    depends_on:
+      - postgres
+    ports:
+      - "8055:8055"
+
+volumes:
+    postgres:
