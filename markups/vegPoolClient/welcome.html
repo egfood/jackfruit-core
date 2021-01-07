@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/welcomMedia.css">
+    <link rel="shortcut icon" href="images/logo_grey.png" type="image/png">
+    <title>VegPool</title>
+</head>
+<body>
+    <div class="generalBg">
+        <a href="landingPage.html" class="logo"><img src="images/logo_grey.png" alt="logo"><span>VegPool</span></a>
+        <div class="mainContainer">
+            <h2>Добро пожаловать!</h2>
+            <p>Внесите ваши персональные данные</p>
+            <form action="">
+                <div class="profileWrap">
+                    <div class="profilePlace">
+                        <img src="images/profileImg.png" alt="profile img">
+                        <div class="addPhoto">+</div>
+                    </div>
+                        <div class="inputsWrap">
+                        <label for="profileName">Имя</label>
+                        <input id="profileName" type="text">
+                        <label for="profilePhone">Телефон</label>
+                        <input type="tel" name="profilePhone" id="profilePhone">
+                    </div>
+                </div>
+                <label for="selectLocation">Населенный пункт</label>
+                <select name="selectLocation" id="selectLocation">
+                    <option value="">Брестская область</option>
+                    <option value="">Гродненская область</option>
+                    <option value="">Минская область</option>
+                </select>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

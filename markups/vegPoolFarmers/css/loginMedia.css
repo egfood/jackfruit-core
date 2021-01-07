@@ -1,0 +1,41 @@
+@media (max-width: 768px) {
+    h1{
+        font-size: 20px;
+    }
+    .generalContent{
+        width: 100%;
+        padding: 20px 60px;
+    }
+    .bgPic{
+        display: none;
+    }
+    .logo{
+        margin-bottom: 40px;
+    }
+    
+}
+@media (max-width: 500px) {
+    input, button{
+        width: 100%;
+    }
+    .generalContent{
+        width: 100%;
+        padding: 20px 20px;
+    }
+    .logo{
+        margin-bottom: 40px;
+    }
+    button[type="submit"]{
+        margin-bottom: 20px;
+    }
+    h1{
+        text-align: center;
+    }
+    .privatCab{
+        font-size: 14px;
+    
+    }
+    .privatCab i{
+        font-size: 14px;
+    }
+}

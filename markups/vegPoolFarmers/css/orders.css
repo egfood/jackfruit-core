@@ -1,0 +1,79 @@
+.ordersHeader span{
+    font-size: 14px;
+}
+
+table td img{
+    width: 80px;
+}
+table th img{
+    margin-left: 25px;
+}
+table.table select{
+    background-color: #F0F0E2;
+    border: none;
+    height: 34px;
+}
+.ordersHeaderButtons button{ 
+    margin-right: 10px;
+}
+
+.selfSend{
+    background-color: #fff;
+    color:#4D9774;
+    border:#4D9774 solid 1px;
+}
+.deliveryDate{
+    display: flex;
+}
+.tableOrders .selectWrapper select{
+    padding-left: 10px;
+}
+.tableOrders .selectWrapper{
+    width: 150px;
+
+}
+.tableOrders .selectWrapper::before{
+    top: 12px;
+}
+.tableOrders .fa-pagelines{
+    margin-left: 26px;
+    font-size: 24px;
+}
+.popupMessengers{
+    display: none;
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #fff;
+    text-align: center;
+    padding: 40px;
+    border-radius: 3px;
+    box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
+}
+.popupMessengers a{
+    display: inline-block;
+    margin: 10px 10px;
+}
+.popupMessengers i{
+    font-size: 40px;
+    color: #949CA8;
+}
+.popupMessengers i:hover{
+    color: #121F2D;
+}
+.ordersMoreActions{
+    cursor: pointer;
+}
+.ordersMoreActions:hover > div{
+    background-color: #6C7076;;
+}
+.ordersMoreActions > div{
+    width: 3px;
+    height: 3px;
+    background-color: #BEC3CA;
+    margin: 3px;
+    border-radius: 50%;
+}

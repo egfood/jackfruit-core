@@ -1,0 +1,143 @@
+@font-face {
+    font-family: "SF UI Text";
+    src: url(../fonts/sf-ui-text-regular.ttf);
+}
+@font-face {
+    font-family: "SF Compact Text";
+    src: url(../fonts/FontsFree-Net-SFCompactText-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: "SF UI Text", sans-serif;
+    text-decoration: none;
+}
+html, body{
+    height: 100%;
+}
+body{
+    background-color: #E5E5E5;
+}
+.generalBg{
+    background-color: #F8FAFF;
+    margin: 0 auto;
+    max-width: 1366px;
+    padding-top: 60px;
+    min-height: 100%;
+}
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+}
+.mainContainer h2{
+    font-size: 34px;
+    color: #C2CADD;
+    font-weight: normal;
+    margin-bottom: 60px;
+}
+.mainContainer p{
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #121F2D;
+}
+.logo{
+    width: 90px;
+    display: flex;
+    color: #8690A7;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 40px 90px;
+}
+.logo img{
+    padding-right: 10px;
+}
+.profileWrap{
+    display: flex;
+    margin-bottom: 10px;
+}
+.profilePlace{
+    background-color: #EFF2F9;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 28px;
+}
+.addPhoto{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #60B072;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    top: 110px;
+    left: 110px;
+    cursor: pointer;
+    line-height: 27px;
+}
+.inputsWrap{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+input{
+    border: solid 1px #DBE3EC;
+    border-radius: 4px;
+    width: 282px;
+    height: 40px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+select{
+    width: 460px;
+    height: 40px;
+    border: solid 1px #DBE3EC;
+    display: block;
+    margin-bottom: 40px;
+
+}
+label{
+    font-size: 14px;
+    color: #676D76;
+}
+
+button{
+    height: 40px;
+    width: 460px;
+    color: #fff;
+    background-color: #60B072;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-bottom: 60px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #0D7A8D;
+}
+.haveAccount{
+    padding-left: 55px;
+    font-size: 16px;
+    color: #676D76;
+}
+.haveAccount a{
+    color: #60B072;
+    font-weight: bold;
+}
+
+@media (max-width: 500px) {
+    .generalBg{
+        padding-top: 20px;
+    }
+    button{
+        margin-bottom: 20px;
+    }
+}

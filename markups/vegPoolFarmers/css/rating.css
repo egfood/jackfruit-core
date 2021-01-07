@@ -1,0 +1,29 @@
+.profilePhotoTd img{
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.stars{
+    display: flex;
+    align-items: center;
+}
+.stars > div{
+    width: 14px;
+    height: 14px;
+    background-repeat: no-repeat;
+}
+.goldStar{
+    background-image: url(../images/Star3.png);
+}
+.grayStar{
+    background-image: url(../images/Star5.png);
+}
+
+tr.active{
+    background-color: #F5F6F6;
+}
+tr.active td:nth-child(2){
+    font-weight: bold;
+}
+tr.active .profilePhotoTd img{
+    border: 2px solid #4D9774;
+}

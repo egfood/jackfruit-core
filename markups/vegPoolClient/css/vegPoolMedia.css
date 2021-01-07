@@ -1,0 +1,344 @@
+@media (max-height: 500px) {
+    .mainMenu #exit{
+        position: relative;
+        bottom: 0;
+    }
+}
+
+@media(min-width: 769px) {
+    .mainMenu{
+        height: 100%;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .mainContentWrap{
+        padding-left: 182px;
+    }
+    .mainMenu{
+        width: 182px;
+    }
+    .openCloseMenu{
+        width: 60px;
+    }
+    .maincontentWrapPadding{
+        padding-left: 60px;
+    }
+    .mainMenu nav a span{
+        font-size: 13px;
+    }
+    .logo{
+        width: 135px;
+    }
+    .logo span{
+        font-size: 18px;
+    }
+    .table{
+        font-size: 12px;
+    }
+    .burgerAndBasket{
+        padding-left: 160px;
+    }
+    .burgerAndBasketPadding{
+        padding-left: 40px;
+    }
+}
+@media (max-width: 768px) {
+    .mainContentWrap{
+        padding-left: 0;
+    }
+    /* .mainContent{
+        padding-top: 0;
+    } */
+    #langSwitch{
+        font-size: 14px;
+        height: 28px;
+    }
+    .logo{
+        display: none;
+    }
+    .sectionsMenu{
+        display: none;
+    }
+    .mainMenu.active{
+        position: fixed;
+    }
+    .openCloseMenu nav a span{
+        display: inline;
+    }
+    .openCloseMenu nav a{
+        text-align: left;
+        padding-left: 20px;
+    }
+    .mainMenu #exit{
+        position: relative;
+        bottom: 0;
+    }
+    .burger{
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        z-index: 3;
+        cursor: pointer;
+    }
+    .burger:before, .burger:after{
+     content: "";
+     background-color: #121F2D;
+     position: absolute;
+     width: 100%;
+     height: 2px;
+     left: 0;
+  }
+  .burger:before{
+     top: 0;
+     transition: .1s ease;
+  }
+  .burger:after{
+     bottom: 0;
+     transition: .1s ease;
+  }
+  .burger span{
+      position: absolute;
+      background-color:#121F2D;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      top: 9px;
+
+  }
+  .burger_active{
+      top: 9px;
+  }
+  .burger_active span{
+     background-color: transparent;
+  }
+  .burger_active::before{
+      transform: rotate(45deg);
+      transition: .4s ease;
+  }
+  .burger_active::after{
+     transform: rotate(-45deg);
+     transition: .4s ease;
+     top: 0;
+
+  }
+  .burgerAndBasket{
+      padding-left: 0;
+  }
+  .profileSettings{
+      flex-direction: column;
+      flex-wrap: wrap;
+  }
+  .profileSettings form label{
+      font-size: 12px;
+  }
+  .profileSettings input, .profileSettings select{
+      height: 35px;
+  }
+  .profileSettingsMenu nav a {
+    padding: 5px;
+}
+  .profilePhotoForm img{
+      width: 100px;
+  }
+  .profileSettingsMenu{
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+
+  }
+  .profileSettingsMenu h2{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
+.profilePhotoForm{
+    float: none;
+    text-align: center;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+#profileName, #profilePhone {
+    margin-bottom: 10px;
+    width: 100%;
+}
+#location, #serviceZone, #farmName {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.changePhoto{
+    bottom: 5px;
+    left: 255px;
+}
+
+.popup h2{
+    font-size: 20px;
+}
+.popup input, .popup select{
+    height: 35px;
+    margin-bottom: 15px;
+}
+.calendarWrap{
+    text-align: left;
+}
+.rubInsideInput {
+    height: 35px;
+    top: 21px;
+    line-height: 35px;
+}
+.mainMenu{
+    top: -200%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    margin: 60px 0 0 0;
+    transition: all .3s ease 0s;
+    z-index: 3;
+}
+.mainMenu.active{
+    top: 0;
+}
+
+.table{
+    font-size: 12px;
+}
+
+.productOptions{
+    flex-direction: column;
+}
+
+.selectWrapper::before{
+    top: 13px;
+}
+.selectWrapper.selectWrapperLang::before{
+    top: 10px;
+}
+
+}
+@media (max-width: 500px) {
+    h1{
+        font-size: 24px!important;
+    }
+    .mainContent h2{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .showcase{
+        margin-right: 0;
+    }
+    .pageSwitch{
+        margin-left: 0;
+    }
+    .table{
+        font-size: 10px;
+    }
+    .table td img{
+        width: 50px;
+    }
+    #showPageCount{
+        margin-bottom: 10px;
+    }
+    .centralImgWrap img{
+        margin: 0 0 20px 0;
+    }
+    .addPruductsButtonPlus{
+        top: 157px;
+    }
+    .stars img{
+        width: 10px;
+    }
+    .profileSettings{
+        font-size: 12px;
+        padding: 15px;
+    }
+    .profileSettings input, .profileSettings select{
+        height: 30px;
+    }
+    .profilePhotoForm img{
+        width: 80px;
+    }
+    .profilePhoto img{
+        margin-left: 0;
+    }
+    .changePhoto {
+        bottom: 0px;
+        left: 155px;
+    }
+    .popup{
+        font-size: 12px;
+    }
+    .popup h2{
+        font-size: 18px;
+    }
+    .popup input, .popup select{
+        height: 30px;
+        margin-bottom: 10px;
+    }
+    .popup form span{
+        font-size: 12px;
+    }
+    .popup label{
+        font-size: 12px;
+    }
+    .calendarWrap{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .table input[type="checkbox"]{
+        width: 13px;
+        height: 13px;
+    }
+    .rubInsideInput {
+        height: 30px;
+        top: 18px;
+        line-height: 30px;
+        padding-left: 15px;
+    }
+
+    .selectWrapper::before{
+        top: 11px;
+    }
+    .selectWrapper{
+        width: 280px;
+    }
+    .selectWrapper.selectWrapperLang{
+        width: 60px;
+    }
+    .tableOrders .fa-pagelines{
+        margin-left: 16px;
+        font-size: 18px;
+    }
+    .tableOrders .selectWrapper{
+        width: 110px;
+    }
+
+    .editForm{
+        width: 280px
+    }
+
+    .displayingItems > div{
+        display: block;
+    }
+    .displayingItems > div:nth-child(even){
+        margin-right: 0;
+    }
+
+    div.displayingBoxes{
+        display: flex;
+    }
+    span.name{
+        display: none;
+    }
+}
+
+@media (max-height: 500px) {
+    .profileSettings, .popupWindow{
+        overflow: scroll;
+        flex-direction: row;
+        height: 80%;
+    }
+}
