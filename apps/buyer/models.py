@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+from core.models import AbsProfile
+
+
+class UserProfile(AbsProfile):
+    pass
+
+
+

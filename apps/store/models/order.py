@@ -3,8 +3,6 @@ from django.db import models
 
 from core.models.base import FoodAbstract
 from .delivery import FoodDelivery
-from .location_home import HomeLocation
-from .location_office import OfficeLocation
 from .product import FoodProduct
 
 
