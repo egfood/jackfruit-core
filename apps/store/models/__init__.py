@@ -1,4 +1,5 @@
 from .delivery import *
-from .order import *
-from .product import *
 from .location import *
+from .order import *
+from .order_item import *
+from .product import *

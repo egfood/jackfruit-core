@@ -12,13 +12,13 @@ from core.models import GreenUser
 class AddProductView(CreateView):
     template_name = "farmer/pages/add_product.html"
     model = FoodProduct
-    fields = ('name', 'description', 'price', 'min_weight', 'weight_per_price', 'packaging', 'is_visible')
+    fields = ('name', 'description', 'price', 'min_weight', 'quantity_per_price', 'packaging', 'is_visible')
 
     def post(self, request, *args, **kwargs):
         f = FoodProductForm(request.POST)
         if f.is_valid():
             new_product = f.save(commit=False)
-            new_product.supplier_id = GreenUser.objects.get(id=self.request.user.id)
+            new_product.farmer = GreenUser.objects.get(id=self.request.user.id)
             new_product.save()
             messages.success(request, f'Продукт {new_product.name} успешно создан.')
         else:

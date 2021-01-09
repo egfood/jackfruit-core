@@ -29,14 +29,17 @@ class Location(FoodAbstract):
 
     LOCATION_TYPE_CHOICES = (
         ('private', 'частный'),
-        ('office', 'office'),
+        ('office', 'офис'),
     )
 
     location_type = models.CharField('Тип адреса', max_length=10, choices=LOCATION_TYPE_CHOICES,
                                      default=LOCATION_TYPE_CHOICES[0][0])
 
-    short_name = models.TextField("Короткое название офиса", max_length=settings.OFFICES_SHORT_NAME_LENGTH,
-                                  default='', blank=True)
+    name = models.CharField('Имя', max_length=200)
+    phone = models.CharField("Телефон", max_length=15)
+
+    office_name = models.TextField('Короткое название офиса', max_length=settings.OFFICES_SHORT_NAME_LENGTH,
+                                   default='', blank=True)
 
     city_type = models.CharField('Тип населенного пункта', max_length=100, choices=CITY_TYPE_CHOICES,
                                  default=CITY_TYPE_CHOICES[0][0])
@@ -55,9 +58,15 @@ class Location(FoodAbstract):
 
     sort_key = models.PositiveIntegerField('Сортировка', default=0)
 
+    def is_private(self):
+        return self.location_type == self.LOCATION_TYPE_CHOICES[0][0]
+
+    def is_office(self):
+        return self.location_type == self.LOCATION_TYPE_CHOICES[1][0]
+
     def __str__(self):
         if self.location_type == 'office':
-            result = f'Офис {self.short_name}#{self.id}'
+            result = f'Офис {self.office_name}#{self.id}'
         elif self.location_type == 'private':
             result = f'{self.get_street_type_display()} {self.street_value}'
             if self.building:

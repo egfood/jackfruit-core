@@ -98,7 +98,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            {{ food.name }}, {{ food.get_weight_per_price_display }},
+                                            {{ food.name }}, {{ food.get_quantity_per_price_display }},
                                             упаковка: {{ food.get_packaging_value }}
                                         </div>
                                         <div>
@@ -106,7 +106,7 @@
                                                 {{ food.price }} BYN
                                             </span>
                                             <span>
-                                                (<small>поставщик: </small>{{ food.supplier_id.first_name }})
+                                                (<small>поставщик: </small>{{ food.farmer.profile.name }})
                                             </span>
                                         </div>
                                         <div>

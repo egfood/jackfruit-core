@@ -35,9 +35,29 @@ class GreenUserManager(BaseUserManager):
 
 
 class GreenUser(AbstractUser):
+    _profile = None
+
     email = models.EmailField('Email', unique=True)
     username = None
 
     objects = GreenUserManager()
 
     USERNAME_FIELD = 'email'
+
+    @property
+    def profile(self):
+        if self._profile is None:
+            profile_attr_names = ("buyer_buyerprofile", "farmer_farmerprofile")
+            profile_was_find = False
+            for attr_name in profile_attr_names:
+                if hasattr(self, attr_name):
+                    profile_was_find = True
+                    self._profile = getattr(self, attr_name)
+            if not profile_was_find:
+                raise AttributeError("User profile not found!")
+
+    def is_buyer(self):
+        return self.profile.type == "BuyerProfile"
+
+    def is_farmer(self):
+        return self.profile.type == "FarmerProfile"

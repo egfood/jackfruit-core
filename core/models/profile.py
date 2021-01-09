@@ -10,7 +10,8 @@ class AbsProfile(FoodAbstract):
     class Meta:
         abstract = True
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name='Пользователь', related_name='%(class)_profile',
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name='Пользователь',
+                                related_name='%(app_label)_%(class)',
                                 on_delete=models.CASCADE)
     photo = models.ImageField('Фото', upload_to='profile_photos', max_length=255, blank=True)
 
