@@ -3,6 +3,7 @@ from django.contrib import admin
 from .admin_actions import ExportCSVMixin
 from .models import *
 
+# TODO: Must be reworked for updated models
 
 @admin.register(FoodProduct)
 class FoodPriceAdmin(admin.ModelAdmin):
