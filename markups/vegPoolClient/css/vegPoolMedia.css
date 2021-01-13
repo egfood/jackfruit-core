@@ -129,7 +129,9 @@
   }
   .profileSettings{
       flex-direction: column;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      max-height: 90%;
+      overflow: scroll;
   }
   .profileSettings form label{
       font-size: 12px;
@@ -338,7 +340,6 @@
 @media (max-height: 500px) {
     .profileSettings, .popupWindow{
         overflow: scroll;
-        flex-direction: row;
-        height: 80%;
+        max-height: 90%;
     }
 }

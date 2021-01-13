@@ -168,7 +168,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.vegFrameOptions .fa-shopping-basket').click(function () {
-        $(this).toggleClass("active");
-    })
+    // $('.vegFrameOptions .fa-shopping-basket').click(function () {
+    //     $(this).toggleClass("active");
+    // });
 })
