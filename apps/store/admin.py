@@ -6,11 +6,11 @@ from .models import *
 
 @admin.register(FoodProduct)
 class FoodPriceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'weight_per_price', 'min_weight', 'packaging', 'supplier_id', 'is_visible',
+    list_display = ('name', 'price', 'quantity_per_price', 'min_weight', 'packaging', 'farmer', 'is_visible',
                     'date_creation', 'date_updated')
-    list_filter = ('is_visible', 'packaging', 'date_creation', 'date_updated', 'supplier_id')
+    list_filter = ('is_visible', 'packaging', 'date_creation', 'date_updated', 'farmer')
     search_fields = ('name', 'packaging')
-    ordering = ('name', 'is_visible', 'min_weight', 'packaging', 'supplier_id')
+    ordering = ('name', 'is_visible', 'min_weight', 'packaging', 'farmer')
 
 
 @admin.register(FoodDelivery)
@@ -22,8 +22,8 @@ class FoodDeliveryAdmin(admin.ModelAdmin, ExportCSVMixin):
     actions = ["export_products_to_csv", "export_detail_orders_to_csv"]
 
 
-@admin.register(FoodOfficeOrder)
-class FoodOfficeOrderAdmin(admin.ModelAdmin):
+@admin.register(FoodOrder)
+class FoodOrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'delivery', 'user', 'total_cost', 'office', 'state', 'date_updated', 'date_creation')
     list_filter = ('delivery', 'user', 'date_creation', 'date_updated', 'office', 'state')
     ordering = ('id', 'delivery', 'user', 'date_creation', 'date_updated', 'office', 'state')

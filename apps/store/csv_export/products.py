@@ -39,7 +39,7 @@ class ProductsCSVAssembler(BasicCSVAssembler):
             office_order_items_by_product = office_order_items.filter(product=p)
             home_order_items_by_product = home_order_items.filter(product=p)
             if 'price_by_weight' in field_names_keys:
-                current_row['price_by_weight'] = f'{p.price} BYN за {p.get_weight_per_price_display()}'
+                current_row['price_by_weight'] = f'{p.price} BYN за {p.get_quantity_per_price_display()}'
             if 'total_weight' in field_names_keys:
                 weights = [item.weight for item in
                            list(office_order_items_by_product) + list(home_order_items_by_product)]

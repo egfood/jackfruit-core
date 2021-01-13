@@ -194,7 +194,7 @@ CURRENT_CURRENCY = "Br"
 CSV_EXPORT_COLUMN_NAMES = {
     "PRODUCTS_IN_DELIVERY": {
         'id': 'id', 'name': 'название', 'price_by_weight': f'цена за вес, {CURRENT_CURRENCY}',
-        'total_weight': 'общий вес', 'total_price': 'итого', 'orders_count': 'заказов', 'supplier_id': 'поставщик'
+        'total_weight': 'общий вес', 'total_price': 'итого', 'orders_count': 'заказов', 'farmer': 'фермер'
     },
     "ORDERS_IN_DELIVERY": {
         'id': 'id', 'text_delivery': 'Доставка', 'text_user':'Имя', 'total_cost':f'всего, {CURRENT_CURRENCY}',

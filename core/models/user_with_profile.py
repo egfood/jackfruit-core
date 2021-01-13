@@ -1,12 +1,14 @@
-import sys
 from collections import namedtuple
 
 from django.db import transaction, IntegrityError
 
-from .profile import UserProfile
+from apps.buyer.models import BuyerProfile
 from .user import GreenUser
 
 UserCreationResult = namedtuple('UserCreationResult', ['has_errors', 'error', 'created_user'])
+
+
+# TODO: Must be fixed for new Buyer/Farmer separated Profiles (BuyerProfile/FarmerProfile)
 
 
 class UserWithProfileManager:
