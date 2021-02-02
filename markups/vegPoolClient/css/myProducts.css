@@ -4,15 +4,11 @@
     justify-content: center;
     margin-bottom: 20px;
 }
-.calendarWrap{
-    text-align: center;
-}
+
 .calendarWrap a.calendar{
     margin: 0;
 }
-.calendarWrap i.fa-calendar-alt{
-    font-size: 40px;
-}
+
 .showcase{
     display: flex;
     margin: 0 20px 10px 0;
@@ -21,6 +17,13 @@
     margin-right: 44px;
 }
 
+.addProductInBasket button{
+    background-color: #60B072;
+    color: #fff;
+}
+.addProductInBasket button:hover{
+    background-color: #0D7A8D;
+}
 .vegFrame{
     margin: 10px;
     max-width: 300px;
@@ -95,7 +98,7 @@
     position: absolute;
     background-color: #fff;
     border-radius: 4px;
-    left: 100px;
+    left: 120px;
     top: 35px;
     box-shadow: 0px 2px 12px rgba(38, 43, 46, 0.16);
 }

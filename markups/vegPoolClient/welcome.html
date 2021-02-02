@@ -24,7 +24,7 @@
                         <label for="profileName">Имя</label>
                         <input id="profileName" type="text">
                         <label for="profilePhone">Телефон</label>
-                        <input type="tel" name="profilePhone" id="profilePhone">
+                        <input type="tel" id="profilePhone" placeholder='+375 (xx) xxx-xx-xx ' required pattern='\s{0,}\+{1,1}375\s{0,}\({0,1}(([2]{1}([5]{1}|[9]{1}))|([3]{1}[3]{1})|([4]{1}[4]{1}))\)\s{0,}[0-9]{3,3}\s{0,}[0-9]{4,4}'>
                     </div>
                 </div>
                 <label for="selectLocation">Населенный пункт</label>
@@ -37,5 +37,10 @@
             </form>
         </div>
     </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/inputmask/dist/jquery.inputmask.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

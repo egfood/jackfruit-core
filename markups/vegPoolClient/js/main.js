@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $(".addProduct, .addPruductsButtonPlus").click(function () {
+        $("body").css("overflow", "hidden");
         $(".mainWrap").css("filter", "blur(5px)");
         $(".popupWindow").fadeIn(200);
         $(".mainWrapOpacity").css("display", "block");
@@ -21,19 +22,26 @@ $(document).ready(function () {
     })
 
     $(document).mouseup(function (e){ 
-        var block = $(".vegFrameDropMenu, .profileSettings, .popupWindow, .popupMessengers, .editForm, .icalendar");
+        var block = $(".vegFrameDropMenu, .profileSettings, .popupWindow, .popupMessengers, .editForm, .icalendar, .contactData, .feedbackPopup, .orderSuccess");
         if (!block.is(e.target)
             && block.has(e.target).length === 0) {
             block.hide();
+            $("body").css("overflow", "auto");
             $(".mainWrap").css("filter", "none");
             $(".mainWrapOpacity").css("display", "none");
-            $(".popup").css("opacity", "1");
+            $(".popup, .profileSettings").css("opacity", "1");
             $(".popupBg").css("display", "none");
         }
     });
 
 
+    $(".profileSettingsMenu nav a").click(function () {
+        $(".profileSettingsMenu nav a").removeClass("profileSettingsMenuActive");
+        $(this).addClass("profileSettingsMenuActive");
+    })
+
     $(".profileHeader").click(function () {
+        $("body").css("overflow", "hidden");
         $(".mainWrap").css("filter", "blur(5px)");
         $(".mainWrapOpacity").css("display", "block");
         $(".profileSettings").fadeIn(200);
@@ -41,11 +49,13 @@ $(document).ready(function () {
     });
 
     $(".calendar").click(function () {
+        $("body").css("overflow", "hidden");
         $(".mainWrap").css("filter", "blur(5px)");
         $(".mainWrapOpacity").css("display", "block");
         $(".popup").css("opacity", ".3");
         $(".popupBg").fadeIn(200)
         $(".icalendar").fadeIn(300);
+        
     });
     
     $(document).mouseup(function (e){ 
@@ -66,14 +76,9 @@ $(document).ready(function () {
 
     $(".close1").click(function () {
         $(".mainWrap").css("filter", "none");
-        $(".vegFrameDropMenu").css("display", "none");
-        $(".profileSettings").fadeOut(200);
-        $(".popupWindow").fadeOut(200);
-        $(".mainWrapOpacity").css("display", "none");
-        $(".popupMessengers").fadeOut(200);
-        $(".editForm").fadeOut(200);
-        
-    })   
+        $(".vegFrameDropMenu, .mainWrapOpacity").css("display", "none");
+        $(".profileSettings, .popupWindow, .popupMessengers, .editForm, .contactData, .feedbackPopup, .orderSuccess").fadeOut(200); 
+    });
 
 
     $(".hideMenu").click(function () {
@@ -127,6 +132,7 @@ $(document).ready(function () {
     
 
     $(".edit").click(function () {
+        $("body").css("overflow", "hidden");
         $(".mainWrap").css("filter", "blur(5px)");
         $(".mainWrapOpacity").css("display", "block");
         $(".editForm").fadeIn(200);
@@ -134,6 +140,7 @@ $(document).ready(function () {
 
 
     $(".selfSend").click(function(){
+        $("body").css("overflow", "hidden");
 		$(".mainWrap").css("filter", "blur(5px)");
 		$(".mainWrapOpacity").css("display", "block");
 		$(".popupMessengers").fadeIn(200);
@@ -167,8 +174,39 @@ $(document).ready(function () {
         $input.change();
         return false;
     });
+    
+    $("#adressSet").click(function () {
+        $(".profileInfo").hide();
+        $(".adressSettings").fadeIn(400);
+        $(".profileSettings h2").html("Мои адреса");
 
-    // $('.vegFrameOptions .fa-shopping-basket').click(function () {
-    //     $(this).toggleClass("active");
-    // });
+    })
+    
+    $("#profileInfoSet").click(function () {
+        $(".adressSettings").hide();
+        $(".profileInfo").fadeIn(400);
+        $(".profileSettings h2").html("Мой профиль");
+        
+    })
+
+    $("#profilePhone, #phoneNumber").inputmask({"mask": "+375(99) 999-99-99"});
+    $(".addAdress").click(function () {
+        $(".contactData").fadeIn(400);
+        $(".profileSettings").css("display", "none");
+    })
+    $(".contactData button[type='reset']").click(function () {
+        $(".contactData").fadeOut(200);
+        $(".profileSettings").css("display", "flex");
+        
+    })
+
+    $(".leaveFeedback").click(function () {
+        $("body").css("overflow", "hidden");
+        $(".mainWrap").css("filter", "blur(5px)");
+        $(".mainWrapOpacity").css("display", "block");
+        $(".feedbackPopup").fadeIn(200);
+    })
+    $("#orderSubmit").click(function () {
+        $(".orderSuccess").css("display", "block");    
+    })
 })

@@ -1,0 +1,25 @@
+{
+  "name": "vegpoolclient",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "фермерские",
+    "продукты",
+    "овощи",
+    "зелень",
+    "досавка",
+    "Минск"
+  ],
+  "author": "Alex Zebroff",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "inputmask": "^5.0.5",
+    "jquery": "^3.5.1",
+    "jquery-datetimepicker": "^2.5.21"
+  }
+}

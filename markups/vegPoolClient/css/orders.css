@@ -13,14 +13,25 @@ table.table select{
     border: none;
     height: 34px;
 }
-.ordersHeaderButtons button{ 
+.ordersHeaderButtons button:first-child{ 
     margin-right: 10px;
 }
 
 .selfSend{
     background-color: #fff;
+    color: #949CA8;
+    border: #BEC3CA 1px solid;
+    
+}
+.selfSend:hover{
     color:#4D9774;
     border:#4D9774 solid 1px;
+}
+.selfSend:hover i{
+    color:#4D9774;
+}
+.selfSend i{
+    color: #949CA8;;
 }
 .deliveryDate{
     display: flex;
@@ -76,4 +87,30 @@ table.table select{
     background-color: #BEC3CA;
     margin: 3px;
     border-radius: 50%;
+}
+.ordersHeaderButtons{
+    display: flex;
+    flex-wrap: wrap;
+}
+.calendarWrap i.fa-calendar-alt{
+    font-size: 40px;
+}
+.calendarWrap{
+    text-align: center;
+}
+.orderSuccess{
+    background-color: #fff;
+    display: none;
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
+}
+.orderSuccess p{
+    margin: 10px;
 }

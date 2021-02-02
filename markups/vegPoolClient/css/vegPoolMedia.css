@@ -4,7 +4,12 @@
         bottom: 0;
     }
 }
-
+@media (max-height: 750px) {
+    .contactData{
+        max-height: 80%;
+        overflow: scroll;
+    }
+}
 @media(min-width: 769px) {
     .mainMenu{
         height: 100%;
@@ -172,7 +177,7 @@
 }
 .changePhoto{
     bottom: 5px;
-    left: 255px;
+    left: 70px;
 }
 
 .popup h2{
@@ -181,6 +186,9 @@
 .popup input, .popup select{
     height: 35px;
     margin-bottom: 15px;
+}
+.feedbackPopup{
+    width: 60%;
 }
 .calendarWrap{
     text-align: left;
@@ -207,7 +215,9 @@
 .table{
     font-size: 12px;
 }
-
+.estimateFeedbackBtn{
+    height: 30px;
+}
 .productOptions{
     flex-direction: column;
 }
@@ -218,6 +228,12 @@
 .selectWrapper.selectWrapperLang::before{
     top: 10px;
 }
+.popupMenu{
+        display: flex;
+    }
+    .popupMenu a{
+        font-size: 10px;
+    }
 
 }
 @media (max-width: 500px) {
@@ -267,7 +283,7 @@
     }
     .changePhoto {
         bottom: 0px;
-        left: 155px;
+        left: 55px;
     }
     .popup{
         font-size: 12px;
@@ -284,6 +300,9 @@
     }
     .popup label{
         font-size: 12px;
+    }
+    .feedbackPopup{
+        width: 90%;
     }
     .calendarWrap{
         display: flex;
@@ -335,6 +354,10 @@
     span.name{
         display: none;
     }
+    .adressList{
+        margin-top: 10px;
+    }
+    
 }
 
 @media (max-height: 500px) {
