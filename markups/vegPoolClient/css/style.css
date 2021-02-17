@@ -93,7 +93,7 @@ h2{
     width: 242px;
     transition: width .3s;
     background-color: #2E3C54;
-    padding-top: 20px;
+    padding-top: 14px;
     padding-bottom: 20px;
     position: fixed;
     z-index: 5;
@@ -262,7 +262,6 @@ h2{
     width: 150px;
 }
 .selectWrapper.sortSelectWrapper::before{
-    background: url("../images/Line 1_green.png") no-repeat right center;
     top: 12px;
 }
 .selectWrapper::before{
@@ -280,10 +279,13 @@ span.name{
     font-size: 14px;
 }
 .profilePhotoForm{
-    float: left;
+    /* float: left; */
     margin-bottom: 20px;
+    /* position: relative; */
+}
+.photoWrap{
     position: relative;
-    margin-right: 40px;
+    display: flex;
 }
 .profilePhotoForm img{
     border-radius: 50%;
@@ -297,7 +299,7 @@ span.name{
 #profileName, #profilePhone{
     width: 282px;
 }
-#location, #serviceZone, #farmName{
+#location, #serviceZone, #farmName, #addZone{
     width: 100%;
     margin-bottom: 20px;
 }
@@ -317,7 +319,7 @@ span.name{
     line-height: 32px;
     position: absolute;
     bottom: 20px;
-    right: 0px;
+    left: 120px;
     cursor: pointer;
 }
 .profileHeader{
@@ -369,7 +371,7 @@ span.name{
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
 }
 .addProduct:hover{
     background-color: #0D7A8D;
@@ -552,7 +554,7 @@ span.name{
   .popup input, .popup select{
       margin-bottom: 20px;
   }
-
+  
   .close {
     position: absolute;
     right: 40px;
@@ -669,6 +671,8 @@ input.weight{
 
 .profileSettings{
     max-width: 750px;
+    min-width: 50%;
+    min-height: 70%;
     background-color: #fff;
     display: flex;
     flex-wrap: nowrap;
@@ -684,7 +688,7 @@ input.weight{
 }
 .profileSettingsMenu{
     width: 30%;
-    margin-right: 20px;
+    margin-right: 40px;
 }
 .profileSettingsMenu h2{
     margin-bottom: 50px;
@@ -847,12 +851,13 @@ button img{
 
 
 .number{
-    margin: 10px;
+    margin: 0 5px;
     display: flex;
     align-items: center;
 }
 .number span{
     cursor:pointer;
+    line-height: 23px;
 }
 .minus, .plus{
     width:20px;
@@ -871,12 +876,10 @@ button img{
     height:26px;
     width: 50px;
     text-align: center;
-    font-size: 20px;
     border:1px solid #ddd;
     border-radius:4px;
     display: inline-block;
     vertical-align: middle;
-    margin: 0 3px;
 }
 
 
@@ -912,4 +915,90 @@ button img{
     transform: translate(-50%, -50%);
     margin: 0!important;
 }
-			
+
+
+.adressSettings{
+    display: none;
+}
+
+.contactData{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    z-index: 4;
+    border-radius: 4px;
+    box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
+}
+.contactData > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.contactData h3{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.obligatoryField{
+    color: red;
+}
+.adressList{
+    margin-top: 20px;
+}
+.adressList li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.adressList li span{
+    margin-right: 30px;
+}
+.addressOptions{
+    display: flex;
+    align-items: center;
+}
+
+.addressOptions i:hover{
+    color: red;
+}		
+.addressOptions > *{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.profileSettingsForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 240px;
+}
+.lableInput{
+    display: flex;
+    flex-direction: column;
+}
+.addAdress{
+    background-color: #4D9774;
+    color: #fff;
+}
+.addAdress:hover{
+    background-color: #0D7A8D;
+}
+#balanceCount{
+    font-size: 26px;
+    font-weight: bold;
+}
+.table th{
+    white-space: nowrap;
+}
+
+/* .table td:last-child, .table th:last-child{
+    text-align: right;
+} */
+
+.farmersTable tr{
+    cursor: pointer;
+}
