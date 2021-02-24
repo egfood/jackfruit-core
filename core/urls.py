@@ -17,7 +17,7 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import TemplateView, LogoutView
 from django.urls import path, re_path
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
@@ -27,14 +27,13 @@ from core.views import *
 app_name = 'core'
 
 urlpatterns = [
+    path('', HomeView.as_view(), name='home'),
     path('core-admin/', admin.site.urls, name='admin'),
     path('farmer/', include('apps.farmer.urls', namespace='farmer')),
     path('buyer/', include('apps.buyer.urls', namespace='buyer')),
-
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots_txt"),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('signup/', SignupView.as_view(), name='signup'),
     path('forgot-password/', TemplateView.as_view(template_name='core/pages/forgot-password.html'),
          name='forgot_password'),
 

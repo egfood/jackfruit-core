@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block core_styles %}
+    <link href="{% static 'core/vendors/fontawesome/css/all.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/loginMedia.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="mainContainer">
+        <div class="bgPic"></div>
+        <div class="generalContent">
+
+            {% block top_logo %}
+                {% include 'core/blocks/branded_link_to_home_page.html' %}
+            {% endblock %}
+
+            {% block general_content %}{% endblock %}
+
+        </div>
+    </div>
+
+{% endblock %}

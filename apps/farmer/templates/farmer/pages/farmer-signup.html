@@ -1,0 +1,13 @@
+{% extends 'core/base-signup.html' %}
+{% load static %}
+
+{% block meta_description %}Регистрация фермера на сайте службы доставки фермерской зелени VegPool.{% endblock %}
+{% block title %}регистрация фермера{% endblock %}
+
+{% block signup_description %}
+    <p>VegPool поможет продавать продукты со своего огорода легко<br> и быстро. Начните уже сейчас.</p>
+{% endblock %}
+
+{% block condition_link %}
+    {% static 'farmer/terms_and_conditions_farmer.pdf' %}
+{% endblock %}

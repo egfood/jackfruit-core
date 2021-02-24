@@ -43,6 +43,7 @@ class GreenUser(AbstractUser):
     objects = GreenUserManager()
 
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     @property
     def profile(self):

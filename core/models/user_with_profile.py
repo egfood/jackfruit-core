@@ -2,7 +2,7 @@ from collections import namedtuple
 
 from django.db import transaction, IntegrityError
 
-from apps.buyer.models import BuyerProfile
+# from apps.buyer.models import BuyerProfile
 from .user import GreenUser
 
 UserCreationResult = namedtuple('UserCreationResult', ['has_errors', 'error', 'created_user'])
@@ -56,62 +56,62 @@ class TerminalMessageStyle:
         return f'{self.RED}{message}{self.END}'
 
 
-class DemoUserWithProfileCreator:
-    manager = UserWithProfileManager()
-    USER_ROLES = [role[0] for role in UserProfile.USER_ROLE_CHOICES] + [UserWithProfileManager.SUPERUSER_ROLE]
-    EMAIL_DOMAIN = "@mailforspam.com"
-    USER_PASSWORD = 'qwerty12321'
-    style = TerminalMessageStyle()
-
-    def create_demo_users(self, **kwargs) -> list:
-        """
-        Creation users on range from 'index' to 'index'+'count' (it's index use on name/email)
-        for each user 'role' if it was defined
-
-        :param kwargs:
-            'index' - first index for username and email for first created user. '1' by default
-            'count' - count of created users. '1' by default
-            'role' - role for created users,
-                     if role is not defined then method will create 'count' users for each role.
-        :return:
-        """
-
-        start_username_index = kwargs.get('index', 1)
-        users_count = kwargs.get('count', 1)
-
-        user_role = kwargs.get('role', None)
-        user_creation_results = []
-
-        if user_role is None:
-            for role in self.USER_ROLES:
-                batch_result = self.create_users_in_range(start_username_index, users_count, role)
-                user_creation_results.extend(batch_result)
-        else:
-            batch_result = self.create_users_in_range(start_username_index, users_count, self.manager.SUPERUSER_ROLE)
-            user_creation_results.extend(batch_result)
-
-        return user_creation_results
-
-    def create_users_in_range(self, start_index: int, count: int, role: str) -> list:
-        usernames = [self.get_username(role, i) for i in range(start_index, start_index + count)]
-        result_data = []
-
-        for name in usernames:
-            user_data = {
-                'first_name': name,
-                'email': self.get_email(name),
-                'role': role,
-                'is_active': True,
-                'password': self.USER_PASSWORD,
-            }
-            creation_result = self.manager.create_user_with_profile(**user_data)
-            result_data.append(creation_result)
-
-        return result_data
-
-    @staticmethod
-    def get_username(user_prefix: str, user_index: int) -> str:
-        return f"{user_prefix}{str(user_index).zfill(4)}"
-
-    def get_email(self, username: str) -> str:
-        return f"{username}{self.EMAIL_DOMAIN}"
+# class DemoUserWithProfileCreator:
+#     manager = UserWithProfileManager()
+#     USER_ROLES = [role[0] for role in UserProfile.USER_ROLE_CHOICES] + [UserWithProfileManager.SUPERUSER_ROLE]
+#     EMAIL_DOMAIN = "@mailforspam.com"
+#     USER_PASSWORD = 'qwerty12321'
+#     style = TerminalMessageStyle()
+#
+#     def create_demo_users(self, **kwargs) -> list:
+#         """
+#         Creation users on range from 'index' to 'index'+'count' (it's index use on name/email)
+#         for each user 'role' if it was defined
+#
+#         :param kwargs:
+#             'index' - first index for username and email for first created user. '1' by default
+#             'count' - count of created users. '1' by default
+#             'role' - role for created users,
+#                      if role is not defined then method will create 'count' users for each role.
+#         :return:
+#         """
+#
+#         start_username_index = kwargs.get('index', 1)
+#         users_count = kwargs.get('count', 1)
+#
+#         user_role = kwargs.get('role', None)
+#         user_creation_results = []
+#
+#         if user_role is None:
+#             for role in self.USER_ROLES:
+#                 batch_result = self.create_users_in_range(start_username_index, users_count, role)
+#                 user_creation_results.extend(batch_result)
+#         else:
+#             batch_result = self.create_users_in_range(start_username_index, users_count, self.manager.SUPERUSER_ROLE)
+#             user_creation_results.extend(batch_result)
+#
+#         return user_creation_results
+#
+#     def create_users_in_range(self, start_index: int, count: int, role: str) -> list:
+#         usernames = [self.get_username(role, i) for i in range(start_index, start_index + count)]
+#         result_data = []
+#
+#         for name in usernames:
+#             user_data = {
+#                 'first_name': name,
+#                 'email': self.get_email(name),
+#                 'role': role,
+#                 'is_active': True,
+#                 'password': self.USER_PASSWORD,
+#             }
+#             creation_result = self.manager.create_user_with_profile(**user_data)
+#             result_data.append(creation_result)
+#
+#         return result_data
+#
+#     @staticmethod
+#     def get_username(user_prefix: str, user_index: int) -> str:
+#         return f"{user_prefix}{str(user_index).zfill(4)}"
+#
+#     def get_email(self, username: str) -> str:
+#         return f"{username}{self.EMAIL_DOMAIN}"

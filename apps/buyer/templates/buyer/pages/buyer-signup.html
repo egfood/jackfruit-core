@@ -1,0 +1,13 @@
+{% extends 'core/base-signup.html' %}
+{% load static %}
+
+{% block meta_description %}Регистрация покупателя на сайте службы доставки фермерской зелени VegPool.{% endblock %}
+{% block title %}регистрация покупателя{% endblock %}
+
+{% block signup_description %}
+    <p>Тут будет супер текст про то, зачем это все покупателю</p>
+{% endblock %}
+
+{% block condition_link %}
+    {% static 'buyer/terms_and_conditions_buyer.pdf' %}
+{% endblock %}

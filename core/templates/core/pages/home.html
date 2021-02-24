@@ -1,0 +1,27 @@
+{% extends 'core/base-with-left-image.html' %}
+{% load static %}
+
+{% block meta_description %}Главная страница сайта службы доставки фермерской зелени VegPool.{% endblock %}
+{% block title %}Главная{% endblock %}
+
+{% block top_logo %}{% endblock %}
+
+{% block general_content %}
+    <div class="logoHeader">
+        <span class="logo">
+            <img src="{% static 'core/img/logo_grey.png' %}" alt="{% include 'core/blocks/logo_alt.html' %}">
+            <span>VegPool</span>
+        </span>
+        
+        <span><a href="https://t.me/joinchat/Bc_KkxNGDtfbQsgzp891gA" target="_blank">Мы в телеграмме</a></span>
+        
+        <a class="privatCab" href="{% url 'login' %}">
+            <i class="fas fa-user"></i>
+            <span>Войти</span>
+        </a>
+    </div>
+    <h1>О проекте</h1>
+    <p>тексттексттекст</p>
+    <p><a href="{% url 'farmer:signup' %}">Регистрация в роли Фермера</a></p>
+    <p><a href="{% url 'buyer:signup' %}">Регистрация в роли Покупателя</a></p>
+{% endblock %}

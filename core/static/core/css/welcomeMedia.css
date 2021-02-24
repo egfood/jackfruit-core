@@ -1,0 +1,34 @@
+@media (max-width: 500px) {
+    .profileWrap{
+        flex-direction: column;
+        align-items: center;
+    }
+    .mainContainer select, .mainContainer button{
+        width: 100%;
+    }
+    .mainContainer p, .mainContainer h2{
+        text-align: center;
+    }
+    .mainContainer h2{
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    .mainContainer p{
+        font-size: 18px;
+    }
+    .logo{
+        margin: 0 0 20px 20px;
+    }
+    .profilePlace{
+        margin-right: 0;
+    }
+    .inputsWrap{
+        width: 100%;
+    }
+    .inputsWrap input{
+        width: 100%;
+    }
+    form{
+        width: 100%;
+    }
+}
