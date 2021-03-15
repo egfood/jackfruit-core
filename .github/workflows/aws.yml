@@ -42,8 +42,11 @@ jobs:
         -e "SECRET_KEY=key" \
         -e "DATABASE_URL=postgres://root:root@postgres:5432/egreen" \
         -e STATIC_DOMAIN_NAME=static \
+        -e MAILGUN_API_KEY=key \
+        -e MAILGUN_DOMAIN=ket \
         -v $(pwd):/code \
         "$REGISTRY/$IMAGE:$TAG" python manage.py collectstatic --no-input -v 3
+
     - name: Upload static to S3
       uses: jakejarvis/s3-sync-action@master
       env:
