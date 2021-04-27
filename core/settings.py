@@ -37,7 +37,7 @@ DEBUG = env.bool('DEBUG', False)
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = [env.str('DOMAIN_NAME', '*')]
+ALLOWED_HOSTS = ['localhost', env.str('DOMAIN_NAME', '*')]
 
 # Application definition
 

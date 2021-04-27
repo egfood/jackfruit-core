@@ -7,7 +7,29 @@
 {% block signup_description %}
     <p>VegPool поможет продавать продукты со своего огорода легко<br> и быстро. Начните уже сейчас.</p>
 {% endblock %}
-
-{% block condition_link %}
-    {% static 'farmer/terms_and_conditions_farmer.pdf' %}
+{% block fields_signup %}
+    {% for field in form %}
+        {#            TODO Переопределить виджет#}
+        {% if field.field.widget.input_type != 'checkbox' %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+        {% else %}
+            <div class="checkbox">
+                {{ field }}
+                <label for="{{ field.id_for_label }}">Cоглашаюсь с <a href="farmer/terms_and_conditions_farmer.pdf"
+                                                                      download>Условиями использования</a>
+                </label>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
+{#{% if messages %}#}
+{#    <ul class="messages">#}
+{#        {% for message in messages %}#}
+{#            <li {% if message.tags %} class="{{ message.tags }} " {% endif %}>#}
+{#                {{ message }}#}
+{#            </li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#{% endif %}#}
