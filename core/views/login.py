@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import resolve_url
 # from django.urls import reverse_lazy
 
@@ -11,7 +12,6 @@ from core.forms.login import AuthenticationUserForm
 class CustomLoginView(LoginView):
     template_name = 'core/pages/login.html'
     authentication_form = AuthenticationUserForm
-    # next =
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
