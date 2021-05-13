@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import Group
 
 # from core.models import UserProfile, GreenUser
-from core.models import GreenUser, UserProfile
+from core.models import GreenUser
+
 
 @admin.register(GreenUser)
 class UserAdmin(BaseUserAdmin):
@@ -24,22 +25,8 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
     search_fields = ('email', 'first_name', 'last_name')
-    ordering = ('email', 'first_name', 'is_superuser', 'is_active', 'date_joined')
+    ordering = ('email', 'is_superuser', 'is_active', 'date_joined')
     filter_horizontal = ()
 
 
 admin.site.unregister(Group)
-
-
-@admin.register(UserProfile)
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user_id', 'user', 'photo', 'phone', 'tg_name', 'region')
-    # list_display = ('user', 'user_role', 'date_creation', 'date_updated', 'tg_username', 'office', 'phone', 'notes')
-    # list_filter = ('office', 'date_creation', 'date_updated', 'user_role')
-    # fieldsets = (
-    #     ('Техническая информация', {'fields': ('user', 'user_role')}),
-    #     ('Личная информация', {'fields': ('tg_username', 'office', 'phone', 'notes')}),
-    # )
-    # search_fields = ('tg_username', 'office', 'notes', 'phone')
-    # ordering = ('date_creation', 'user')
-    # filter_horizontal = ()

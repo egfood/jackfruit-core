@@ -2,10 +2,10 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
-from core.forms.profile import UserProfileForm
+from apps.farmer.forms.profile import FarmerProfileForm
+from apps.farmer.models import FarmerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
-from core.models import UserProfile
 
 
 #
@@ -33,13 +33,12 @@ class FarmerSignupView(CreateView):
         return http_response
 
 
-
 # TODO: After login/logout implementation the view must be decorated login_required
 class FarmerWelcomeView(CreateView):
     template_name = 'farmer/pages/farmer-welcome.html'
-    model = UserProfile
-    form_class = UserProfileForm
-    success_url = reverse_lazy('farmer:main_farmer')
+    model = FarmerProfile
+    form_class = FarmerProfileForm
+    success_url = reverse_lazy('farmer:main_page')
 
     # @method_decorator(login_required)
     def form_valid(self, form):
