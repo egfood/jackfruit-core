@@ -1,11 +1,8 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
-from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import resolve_url
-# from django.urls import reverse_lazy
 
-from core.models import UserProfile
-from django.conf import settings
 from core.forms.login import AuthenticationUserForm
 
 
@@ -18,12 +15,16 @@ class CustomLoginView(LoginView):
         context['version'] = settings.VERSION
         return context
 
-    # def get_success_url(self):
-    #     # TODO: need fix redirect by 'next' GET param (see django.contrib.auth.views.LoginView.get_redirect_url())
-    #     user_profile = UserProfile.objects.filter(user=self.request.user).first()
-    #     if user_profile is not None:
-    #         view_name = "farmer:main_page" if user_profile.is_supplier else "buyer:home"
-    #     else:
-    #         messages.error(self.request, 'Профиль не найден. Обратитесь к администратору.')
-    #         view_name = "login"
-    #     return resolve_url(view_name)
+    def get_success_url(self):
+        # TODO: need fix redirect by 'next' GET param (see django.contrib.auth.views.LoginView.get_redirect_url())
+        user = self.request.user
+        if user.is_superuser:
+            return resolve_url("admin:index")
+        try:
+            user_profile = user.profile
+        except AttributeError as e:
+            messages.error(self.request, 'Профиль не найден. Обратитесь к администратору.')
+            return resolve_url("login")
+        else:
+            view_name = "farmer:main_page" if user.is_farmer else "buyer:home"
+            return resolve_url(view_name)
