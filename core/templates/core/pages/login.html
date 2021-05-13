@@ -7,14 +7,15 @@
 {% block title %}Войти{% endblock %}
 
 {% block general_content %}
-
+    <p>Версия:{{ version }}</p>
     <h1>Авторизация в VegPool.</h1>
     <p>Введите адрес электронной почты и пароль, чтобы войти.</p>
-    <form action="">
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="email">
-        <label for="password">Пароль</label>
-        <input type="password" name="password" id="password">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        {% endfor %}
         <button type="submit">Войти</button>
         <span class="haveAccount">Забыли пароль? <a href="{% url 'forgot_password' %}">Восстановить</a></span>
         <div class="noAccount">
@@ -27,3 +28,4 @@
     </form>
 
 {% endblock %}
+
