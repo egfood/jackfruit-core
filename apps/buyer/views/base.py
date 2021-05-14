@@ -1,12 +1,13 @@
 # from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.urls import reverse
-# from django.views.generic import TemplateView
+from django.views.generic import TemplateView
 #
 # from apps.store.models import FoodDelivery
-#
-#
+
+
 # class BuyerBasePagesView(LoginRequiredMixin, TemplateView):
-#     login_url = '/login/'
+class BuyerBasePagesView(TemplateView):
+    login_url = '/login/'
 #
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)

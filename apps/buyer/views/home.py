@@ -4,11 +4,11 @@
 # from django.conf import settings
 #
 # from apps.store.models import FoodProduct, FoodDelivery, FoodHomeOrder, FoodOfficeOrder
-# from .base import BuyerBasePagesView
-#
-#
-# class BuyerHomeView(BuyerBasePagesView):
-#     template_name = 'buyer/pages/home.html'
+from .base import BuyerBasePagesView
+
+
+class BuyerHomeView(BuyerBasePagesView):
+    template_name = 'buyer/pages/home.html'
 #
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
