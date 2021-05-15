@@ -1,25 +1,28 @@
 {% extends 'core/base-with-left-image.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block general_content %}
 
     <h1>Регистрация в сервисе по продажи фермерских продуктов.</h1>
     {% block signup_description %}{% endblock %}
-    <form action="">
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="email">
-        <label for="password">Пароль</label>
-        <input type="password" name="password" id="password">
-        <label for="passwordRepeat">Повторите пароль</label>
-        <input type="password" name="passwordRepeat" id="passwordRepeat">
-        <div class="checkbox">
-            <input type="checkbox" name="acceptConditions" id="acceptConditions">
-            <label for="acceptConditions">Cоглашаюсь с <a href="{% block condition_link %}{% endblock %}" download>
-                Условиями использования</a>
-            </label>
-        </div>
-        <button type="submit">Присоединиться</button>
-        <span class="haveAccount">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></span>
-    </form>
-
+        <form action="" method="post">
+            {% csrf_token %}
+                {% block fields_signup %}
+{#                    <label for="email">E-mail</label>#}
+{#                    <input name="email" id="email">#}
+{#                    <label for="password">Пароль</label>#}
+{#                    <input type="password" name="password" id="password">#}
+{#                    <label for="passwordRepeat">Повторите пароль</label>#}
+{#                    <input type="password" name="passwordRepeat" id="passwordRepeat">#}
+{#                    <div class="checkbox">#}
+{#                        <input type="checkbox" name="acceptConditions" id="acceptConditions">#}
+{#                        <label for="acceptConditions">Cоглашаюсь с <a href="{% block condition_link %}{% endblock %}" download>#}
+{#                            Условиями использования</a>#}
+{#                        </label>#}
+{#                    </div>#}
+                {% endblock %}
+                <button type="submit">Присоединиться</button>
+                <span class="haveAccount">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></span>
+        </form>
 {% endblock %}

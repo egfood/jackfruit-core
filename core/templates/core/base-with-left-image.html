@@ -17,6 +17,16 @@
                 {% include 'core/blocks/branded_link_to_home_page.html' %}
             {% endblock %}
 
+            {% block messages %}
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            {% endblock %}
+
             {% block general_content %}{% endblock %}
 
         </div>

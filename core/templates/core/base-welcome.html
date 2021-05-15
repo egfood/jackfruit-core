@@ -7,33 +7,38 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="generalBg">
-
         {% include 'core/blocks/branded_link_to_home_page.html' %}
-
         <div class="mainContainer">
             <h2>Добро пожаловать!</h2>
             <p>Внесите ваши персональные данные</p>
-            <form action="">
+            <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
                 <div class="profileWrap">
                     <div class="profilePlace">
                         <img src="{% static 'core/img/profile_img.png' %}" alt="profile image on VegPool">
-                        <div class="addPhoto">+</div>
+                        {% block img_upload %}
+                            <div class="addPhoto">+</div>
+                        {% endblock %}
                     </div>
                     <div class="inputsWrap">
+                        {% block form %}
+{#                        {% block personal %}#}
                         <label for="profileName">Имя</label>
                         <input id="profileName" type="text">
                         <label for="profilePhone">Телефон</label>
                         <input type="tel" id="profilePhone" placeholder='+375 (xx) xxx-xx-xx ' required
                                pattern='\s{0,}\+{1,1}375\s{0,}\({0,1}(([2]{1}([5]{1}|[9]{1}))|([3]{1}[3]{1})|([4]{1}[4]{1}))\)\s{0,}[0-9]{3,3}\s{0,}[0-9]{4,4}'>
+{#                        {% endblock %}#}
                     </div>
                 </div>
+{#                {% block place %}#}
                 <label for="selectLocation">Населенный пункт (регион)</label>
                 <select name="selectLocation" id="selectLocation">
                     <option value="">Минск</option>
                     <option value="">Минский район</option>
                 </select>
+                {% endblock %}
                 <button type="submit">Сохранить</button>
             </form>
         </div>

@@ -1,6 +1,10 @@
+from importlib import import_module
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+from core.models.base import ClassData
 
 
 class GreenUserManager(BaseUserManager):
@@ -39,11 +43,15 @@ class GreenUser(AbstractUser):
 
     email = models.EmailField('Email', unique=True)
     username = None
+    first_name = None
+    last_name = None
 
     objects = GreenUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    BUYER_PROFILE = ClassData("apps.buyer.models", "BuyerProfile")
+    FARMER_PROFILE = ClassData("apps.farmer.models", "FarmerProfile")
 
     @property
     def profile(self):
@@ -56,9 +64,19 @@ class GreenUser(AbstractUser):
                     self._profile = getattr(self, attr_name)
             if not profile_was_find:
                 raise AttributeError("User profile not found!")
+        return self._profile
 
     def is_buyer(self):
-        return self.profile.type == "BuyerProfile"
+        return self.profile.type == self.BUYER_PROFILE.class_name
 
     def is_farmer(self):
-        return self.profile.type == "FarmerProfile"
+        return self.profile.type == self.FARMER_PROFILE.class_name
+
+    @staticmethod
+    def get_or_create_profile(user, profile_class_data: ClassData):
+        try:
+            return user.profile
+        except AttributeError:
+            module = import_module(profile_class_data.path_to_class)
+            profile_model = getattr(module, profile_class_data.class_name)
+            return profile_model()

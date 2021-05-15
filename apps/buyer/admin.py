@@ -4,6 +4,8 @@ from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import gettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 
+from apps.buyer.models import BuyerProfile
+
 
 class FlatPageNewAdmin(FlatPageAdmin, SummernoteModelAdmin):
     summernote_fields = '__all__'
@@ -25,3 +27,7 @@ class FlatPageNewAdmin(FlatPageAdmin, SummernoteModelAdmin):
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageNewAdmin)
+
+@admin.register(BuyerProfile)
+class BuyerProfileAdmin(admin.ModelAdmin):
+    list_display = ('user_id', 'user', 'photo', 'phone', 'name', 'region')
