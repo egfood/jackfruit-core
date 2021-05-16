@@ -1,5 +1,7 @@
 {% extends "farmer/app-base.html" %}
 
+{% load static %}
+
 {% block title %}Мои продукты{% endblock %}
 
 {% block page_content %}
@@ -24,7 +26,7 @@
 
     <div class="centralImg">
         <div class="centralImgWrap">
-            <img src="images/Rectangle.svg" alt="cenralImg" class="tomatoCarrot">
+            <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
             <!-- <img src="images/Arrow 3.png" alt="arrowCurly" class="arrowCurly"> -->
             <div class="addPruductsButtonPlus">+</div>
         </div>
