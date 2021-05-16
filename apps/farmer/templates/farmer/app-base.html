@@ -1,8 +1,11 @@
 {% extends 'core/base-with-sidebar.html' %}
+{% load static %}
 
 {% block left_sidebar_menu_items %}
     <a href="index.html" class="activeMenuElement"><i class="fab fa-pagelines"></i><span>Мои продукты</span></a>
     <a href="orders.html"><i class="fas fa-shopping-basket"></i><span>Заказы</span></a>
     <a href="payments.html"><i class="fas fa-money-bill-wave-alt"></i><span>Платежи</span></a>
-    <a href="rating.html"><i class="fas fa-star"></i></i><span>Мой рейтинг</span></a>
+    <a href="rating.html"><i class="fas fa-star"></i><span>Мой рейтинг</span></a>
 {% endblock %}
+
+{% block farmer_image %}{% static 'farmer/img/farmer.png' %}{% endblock %}

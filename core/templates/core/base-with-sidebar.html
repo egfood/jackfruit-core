@@ -36,15 +36,17 @@
                             <span></span>
                         </div>
                         <div class="headerOptions">
-                            <div class="selectWrapper selectWrapperLang">
-                                <select name="lang" id="langSwitch">
-                                    <option value="RUS">РУС</option>
-                                    <option value="ENG">ENG</option>
-                                </select>
-                            </div>
+{#                            <div class="selectWrapper selectWrapperLang">#}
+{#                                <select name="lang" id="langSwitch">#}
+{#                                    <option value="RUS">РУС</option>#}
+{#                                    <option value="ENG">ENG</option>#}
+{#                                </select>#}
+{#                            </div>#}
                             <div class="profileHeader">
                                 <span class="name">Иван Иванов</span>
-                                <a class="profilePhoto" href="#"><img src="images/farmer.png" alt="profile photo"></a>
+                                <a class="profilePhoto" href="#">
+                                    <img src="{% block farmer_image %}{% endblock %}" alt="profile photo">
+                                </a>
                             </div>
                         </div>
                     </div>
