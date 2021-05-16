@@ -21,10 +21,10 @@ class CustomLoginView(LoginView):
         if user.is_superuser:
             return resolve_url("admin:index")
         try:
-            user_profile = user.profile
+            getattr(user, "profile")
         except AttributeError as e:
             messages.error(self.request, 'Профиль не найден. Обратитесь к администратору.')
             return resolve_url("login")
         else:
-            view_name = "farmer:main_page" if user.is_farmer else "buyer:home"
+            view_name = "farmer:foodstuffs" if user.is_farmer else "buyer:home"
             return resolve_url(view_name)
