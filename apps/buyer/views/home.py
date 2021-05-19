@@ -5,10 +5,12 @@
 #
 # from apps.store.models import FoodProduct, FoodDelivery, FoodHomeOrder, FoodOfficeOrder
 from .base import BuyerBasePagesView
+from django.views.generic.base import RedirectView
 
 
-class BuyerHomeView(BuyerBasePagesView):
-    template_name = 'buyer/pages/home.html'
+class BuyerHomeView(RedirectView, BuyerBasePagesView):
+    url = 'cart'
+    # template_name = 'buyer/pages/home.html'
 #
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
