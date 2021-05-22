@@ -21,7 +21,6 @@ from django.urls import path, re_path
 
 from core.forms.forgot_password import ChildPasswordResetForm
 from core.views import *
-from core.views.passwordReset import ChildPasswordResetConfirmView
 
 app_name = 'core'
 
