@@ -14,10 +14,10 @@ Menu.add_item("buyer_left_sidebar", MenuItem("Корзина",
 # payments.html
 Menu.add_item("buyer_left_sidebar", MenuItem("Платежи",
                                              reverse("buyer:home"),
-                                             weight=20,
+                                             weight=30,
                                              icon="fas fa-money-bill-wave-alt"))
 # rating.html
 Menu.add_item("buyer_left_sidebar", MenuItem("Рейтинг фермеров",
                                              reverse("buyer:home"),
-                                             weight=20,
+                                             weight=40,
                                              icon="fas fa-star"))
