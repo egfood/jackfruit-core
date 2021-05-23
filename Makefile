@@ -21,6 +21,9 @@ du:
 sh:
 	docker-compose exec web python manage.py shell
 
+ba:
+	docker-compose exec web bash
+
 i: s m cs du
 
 l:
