@@ -14,10 +14,10 @@ Menu.add_item("farmer_left_sidebar", MenuItem("Заказы",
 # payments.html
 Menu.add_item("farmer_left_sidebar", MenuItem("Платежи",
                                               reverse("farmer:foodstuffs"),
-                                              weight=20,
+                                              weight=30,
                                               icon="fas fa-money-bill-wave-alt"))
 # rating.html
 Menu.add_item("farmer_left_sidebar", MenuItem("Мой рейтинг",
                                               reverse("farmer:foodstuffs"),
-                                              weight=20,
+                                              weight=40,
                                               icon="fas fa-star"))
