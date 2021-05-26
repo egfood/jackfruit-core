@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
+from apps.buyer.forms.profile import BuyerProfileForm
+from apps.buyer.models import BuyerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
 
@@ -22,6 +24,23 @@ class BuyerSignupView(CreateView):
             http_response = super().form_invalid(form)
         return http_response
 
-#TODO: After login/logout implementation the view must be decorated login_required
+
+# TODO: After login/logout implementation the view must be decorated login_required
 class BuyerWelcomeView(CreateView):
     template_name = 'buyer/pages/buyer-welcome.html'
+    model = BuyerProfile
+    form_class = BuyerProfileForm
+    success_url = reverse_lazy('farmer:main_page')
+
+    # @method_decorator(login_required)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(BuyerWelcomeView, self).form_valid(form)
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
+    #     if request.user.is_authenticated:
+    #         UserProfile.user_id = request.user.id
+    #         form.save()
+    #     else:
+    #         redirect(reverse_lazy('farmer:signup'))
+# Do something for anonymous users.
