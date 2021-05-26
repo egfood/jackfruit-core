@@ -5,9 +5,22 @@
 {% block title %}регистрация покупателя{% endblock %}
 
 {% block signup_description %}
-    <p>Тут будет супер текст про то, зачем это все покупателю</p>
+    <p>Текст для покупателя.</p>
 {% endblock %}
-
-{% block condition_link %}
-    {% static 'buyer/terms_and_conditions_buyer.pdf' %}
+{% block fields_signup %}
+    {% for field in form %}
+        {#            TODO Переопределить виджет#}
+        {% if field.field.widget.input_type != 'checkbox' %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+        {% else %}
+            <div class="checkbox">
+                {{ field }}
+                <label for="{{ field.id_for_label }}">Cоглашаюсь с <a href="buyer/terms_and_conditions_buyer.pdf"
+                                                                      download>Условиями использования</a>
+                </label>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
