@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="profileSettings">
     <span class="close close1"></span>
     <div class="profileSettingsMenu">
@@ -10,7 +12,7 @@
     </div>
     <form action="">
         <div class="profilePhotoForm">
-            <img src="images/farmer2.png" alt="profilePhoto">
+            <img src="{% static "farmer/img/farmer2.png" %}" alt="Farmer profile default photo">
             <i class="fas fa-pencil-alt changePhoto"></i>
         </div>
         <label for="profileName">Имя</label>
