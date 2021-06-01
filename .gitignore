@@ -9,5 +9,5 @@ farmers/migrations/__pycache__/
 farmers/views/__pycache__/
 core/migrations/__pycache__/
 core/views/__pycache__/
-/media/products/
+/media
 git

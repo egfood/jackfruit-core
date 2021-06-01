@@ -7,4 +7,10 @@
     {% with menu_items=menus.farmer_left_sidebar %}{% include "core/blocks/left-sidebar-menu.html" %}{% endwith %}
 {% endblock %}
 
-{% block farmer_image %}{% static 'farmer/img/farmer.png' %}{% endblock %}
+{% block profile_image %}
+    {% if user.profile.photo %}
+        {{ user.profile.photo.url }}
+    {% else %}
+        {% static 'farmer/img/farmer.png' %}
+    {% endif %}
+{% endblock %}
