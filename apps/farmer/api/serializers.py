@@ -6,4 +6,4 @@ from ..models import FarmerProfile
 class FarmerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = FarmerProfile
-        fields = ['id', 'photo', 'phone', 'region', 'name']
+        fields = ['photo', 'phone', 'region', 'name', 'service_zone', 'legal_name']

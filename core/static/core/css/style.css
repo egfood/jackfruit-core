@@ -596,7 +596,7 @@ input.weight{
 .formButtons button{
     margin-bottom: 0!important;
 }
-.formButtons button[type="submit"]{
+.formButtons .jsubmit{
     background-color: #DFE3E9;
     color: #A0A7B2;
 }
@@ -770,4 +770,12 @@ button img{
 .jmodal-spinner-overlay .spinner-border{
     display: inline-table;
     width: 3rem; height: 3rem;
+}
+
+.jform-changed .jsubmit {
+    background-color: #60B072;
+    color: #fff;
+}
+.jform-changed .jsubmit:hover {
+    background-color: #0D7A8D;
 }

@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.permissions import IsAuthenticated
 
-from ..models import FarmerProfile
 from .serializers import FarmerProfileSerializer
+from ..models import FarmerProfile
 
 
 class FarmerProfileEndpoint(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = FarmerProfileSerializer
 
     def get_queryset(self):

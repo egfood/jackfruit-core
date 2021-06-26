@@ -15,6 +15,7 @@
 
     </div>
     <form id="jfarmer-profile-form" action="" data-api-url="{{ farmer_profile_api_url }}">
+        {% csrf_token %}
 
         {% for field in farmer_profile_form %}
             {% if field.field.widget.input_type == 'file' %}
@@ -40,7 +41,7 @@
 
         <div class="formButtons">
             <button class="close1" type="reset">Отменить</button>
-            <button type="submit">Сохранить</button>
+            <button class="jsubmit">Сохранить</button>
         </div>
     </form>
 </div>
