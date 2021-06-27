@@ -30,7 +30,7 @@ class BuyerWelcomeView(CreateView):
     template_name = 'buyer/pages/buyer-welcome.html'
     model = BuyerProfile
     form_class = BuyerProfileForm
-    success_url = reverse_lazy('farmer:main_page')
+    success_url = reverse_lazy('buyer:home')
 
     # @method_decorator(login_required)
     def form_valid(self, form):
