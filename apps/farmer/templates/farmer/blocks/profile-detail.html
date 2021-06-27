@@ -1,20 +1,25 @@
 {% load static %}
 
 <div class="profileSettings">
+
     {% include 'core/blocks/spinner.html' %}
+
     <span class="close close1"></span>
+
     <div class="profileSettingsMenu">
-
         <h2>Настройки профиля</h2>
-
         <nav>
             <a href="#" class="profileSettingsMenuActive">Личная информация</a>
             <a href="#">Конфиденциальность и безопасность</a>
             <a href="#">Уведомления</a>
         </nav>
-
     </div>
+
     <form id="jfarmer-profile-form" action="" data-api-url="{{ farmer_profile_api_url }}">
+
+        {% include 'farmer/toasts/profile-updated.html' %}
+        {% include 'farmer/toasts/profile-error.html' %}
+
         {% csrf_token %}
 
         {% for field in farmer_profile_form %}
@@ -27,7 +32,7 @@
                             {% else %}
                                 <img src="{% static "farmer/img/farmer2.png" %}" alt="Farmer profile photo">
                             {% endif %}
-                            <input type="{{  field.field.widget.input_type }}" name="{{ field.name }}"
+                            <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
                                    style="display:none" accept="image/*" id="{{ field.id_for_label }}">
                             <i class="fas fa-pencil-alt changePhoto"></i>
                         </span>
@@ -41,7 +46,13 @@
 
         <div class="formButtons">
             <button class="close1" type="reset">Отменить</button>
-            <button class="jsubmit">Сохранить</button>
+            <button id="jsubmit-js" class="jsubmit">
+                <span id="jsubmit-spinner" class="spinner-border spinner-border-sm text-light d-none" role="status"
+                      aria-hidden="true"></span>
+                <span>Сохранить</span>
+            </button>
         </div>
+
     </form>
+
 </div>
