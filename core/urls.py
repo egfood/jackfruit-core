@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView, PasswordResetView, PasswordResetDoneView
 from django.urls import path, re_path
 
+from apps.farmer.api import urls as farmer_urls
 from core.forms.forgot_password import ChildPasswordResetForm
 from core.views import *
 
@@ -33,12 +34,9 @@ urlpatterns = [
                        name="robots_txt"),
                   path('login/', CustomLoginView.as_view(), name='login'),
                   path('logout/', LogoutView.as_view(), name='logout'),
-                  # path('forgot-password/', TemplateView.as_view(template_name='core/pages/forgot-password.html'),
-                  #      name='forgot_password'),
                   path('forgot-password/', PasswordResetView.as_view(template_name='core/pages/forgot-password.html',
-                                                                     form_class=ChildPasswordResetForm,
-                                                                     # extra_email_context={'protocol': 'https', 'domain': 'localhost:8055/'}
-                                                                     ), name='forgot_password'),
+                                                                     form_class=ChildPasswordResetForm),
+                       name='forgot_password'),
                   path('forgot-password/done/',
                        PasswordResetDoneView.as_view(template_name='core/pages/password_send_email.html'),
                        name='password_reset_done'),
@@ -48,6 +46,7 @@ urlpatterns = [
 
                   re_path(r'^healthcheck/', include('health_check.urls')),
                   path('summernote/', include('django_summernote.urls')),
+                  path('api/v1/farmer/', include(farmer_urls, namespace='farmer_api')),
               ] + static(str(settings.VERSION), document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
