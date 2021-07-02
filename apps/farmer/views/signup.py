@@ -30,7 +30,7 @@ class FarmerWelcomeView(CreateView):
     template_name = 'farmer/pages/farmer-welcome.html'
     model = FarmerProfile
     form_class = FarmerRegistrationProfileForm
-    success_url = reverse_lazy('farmer:main_page')
+    success_url = reverse_lazy('farmer:foodstuffs')
 
     # @method_decorator(login_required)
     def form_valid(self, form):
