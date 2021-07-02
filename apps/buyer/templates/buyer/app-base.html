@@ -6,3 +6,11 @@
     {% generate_menu %}
     {% with menu_items=menus.buyer_left_sidebar %}{% include "core/blocks/left-sidebar-menu.html" %}{% endwith %}
 {% endblock %}
+
+{% block profile_image %}
+    {% if user.profile.photo %}
+        {{ user.profile.photo.url }}
+    {% else %}
+        {% static 'buyer/img/buyer.png' %}
+    {% endif %}
+{% endblock %}
