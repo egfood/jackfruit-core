@@ -1,4 +1,4 @@
-from apps.farmer.models import FarmerProfile
+from apps.farmer.models import FarmerProfile, FarmerProduct
 from django.contrib import admin
 
 
@@ -14,5 +14,9 @@ class FarmerProfileAdmin(admin.ModelAdmin):
     # search_fields = ('tg_username', 'office', 'notes', 'phone')
     # ordering = ('date_creation', 'user')
     # filter_horizontal = ()
+
+@admin.register(FarmerProduct)
+class FarmerProductAdmin(admin.ModelAdmin):
+    list_display = ('farmer', 'name', 'weight', 'unit', 'size', 'price')
 
 
