@@ -1,6 +1,0 @@
-{% for m in menu_items %}
-    <a href="{{ m.link }}"
-       class="{% if selected_menu == m %}activeMenuElement{% endif %}">
-        <i class="{{ m.icon }}"></i><span>{{ m.title }}</span>
-    </a>
-{% endfor %}

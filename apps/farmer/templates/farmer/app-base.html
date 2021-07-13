@@ -1,11 +1,5 @@
 {% extends 'core/base-with-sidebar.html' %}
 {% load static %}
-{% load menu %}
-
-{% block left_sidebar_menu_items %}
-    {% generate_menu %}
-    {% with menu_items=menus.farmer_left_sidebar %}{% include "core/blocks/left-sidebar-menu.html" %}{% endwith %}
-{% endblock %}
 
 {% block profile_image %}
     {% if user.profile.photo %}
@@ -16,5 +10,5 @@
 {% endblock %}
 
 {% block page_footer_scripts %}
-    <script src="{% static 'farmer/js/farmer-profile.js'  %}"></script>
+    <script src="{% static 'farmer/js/farmer-profile.js' %}"></script>
 {% endblock %}

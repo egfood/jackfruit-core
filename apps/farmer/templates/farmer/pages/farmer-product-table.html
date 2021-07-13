@@ -1,0 +1,72 @@
+{% load static %}
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th><input type="checkbox" name="" id="checkAll"></th>
+				<th>Наиминование</th>
+				<th>Собрано</th>
+				<th>Заказано</th>
+				<th>Единица</th>
+				<th>Цена, руб</th>
+				<th>Действия</th>
+			</tr>
+		</thead>
+		<tbody>
+        {% for product in page.object_list %}
+     		<tr>
+    			<td><input type="checkbox" name="" id=""></td>
+{#TODO image link#}
+				<td><img src="{% static 'farmer/img/download-1.png' %}" alt="томат">{{ product.name }}</td>
+				<td>{{ product.weight }}</td>
+				<td>вывести кол-во из заказов</td>
+				<td>{{ product.get_unit_display }}</td>
+				<td>{{ product.price }}</td>
+				<td class="actionsTd">
+					<div class="vegFrameMenu">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<div class="vegFrameDropMenu">
+						<ul>
+							<li class="edit"><i class="fas fa-pencil-alt"></i>&nbsp;Редактировать</li>
+							<li class="delete"><i class="far fa-trash-alt"></i>&nbsp;Удалить</li>
+						</ul>
+					</div>
+    			</td>
+			</tr>
+{# {% empty %}#}
+{#    <div class="myProducts">#}
+{#        <h1>Мои продукты</h1>#}
+{#        <button class="addProduct"><span>+</span> Добавить продукт</button>#}
+{#    </div>#}
+{##}
+{#    <div class="displayingBoxes">#}
+{#        <div class="tileDisplaying displayingBoxesActive">#}
+{#            <div></div>#}
+{#            <div></div>#}
+{#            <div></div>#}
+{#            <div></div>#}
+{#        </div>#}
+{#        <div class="listDisplaying">#}
+{#            <div></div>#}
+{#            <div></div>#}
+{#            <div></div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="centralImg">#}
+{#        <div class="centralImgWrap">#}
+{#            <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">#}
+{#            <!-- <img src="images/Arrow 3.png" alt="arrowCurly" class="arrowCurly"> -->#}
+{#            <div class="addPruductsButtonPlus">+</div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <h2>Давайте добавим ваши продукты</h2>#}
+{#    <p>Начните продавать уже сегодня</p>#}
+    	{% endfor %}
+		</tbody>
+	</table>
+</div>
