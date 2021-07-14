@@ -15,7 +15,7 @@ class FarmerBasePagesView(BaseView, LoginRequiredMixin):
     def left_sidebar_menu_items(self):
         return [
             MenuItem(title="Мои продукты", link=reverse("farmer:foodstuffs"), icon="fab fa-pagelines"),
-            MenuItem(title="Заказы", link=reverse("farmer:orders"), icon="fas fa-shopping-basket"),
+            # MenuItem(title="Заказы", link=reverse("farmer:orders"), icon="fas fa-shopping-basket"),
             MenuItem(title="Платежи", link=reverse("farmer:foodstuffs"), icon="fas fa-money-bill-wave-alt"),
             MenuItem(title="Мой рейтинг", link=reverse("farmer:foodstuffs"), icon="fas fa-star"),
         ]
