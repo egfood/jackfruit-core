@@ -1,4 +1,4 @@
-from apps.farmer.models import FarmerProfile, FarmerProduct
+from apps.farmer.models import FarmerProfile, FarmerProduct, FarmerRating
 from django.contrib import admin
 
 
@@ -15,8 +15,12 @@ class FarmerProfileAdmin(admin.ModelAdmin):
     # ordering = ('date_creation', 'user')
     # filter_horizontal = ()
 
+
 @admin.register(FarmerProduct)
 class FarmerProductAdmin(admin.ModelAdmin):
     list_display = ('farmer', 'name', 'weight', 'unit', 'size', 'price')
 
 
+@admin.register(FarmerRating)
+class FarmerRatingAdmin(admin.ModelAdmin):
+    list_display = ('customer', 'farmer', 'rating')
