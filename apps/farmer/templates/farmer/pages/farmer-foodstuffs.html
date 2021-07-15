@@ -4,128 +4,25 @@
 
 {% block title %}Мои продукты{% endblock %}
 
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'farmer/css/myProducts.css' %}">
+{% endblock %}
+
 {% block page_content %}
+
     <div class="myProducts">
         <h1>Мои продукты</h1>
         <button class="addProduct"><span>+</span> Добавить продукт</button>
     </div>
 
-    <div class="displayingBoxes">
-        <div class="tileDisplaying displayingBoxesActive">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="listDisplaying">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+    {% include 'farmer/blocks/foodstuffs/product-table.html' %}
 
-    <div class="centralImg">
-        <div class="centralImgWrap">
-            <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
-            <!-- <img src="images/Arrow 3.png" alt="arrowCurly" class="arrowCurly"> -->
-            <div class="addPruductsButtonPlus">+</div>
-        </div>
-    </div>
-
-    <h2>Давайте добавим ваши продукты</h2>
-    <p>Начните продавать уже сегодня</p>
-	{% if product_list %}
-		{% include 'farmer/farmer-header-list.html'%}
-	{% else %}
-{#        {% empty %}#}
-    <div class="myProducts">
-        <h1>Мои продукты</h1>
-        <button class="addProduct"><span>+</span> Добавить продукт</button>
-    </div>
-
-    <div class="displayingBoxes">
-        <div class="tileDisplaying displayingBoxesActive">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="listDisplaying">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-
-    <div class="centralImg">
-        <div class="centralImgWrap">
-            <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
-            <!-- <img src="images/Arrow 3.png" alt="arrowCurly" class="arrowCurly"> -->
-            <div class="addPruductsButtonPlus">+</div>
-        </div>
-    </div>
-
-    <h2>Давайте добавим ваши продукты</h2>
-    <p>Начните продавать уже сегодня</p>
-    {% endif %}
 {% endblock %}
 
 {% block page_modals %}
-{#    <div class="popupWindow">#}
-{#        <div class="popup">#}
-{#            <span class="close close1"></span>#}
-{#            <h2>Добавление продукта</h2>#}
-{#            <form id="popupForm" action="">#}
-{#                <label for="productName">Наиминование *</label>#}
-{#                <div class="selectWrapper">#}
-{#                    <select name="productName" id="productName">#}
-{#                        <option value="" checked>Томат черри</option>#}
-{#                        <option value="">Томат-сливка</option>#}
-{#                    </select>#}
-{#                </div>#}
-{#                <div class="productOptions">#}
-{#                    <div class="productWeight">#}
-{#                        <label for="weight">Вес *</label>#}
-{#                        <input type="text" id="weight" class="weight">#}
-{#                    </div>#}
-{#                    <div class="productMeasurement">#}
-{#                        <label for="measurement">Ед. измерения *</label>#}
-{#                        <div class="selectWrapper productOptionsSelectWrapper">#}
-{#                            <select name="Measurement" id="measurement">#}
-{#                                <option value="Kg">кг</option>#}
-{#                                <option value="">шт</option>#}
-{#                            </select>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="productSize">#}
-{#                        <label for="size">Размер</label>#}
-{#                        <div class="selectWrapper productOptionsSelectWrapper">#}
-{#                            <select name="size" id="size">#}
-{#                                <option value="big">Большой</option>#}
-{#                                <option value="middle">Средний</option>#}
-{#                                <option value="small">Малый</option>#}
-{#                            </select>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="productPrice">#}
-{#                    <div class="itemPrice">#}
-{#                        <label for="itemPrice">Стоимость за ед. *</label>#}
-{#                        <input type="text" id="itemPrice">#}
-{#                        <div class="rubInsideInput"> руб</div>#}
-{#                    </div>#}
-{#                    <div class="middlePrice">#}
-{#                        <span id="middlePrice">4.8 руб/кг</span>#}
-{#                        <span>cредняя цена у других фермеров</span>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <a href="#" class="addMoreProducts">+ Добавить ещё продукт</a>#}
-{#                <div class="formButtons">#}
-{#                    <button type="reset">Отменить</button>#}
-{#                    <button type="submit">Сохранить</button>#}
-{#                </div>#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
-{% include 'farmer/popup-product-form.html' %}
+    {% include 'farmer/popup-product-form.html' %}
+{% endblock %}
+
+{% block page_footer_scripts %}
+    <script src="{% static 'farmer/js/myProducts.js' %}"></script>
 {% endblock %}

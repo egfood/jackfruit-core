@@ -1,0 +1,28 @@
+<nav aria-label="Page pagination">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            {% if page.has_previous %}
+                <a class="page-link" href="?view={{ view }}&page={{ page.previous_page_number }}"
+                   aria-label="Previous">
+            {% else %}
+                <a class="page-link" href="?view={{ view }}&page={{ page.number }}" aria-label="Previous">
+            {% endif %}
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        {% for num in page.paginator.page_range %}
+            <li class="page-item"><a class="page-link" href="?view={{ view }}&page={{ num }}">{{ num }}</a></li>
+        {% endfor %}
+        <li class="page-item">
+            {% if page.has_next %}
+                <a class="page-link" href="?view={{ view }}&page={{ page.next_page_number }}" aria-label="Next">
+            {% else %}
+                <a class="page-link" href="?view={{ view }}&page={{ page.number }}" aria-label="Next">
+            {% endif %}
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
