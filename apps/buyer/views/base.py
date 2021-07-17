@@ -15,7 +15,7 @@ class BuyerBasePagesView(BaseView, LoginRequiredMixin):
             MenuItem(title="Витрина", link=reverse("buyer:home"), icon="fas fa-store"),
             MenuItem(title="Корзина", link=reverse("buyer:cart"), icon="fas fa-shopping-basket"),
             MenuItem(title="Платежи", link=reverse("buyer:home"), icon="fas fa-money-bill-wave-alt"),
-            MenuItem(title="Рейтинг фермеров", link=reverse("buyer:home"), icon="fas fa-star"),
+            MenuItem(title="Рейтинг фермеров", link=reverse("buyer:farmers-rating"), icon="fas fa-star"),
         ]
 
     def get_context_data(self, **kwargs):
