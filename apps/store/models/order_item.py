@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 
 from core.models import FoodAbstract
-# from . import FoodProduct, FoodOrder
+# from . import RootProduct, FoodOrder
 #
 # log = logging.getLogger(__name__)
 #
@@ -14,7 +14,7 @@ from core.models import FoodAbstract
 #     _weight = None
 #     _text_weight = None
 #
-#     product = models.ForeignKey(FoodProduct, verbose_name='Продукт', related_name='%(class)', on_delete=models.CASCADE)
+#     product = models.ForeignKey(RootProduct, verbose_name='Продукт', related_name='%(class)', on_delete=models.CASCADE)
 #     value = models.PositiveIntegerField(verbose_name=f'Масса (от покупателя) ({settings.WEIGHT_UNIT_ABBREVIATION})',
 #                                         blank=True, null=True)
 #     actual_value = models.PositiveIntegerField(verbose_name=f'Фактическая масса ({settings.WEIGHT_UNIT_ABBREVIATION})',

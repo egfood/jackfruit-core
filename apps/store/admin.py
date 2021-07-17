@@ -3,15 +3,14 @@ from django.contrib import admin
 # from .admin_actions import ExportCSVMixin
 from .models import *
 
-# TODO: Must be reworked for updated models
+# TODO: The file must be reworked for updated models
 
-@admin.register(FoodProduct)
+@admin.register(RootProduct)
 class FoodPriceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'quantity_per_price', 'min_weight', 'packaging', 'farmer', 'is_visible',
-                    'date_creation', 'date_updated')
-    list_filter = ('is_visible', 'packaging', 'date_creation', 'date_updated', 'farmer')
-    search_fields = ('name', 'packaging')
-    ordering = ('name', 'is_visible', 'min_weight', 'packaging', 'farmer')
+    list_display = ('name', 'is_visible', 'date_creation', 'date_updated')
+    list_filter = ('is_visible', 'date_creation', 'date_updated')
+    search_fields = ('name',)
+    ordering = ('name', 'is_visible')
 
 
 # @admin.register(FoodDelivery)

@@ -17,6 +17,6 @@ class FarmerProfileAdmin(admin.ModelAdmin):
 
 @admin.register(FarmerProduct)
 class FarmerProductAdmin(admin.ModelAdmin):
-    list_display = ('farmer', 'name', 'weight', 'unit', 'size', 'price')
+    list_display = ('farmer', 'value', 'unit', 'size', 'price')
 
 

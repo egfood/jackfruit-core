@@ -140,3 +140,7 @@
 .editForm button[type="submit"]:hover{
     background-color: #0D7A8D;
 }
+
+.jproduct-value input{
+    max-width: 125px;
+}

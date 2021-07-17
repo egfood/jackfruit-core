@@ -5,7 +5,7 @@
 #
 # from apps.store.forms.order import FoodOfficeOrderItemForm, FoodHomeOrderItemForm, FoodOfficeOrderForm, \
 #     FoodHomeLocationForm
-# from apps.store.models import FoodDelivery, FoodProduct, FoodOfficeOrder, FoodOfficeOrderItem, FoodHomeOrderItem, \
+# from apps.store.models import FoodDelivery, RootProduct, FoodOfficeOrder, FoodOfficeOrderItem, FoodHomeOrderItem, \
 #     FoodHomeOrder, OfficeLocation
 # from .base import BuyerBasePagesView
 #
@@ -27,7 +27,7 @@
 #             if order.office is not None:
 #                 initial_office = {'office': order.office.pk}
 #
-#         products = FoodProduct.objects.filter(is_visible=True)
+#         products = RootProduct.objects.filter(is_visible=True)
 #         FoodOrderFormSet = formset_factory(FoodOfficeOrderItemForm, extra=0)
 #         initial = []
 #         for p in products:
@@ -92,7 +92,7 @@
 #
 #     def __update_product_name_and_widget(self, order_formset, products=None):
 #         if products is None:
-#             products = FoodProduct.objects.filter(is_visible=True)
+#             products = RootProduct.objects.filter(is_visible=True)
 #         i = 0
 #         for form in order_formset:
 #             form.selected_product_name = products[i]
@@ -120,7 +120,7 @@
 #         else:
 #             context['home_location_form'] = FoodHomeLocationForm()
 #
-#         products = FoodProduct.objects.filter(is_visible=True)
+#         products = RootProduct.objects.filter(is_visible=True)
 #         FoodOrderFormSet = formset_factory(FoodHomeOrderItemForm, extra=0)
 #         for p in products:
 #             current_order = orders_by_product_pk.get(p.pk, None)
@@ -183,7 +183,7 @@
 #
 #     def __update_product_name_and_widget(self, order_formset, products=None):
 #         if products is None:
-#             products = FoodProduct.objects.filter(is_visible=True)
+#             products = RootProduct.objects.filter(is_visible=True)
 #         i = 0
 #         for form in order_formset:
 #             form.selected_product_name = products[i]

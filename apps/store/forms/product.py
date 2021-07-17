@@ -1,9 +1,9 @@
 from django import forms
 
-from apps.store.models import FoodProduct
+from apps.store.models import RootProduct
 
 
-class FoodProductForm(forms.ModelForm):
+class RootProductForm(forms.ModelForm):
     class Meta:
-        model = FoodProduct
+        model = RootProduct
         exclude = ['farmer']
