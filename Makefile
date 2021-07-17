@@ -6,6 +6,9 @@ s: docker-compose.yml
 	sleep 3
 	docker-compose up -d web
 
+mmm:
+	docker-compose exec web python manage.py makemigrations --merge
+
 mm:
 	docker-compose exec web python manage.py makemigrations
 
