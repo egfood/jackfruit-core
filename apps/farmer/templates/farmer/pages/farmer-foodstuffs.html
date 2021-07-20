@@ -17,6 +17,10 @@
 
     {% include 'farmer/blocks/foodstuffs/product-table.html' %}
 
+    {% if page.object_list %}
+        {% include 'farmer/blocks/foodstuffs/pagination.html' %}
+    {% endif %}
+
 {% endblock %}
 
 {% block page_modals %}
