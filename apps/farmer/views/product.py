@@ -3,19 +3,19 @@
 # from django.urls import reverse_lazy, reverse
 # from django.views.generic import CreateView, UpdateView, DeleteView
 #
-# from apps.farmer.forms.product import AddProductForm
-# from apps.store.forms.product import FoodProductForm
-# from apps.store.models import FoodProduct
+# from apps.farmer.forms.product import AddFarmerProductForm
+# from apps.store.forms.product import RootProductForm
+# from apps.store.models import RootProduct
 # from core.models import GreenUser
 #
 #
 # class AddProductView(CreateView):
 #     template_name = "farmer/pages/add_product.html"
-#     model = FoodProduct
+#     model = RootProduct
 #     fields = ('name', 'description', 'price', 'min_weight', 'quantity_per_price', 'packaging', 'is_visible')
 #
 #     def post(self, request, *args, **kwargs):
-#         f = FoodProductForm(request.POST)
+#         f = RootProductForm(request.POST)
 #         if f.is_valid():
 #             new_product = f.save(commit=False)
 #             new_product.farmer = GreenUser.objects.get(id=self.request.user.id)
@@ -34,13 +34,13 @@
 #
 #
 # class DeleteProductView(DeleteView):
-#     model = FoodProduct
+#     model = RootProduct
 #     success_url = reverse_lazy('farmer:main_page')
 #     template_name = 'farmer/pages/delete_product.html'
 #
 #
 # class UpdateProductView(UpdateView):
-#     model = FoodProduct
+#     model = RootProduct
 #     template_name = 'farmer/pages/update_product.html'
-#     form_class = AddProductForm
+#     form_class = AddFarmerProductForm
 #     success_url = reverse_lazy('farmer:main_page')

@@ -3,7 +3,7 @@
 #
 # from django.conf import settings
 #
-# from apps.store.models import FoodProduct, FoodDelivery, FoodHomeOrder, FoodOfficeOrder
+# from apps.store.models import RootProduct, FoodDelivery, FoodHomeOrder, FoodOfficeOrder
 from .base import BuyerBasePagesView
 from django.views.generic.base import RedirectView
 
@@ -14,7 +14,7 @@ class BuyerHomeView(RedirectView, BuyerBasePagesView):
 #
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
-#         context['food_prices'] = FoodProduct.objects.filter(is_visible=True)
+#         context['food_prices'] = RootProduct.objects.filter(is_visible=True)
 #         context['food_deliveries'] = self.__get_and_prepare_food_deliveries()
 #         context['COUNT_ITEMS_ON_DELIVERY_DASHBOARD'] = settings.COUNT_ITEMS_ON_DELIVERY_DASHBOARD
 #         return context

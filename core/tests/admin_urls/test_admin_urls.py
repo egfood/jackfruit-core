@@ -1,12 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from core.models import GreenUser, FoodProduct, FoodDelivery, FoodOrder
+from core.models import GreenUser, RootProduct, FoodDelivery, FoodOrder
 
 
 class AdminUrlsTest(TestCase):
     super_user = None
-    models_for_test_in_admin = (FoodProduct, FoodDelivery, FoodOrder)
+    models_for_test_in_admin = (RootProduct, FoodDelivery, FoodOrder)
     super_user_data = {
         'tg_username': 'admin',
         'location': 'K3V',

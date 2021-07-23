@@ -3,7 +3,7 @@ import csv
 from django.conf import settings
 
 from .core import BasicCSVAssembler
-from ..models import FoodOfficeOrder, FoodHomeOrder, FoodOfficeOrderItem, FoodHomeOrderItem, FoodProduct
+from ..models import FoodOfficeOrder, FoodHomeOrder, FoodOfficeOrderItem, FoodHomeOrderItem, RootProduct
 
 
 class ProductsCSVAssembler(BasicCSVAssembler):
@@ -27,7 +27,7 @@ class ProductsCSVAssembler(BasicCSVAssembler):
 
         pk_of_products = set(office_order_items.values_list('product_id', flat=True))
         pk_of_products.update(home_order_items.values_list('product_id', flat=True))
-        products_in_delivery = FoodProduct.objects.filter(pk__in=pk_of_products)
+        products_in_delivery = RootProduct.objects.filter(pk__in=pk_of_products)
 
         csv_rows = []
         for p in products_in_delivery:

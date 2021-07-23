@@ -213,6 +213,7 @@ CSV_EXPORT_COLUMN_NAMES = {
         'text_safety_weight': 'вес позиции'
     }
 }
+ITEMS_PER_PAGE = 10
 
 if DEBUG:
     mailer = StubSender()

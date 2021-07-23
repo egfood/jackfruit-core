@@ -4,14 +4,14 @@
         <h2>Добавление продукта</h2>
         <form action="" method="post">
             {% csrf_token %}
-            {{ form.name.label_tag }}
+            {{ form.product.label_tag }}
             <div class="selectWrapper">
-                {{ form.name }}
+                {{ form.product }}
             </div>
             <div class="productOptions">
-                <div class="productWeight">
-                    {{ form.weight.label_tag }}
-                    {{ form.weight }}
+                <div class="jproduct-value">
+                    {{ form.value.label_tag }}
+                    {{ form.value }}
                 </div>
                	<div class="productMeasurement">
                    	{{ form.unit.label_tag }}
@@ -32,12 +32,12 @@
                     {{ form.price }}
                     <div class="rubInsideInput"> руб</div>
                 </div>
-                <div class="middlePrice">
-                    <span id="middlePrice">4.8 руб/кг</span>
-                    <span>Средняя цена у других фермеров</span>
-                </div>
+{#                <div class="middlePrice">#}
+{#                    <span id="middlePrice">4.8 руб/кг</span>#}
+{#                    <span>Средняя цена у других фермеров</span>#}
+{#                </div>#}
             </div>
-            <a href="" class="addMoreProducts">+ Добавить ещё продукт</a>
+{#            <a href="" class="addMoreProducts">+ Добавить ещё продукт</a>#}
             <div class="formButtons">
                 <button type="reset">Отменить</button>
                 <button type="submit">Сохранить</button>
