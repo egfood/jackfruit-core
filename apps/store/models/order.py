@@ -5,6 +5,7 @@ from django.db import models
 
 from core.models.base import FoodAbstract
 from . import Location, FoodDelivery
+from apps.buyer.models import BuyerProfile
 
 log = logging.getLogger(__name__)
 
@@ -34,8 +35,8 @@ class FoodOrder(FoodAbstract):
                                  on_delete=models.CASCADE)
     state = models.CharField(verbose_name='Статус заказа', max_length=85, choices=ORDER_STATE_CHOICES,
                              default=ORDER_STATE_CHOICES[0][0])
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Пользователь', related_name='order',
-                             on_delete=models.CASCADE)
+    buyer = models.ForeignKey(BuyerProfile, verbose_name='Пользователь', related_name='order',
+                              on_delete=models.CASCADE)
     location = models.ForeignKey(Location, verbose_name='Адрес', related_name='order', on_delete=models.SET_NULL,
                                  null=True)
 
@@ -94,7 +95,7 @@ class FoodOrder(FoodAbstract):
         return self._order_items_related
 
     def __str__(self):
-        base = f'{self.delivery} для {self.user}'
+        base = f'{self.delivery} для {self.buyer.name} (profile#{self.buyer.id})'
         if self.location.is_private():
             base += '[домой]'
         elif self.location.is_office():

@@ -16,14 +16,13 @@
             <tbody>
         {% endif %}
 
-        {% for product in page.object_list %}
+        {% for pr in page.object_list %}
             <tr>
-                {#TODO image link#}
-                <td><img src="{{ product.image }}" alt="томат">{{ product.name }}</td>
-                <td>{{ product.weight }}</td>
+                <td><img src="{{ pr.product.image.url }}" alt="Изображение продукта">{{ pr.product.name }}</td>
+                <td>{{ pr.value }}</td>
                 <td>вывести кол-во из заказов</td>
-                <td>{{ product.get_unit_display }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ pr.get_unit_display }}</td>
+                <td>{{ pr.price }}</td>
                 <td class="actionsTd">
                     <div class="vegFrameMenu">
                         <div></div>

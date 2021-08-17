@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
@@ -29,7 +28,7 @@ class FarmerProduct(FoodAbstract):
         ('M', 'Средний'),
         ('L', 'Большой'),
     )
-    farmer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Фермер')
+    farmer = models.ForeignKey(FarmerProfile, on_delete=models.CASCADE, verbose_name='Фермер')
     product = models.ForeignKey(RootProduct, on_delete=models.CASCADE, verbose_name="Базовый продукт")
     value = models.DecimalField(max_digits=10, decimal_places=1, verbose_name='Объем/Кол./Вес')
     unit = models.CharField(max_length=2, choices=UNIT_PRODUCT, verbose_name='Ед. измерения',
@@ -38,10 +37,10 @@ class FarmerProduct(FoodAbstract):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
     def __str__(self):
-        return f"Продукт #{self.product.id} [фермер={self.farmer}]"
+        return f"Продукт #{self.product.id} [фермер={self.farmer.name}#{self.farmer.id}]"
 
 
-class FarmerRating(models.Model):
+class FarmerRating(FoodAbstract):
     class Meta:
         verbose_name = "Рейтинг фермера"
         verbose_name_plural = "Рейтинги фермеров"
