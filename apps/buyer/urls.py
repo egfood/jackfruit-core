@@ -11,6 +11,7 @@ urlpatterns = [
     path('signup', BuyerSignupView.as_view(), name='signup'),
     path('welcome', BuyerWelcomeView.as_view(), name='welcome'),
     path('cart', BuyerCartView.as_view(), name='cart'),
+    path('farmers-rating', BuyerFarmersRatingView.as_view(), name='farmers-rating'),
     path('', BuyerHomeView.as_view(), name='home'),
     # path('order/delivery/<int:delivery_pk>/office', BuyerOfficeOrderByDeliveryView.as_view(),
     #      name='office_order_by_delivery'),
