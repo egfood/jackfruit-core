@@ -35,8 +35,8 @@ class Location(FoodAbstract):
     location_type = models.CharField('Тип адреса', max_length=10, choices=LOCATION_TYPE_CHOICES,
                                      default=LOCATION_TYPE_CHOICES[0][0])
 
-    name = models.CharField('Имя', max_length=200)
-    phone = models.CharField("Телефон", max_length=15)
+    name = models.CharField('Имя', max_length=200, default='', blank=True)
+    phone = models.CharField("Телефон", max_length=15, default='', blank=True)
 
     office_name = models.TextField('Короткое название офиса', max_length=settings.OFFICES_SHORT_NAME_LENGTH,
                                    default='', blank=True)
@@ -57,6 +57,8 @@ class Location(FoodAbstract):
     room = models.CharField('Помещение/квартира', max_length=10, blank=True, default='')
 
     sort_key = models.PositiveIntegerField('Сортировка', default=0)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Пользователь", default=None, blank=True,
+                             on_delete=models.SET_NULL, null=True)
 
     def is_private(self):
         return self.location_type == self.LOCATION_TYPE_CHOICES[0][0]

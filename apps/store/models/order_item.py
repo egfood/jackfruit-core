@@ -4,20 +4,19 @@ from django.conf import settings
 from django.db import models
 
 from core.models import FoodAbstract
-from . import FoodOrder
+from .order import FoodOrder
+from apps.farmer.models.product import FarmerProduct
 
 log = logging.getLogger(__name__)
 
 
-
 class FoodOrderItem(FoodAbstract):
-    from apps.farmer.models import FarmerProduct
 
     _item_total = None
     _weight = None
     _text_weight = None
 
-    product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='%(class)',
+    product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='order_item',
                                 on_delete=models.CASCADE)
     value = models.PositiveIntegerField(verbose_name=f'Масса (от покупателя) ({settings.WEIGHT_UNIT_ABBREVIATION})',
                                         blank=True, null=True)

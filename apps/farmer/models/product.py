@@ -1,19 +1,8 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from apps.buyer.models import BuyerProfile
-from apps.store.models import RootProduct
-from core.models import AbsProfile, FoodAbstract
-
-
-class FarmerProfile(AbsProfile):
-    service_zone = models.TextField(verbose_name='Зона обслуживания', blank=True, default="")
-    legal_name = models.CharField(verbose_name='Название компании / фермерского хозяйства', max_length=500, blank=True,
-                                  default="")
-
-    @property
-    def stringify_profile_type(self):
-        return "фермера"
+from .profile import FarmerProfile
+from apps.store.models.product import RootProduct
+from core.models import FoodAbstract
 
 
 class FarmerProduct(FoodAbstract):
@@ -38,13 +27,3 @@ class FarmerProduct(FoodAbstract):
 
     def __str__(self):
         return f"Продукт #{self.product.id} [фермер={self.farmer.name}#{self.farmer.id}]"
-
-
-class FarmerRating(FoodAbstract):
-    class Meta:
-        verbose_name = "Рейтинг фермера"
-        verbose_name_plural = "Рейтинги фермеров"
-
-    customer = models.ForeignKey(BuyerProfile, on_delete=models.SET_NULL, null=True)
-    farmer = models.ForeignKey(FarmerProfile, on_delete=models.CASCADE)
-    rating = models.IntegerField("Рейтинг", validators=[MinValueValidator(1), MaxValueValidator(5)])

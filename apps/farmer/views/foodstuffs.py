@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from apps.farmer.forms.product import AddFarmerProductForm
 from .base import FarmerBasePagesView
-from ..models import FarmerProduct
+from ..models.product import FarmerProduct
 
 
 class FarmerFoodstuffsPageView(FarmerBasePagesView):

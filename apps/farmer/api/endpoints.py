@@ -3,7 +3,7 @@ from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import FarmerProfileSerializer
-from ..models import FarmerProfile
+from ..models.profile import FarmerProfile
 
 
 class FarmerProfileEndpoint(RetrieveUpdateAPIView):

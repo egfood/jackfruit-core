@@ -3,9 +3,10 @@ import logging
 from django.conf import settings
 from django.db import models
 
-from core.models.base import FoodAbstract
-from . import Location, FoodDelivery
 from apps.buyer.models import BuyerProfile
+from core.models.base import FoodAbstract
+from .delivery import FoodDelivery
+from .location import Location
 
 log = logging.getLogger(__name__)
 
@@ -21,9 +22,8 @@ class FoodOrder(FoodAbstract):
     _order_items_related = None
 
     class Meta:
-        abstract = True
         indexes = (
-            models.Index(fields=['delivery', 'user']),
+            models.Index(fields=['delivery', 'buyer']),
         )
 
     ORDER_STATE_CHOICES = (
@@ -69,16 +69,16 @@ class FoodOrder(FoodAbstract):
     @property
     def text_user(self):
         if self._text_user is None:
-            self._text_user = self.user.email
+            self._text_user = self.buyer.email
         return self._text_user
 
     @property
     def text_phone(self):
         if self._phone is None:
             try:
-                if self.user.is_farmer():
-                    self._phone = self.user.profile.phone
-                elif self.user.is_buyer():
+                if self.buyer.is_farmer():
+                    self._phone = self.buyer.profile.phone
+                elif self.buyer.is_buyer():
                     self._phone = self.location.phone
                 else:
                     log.error("Can't fetch phone number from unknown type of user profile")

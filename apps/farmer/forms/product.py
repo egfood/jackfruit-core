@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.farmer.models import FarmerProduct
+from apps.farmer.models.product import FarmerProduct
 
 
 class AddFarmerProductForm(forms.ModelForm):

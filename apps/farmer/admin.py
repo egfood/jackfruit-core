@@ -1,5 +1,8 @@
-from apps.farmer.models import FarmerProfile, FarmerProduct, FarmerRating
 from django.contrib import admin
+
+from apps.farmer.models.profile import FarmerProfile
+from apps.farmer.models.product import FarmerProduct
+from apps.farmer.models.feedback import FarmerFeedback
 
 
 @admin.register(FarmerProfile)
@@ -21,6 +24,6 @@ class FarmerProductAdmin(admin.ModelAdmin):
     list_display = ('farmer', 'value', 'unit', 'size', 'price')
 
 
-@admin.register(FarmerRating)
-class FarmerRatingAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'farmer', 'rating')
+@admin.register(FarmerFeedback)
+class FarmerFeedbackAdmin(admin.ModelAdmin):
+    list_display = ('order_item', 'farmer', 'rating', 'feedback')

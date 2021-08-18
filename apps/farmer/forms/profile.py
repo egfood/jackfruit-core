@@ -1,7 +1,7 @@
 from django import forms
 from django.core import validators
 
-from apps.farmer.models import FarmerProfile
+from apps.farmer.models.profile import FarmerProfile
 
 
 class FarmerRegistrationProfileForm(forms.ModelForm):

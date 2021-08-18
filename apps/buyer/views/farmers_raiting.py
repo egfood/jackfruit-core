@@ -1,5 +1,5 @@
 from .base import BuyerBasePagesView
-from ...farmer.models import FarmerRating
+from apps.farmer.models.feedback import FarmerFeedback
 
 
 class BuyerFarmersRatingView(BuyerBasePagesView):
@@ -7,5 +7,5 @@ class BuyerFarmersRatingView(BuyerBasePagesView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ratings'] = FarmerRating.objects.all()
+        context['ratings'] = FarmerFeedback.objects.all()
         return context

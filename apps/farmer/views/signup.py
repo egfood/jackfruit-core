@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
 from apps.farmer.forms.profile import FarmerRegistrationProfileForm
-from apps.farmer.models import FarmerProfile
+from apps.farmer.models.profile import FarmerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
 

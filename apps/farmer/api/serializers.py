@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ..models import FarmerProfile
+from ..models.profile import FarmerProfile
 
 
 class FarmerProfileSerializer(serializers.ModelSerializer):
