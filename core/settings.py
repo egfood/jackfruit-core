@@ -215,6 +215,8 @@ CSV_EXPORT_COLUMN_NAMES = {
 }
 ITEMS_PER_PAGE = 10
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 if DEBUG:
     mailer = StubSender()
 else:

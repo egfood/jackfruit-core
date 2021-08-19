@@ -1,4 +1,5 @@
 import logging
+from functools import cached_property
 
 from django.conf import settings
 from django.db import models
@@ -12,19 +13,18 @@ log = logging.getLogger(__name__)
 
 
 class FoodOrder(FoodAbstract):
-    _order_cost = None
     _order_item_related_name = None
     _order_weight = None
     _text_order_weight = None
     _text_delivery = None
     _text_user = None
     _phone = None
-    _order_items_related = None
 
     class Meta:
         indexes = (
-            models.Index(fields=['delivery', 'buyer']),
+            models.Index(fields=['delivery', 'buyer', 'location']),
         )
+        unique_together = ['delivery', 'buyer', 'location']
 
     ORDER_STATE_CHOICES = (
         ('awaiting_processing', 'В процессе'),
@@ -40,12 +40,11 @@ class FoodOrder(FoodAbstract):
     location = models.ForeignKey(Location, verbose_name='Адрес', related_name='order', on_delete=models.SET_NULL,
                                  null=True)
 
-    @property
+    @cached_property
     def total_cost(self):
-        if self._order_cost is None:
-            total_cost = sum([order_item.item_total for order_item in self.order_items_related])
-            self._order_cost = total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
-        return self._order_cost
+        total_cost = sum([order_item.item_total for order_item in self.order_items_related])
+        order_cost = total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
+        return order_cost
 
     @property
     def total_weight(self):
@@ -87,12 +86,10 @@ class FoodOrder(FoodAbstract):
                 self._phone = ""
         return self._phone
 
-    @property
+    @cached_property
     def order_items_related(self):
-        if self._order_items_related is None:
-            order_items_realted_manager = getattr(self, self._order_item_related_name)
-            self._order_items_related = order_items_realted_manager.all()
-        return self._order_items_related
+        from .order_item import FoodOrderItem
+        return FoodOrderItem.objects.all()
 
     def __str__(self):
         base = f'{self.delivery} для {self.buyer.name} (profile#{self.buyer.id})'

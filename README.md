@@ -7,7 +7,7 @@ Introduction to project, its purposes etc..
 * `SECRET_KEY`
 * `DOMAIN_NAME`
 * `DATABASE_URL`
-* `DEBUG` (dafault: false)
+* `DEBUG` (default: false)
 
 ## Develop
 

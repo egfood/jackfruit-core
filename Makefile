@@ -27,7 +27,7 @@ sh:
 ba:
 	docker-compose exec web bash
 
-i: s m cs du
+i: b s m cs du
 
 l:
 	docker-compose logs -f
