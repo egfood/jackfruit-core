@@ -7,13 +7,9 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    replaces = [('store', '0003_auto_20210818_0115'), ('store', '0004_auto_20210818_0213'), ('store', '0005_location_user')]
-
     dependencies = [
-        ('farmer', '0010_auto_20210818_0115'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('store', '0002_auto_20210717_2105'),
-        ('buyer', '0003_auto_20210513_2243'),
     ]
 
     operations = [

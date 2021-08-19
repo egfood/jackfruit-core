@@ -7,10 +7,7 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    replaces = [('farmer', '0010_auto_20210818_0115'), ('farmer', '0011_farmerfeedback_order_item')]
-
     dependencies = [
-        ('store', '0003_auto_20210818_0115'),
         ('farmer', '0009_auto_20210817_2111'),
     ]
 
