@@ -26,4 +26,4 @@ class FarmerProductAdmin(admin.ModelAdmin):
 
 @admin.register(FarmerFeedback)
 class FarmerFeedbackAdmin(admin.ModelAdmin):
-    list_display = ('order_item', 'farmer', 'rating', 'feedback')
+    list_display = ('order_item', 'rating', 'feedback')

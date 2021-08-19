@@ -1,4 +1,5 @@
 import logging
+from functools import cached_property
 
 from django.conf import settings
 from django.db import models
@@ -56,18 +57,16 @@ class FoodOrderItem(FoodAbstract):
             base += "[ФАКТ.]"
         return base
 
-    @property
+    @cached_property
     def delivery_short_name(self):
-        if self._delivery_short_name is None:
-            base = f"Дост. {self.order.delivery.short_name}"
-            if self.order.location.is_office():
-                base += "(в офис)"
-            elif self.order.location.is_private():
-                base += "(домой)"
-            else:
-                log.warning("Unknown type of location")
-            self._delivery_short_name = base
-        return self._delivery_short_name
+        base = f"Дост. {self.order.delivery.short_name}"
+        if self.order.location.is_office():
+            base += "(в офис)"
+        elif self.order.location.is_private():
+            base += "(домой)"
+        else:
+            log.warning("Unknown type of location")
+        return base
 
     def __str__(self):
         return f'Позиция {self.value} г. {self.product}[{self.order}]'
