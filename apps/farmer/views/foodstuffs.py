@@ -20,7 +20,7 @@ class FarmerFoodstuffsPageView(FarmerBasePagesView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        product_list = FarmerProduct.objects.filter(farmer=self.request.user)
+        product_list = FarmerProduct.objects.filter(farmer=self.request.user.profile)
         paginator = Paginator(product_list, settings.ITEMS_PER_PAGE)
         if 'page' in self.request.GET:
             page_num = self.request.GET['page']

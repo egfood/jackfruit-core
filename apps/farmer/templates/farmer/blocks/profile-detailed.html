@@ -27,7 +27,7 @@
                 <div class="profilePhotoForm">
                     <label for="{{ field.id_for_label }}">
                         <span class="addPhoto">
-                            {% if field.value.url %}
+                            {% if field.value and field.value.url %}
                                 <img src="{{ field.value.url }}" alt="You own photo" width="150" height="150">
                             {% else %}
                                 <img src="{% static "farmer/img/farmer2.png" %}" alt="Farmer profile photo">

@@ -9,6 +9,11 @@
     {% endif %}
 {% endblock %}
 
+{% block app_modals %}
+    {% include "farmer/blocks/profile-detailed.html" %}
+{% endblock %}
+
+
 {% block page_footer_scripts %}
     <script src="{% static 'farmer/js/farmer-profile.js' %}"></script>
 {% endblock %}
