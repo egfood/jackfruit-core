@@ -1,9 +1,10 @@
 import logging
 from abc import ABC, abstractmethod
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
-class BaseView(ABC, TemplateView):
+class BaseView(ABC, LoginRequiredMixin, TemplateView):
     """
     Need to implement in child class property
     called "left_sidebar_menu_items" which get list with menu items like below:

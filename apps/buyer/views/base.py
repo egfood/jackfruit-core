@@ -5,7 +5,7 @@ from core.menu_data import MenuItem
 from core.views.base import BaseView
 
 
-class BuyerBasePagesView(BaseView, LoginRequiredMixin):
+class BuyerBasePagesView(BaseView):
     login_url = '/login/'
 
     # This property is using by BaseView for menu generation

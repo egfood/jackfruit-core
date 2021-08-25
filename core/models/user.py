@@ -1,3 +1,4 @@
+from functools import cached_property
 from importlib import import_module
 
 from django.contrib.auth.base_user import BaseUserManager
@@ -39,7 +40,6 @@ class GreenUserManager(BaseUserManager):
 
 
 class GreenUser(AbstractUser):
-    _profile = None
 
     email = models.EmailField('Email', unique=True)
     username = None
@@ -53,22 +53,22 @@ class GreenUser(AbstractUser):
     BUYER_PROFILE = ClassData("apps.buyer.models", "BuyerProfile")
     FARMER_PROFILE = ClassData("apps.farmer.models", "FarmerProfile")
 
-    @property
+    @cached_property
     def profile(self):
-        if self._profile is None:
-            profile_attr_names = ("buyer_buyerprofile", "farmer_farmerprofile")
-            profile_was_find = False
-            for attr_name in profile_attr_names:
-                if hasattr(self, attr_name):
-                    profile_was_find = True
-                    self._profile = getattr(self, attr_name)
-            if not profile_was_find:
-                raise AttributeError("User profile not found!")
-        return self._profile
+        profile_attr_names = ("buyer_buyerprofile", "farmer_farmerprofile")
+        profile = None
+        for attr_name in profile_attr_names:
+            if hasattr(self, attr_name):
+                profile = getattr(self, attr_name)
+        if profile is None:
+            raise AttributeError("User profile not found!")
+        return profile
 
+    @cached_property
     def is_buyer(self):
         return self.profile.type == self.BUYER_PROFILE.class_name
 
+    @cached_property
     def is_farmer(self):
         return self.profile.type == self.FARMER_PROFILE.class_name
 

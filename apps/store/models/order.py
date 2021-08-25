@@ -75,9 +75,9 @@ class FoodOrder(FoodAbstract):
     def text_phone(self):
         if self._phone is None:
             try:
-                if self.buyer.is_farmer():
+                if self.buyer.is_farmer:
                     self._phone = self.buyer.profile.phone
-                elif self.buyer.is_buyer():
+                elif self.buyer.is_buyer:
                     self._phone = self.location.phone
                 else:
                     log.error("Can't fetch phone number from unknown type of user profile")

@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from functools import cached_property
 
 from django.conf import settings
 from django.db import models
@@ -7,8 +8,6 @@ from .base import FoodAbstract
 
 
 class AbsProfile(FoodAbstract):
-    _profile_type = None
-
     class Meta:
         abstract = True
 
@@ -25,11 +24,9 @@ class AbsProfile(FoodAbstract):
     def stringify_profile_type(self):
         pass
 
-    @property
+    @cached_property
     def type(self):
-        if self._profile_type is None:
-            self._profile_type = self.__class__.__name__
-        return self._profile_type
+        return self.__class__.__name__
 
     def __str__(self):
         return f'Профиль {self.stringify_profile_type} {self.user}'
