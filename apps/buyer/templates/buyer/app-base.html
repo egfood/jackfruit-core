@@ -1,10 +1,18 @@
 {% extends 'core/base-with-sidebar.html' %}
 {% load static %}
 
+{% block app_styles %}
+    <link rel="stylesheet" href="{% static 'buyer/css/buyer-style.css' %}">
+{% endblock %}
+
 {% block profile_image %}
     {% if user.profile.photo %}
         {{ user.profile.photo.url }}
     {% else %}
         {% static 'buyer/img/buyer.png' %}
     {% endif %}
+{% endblock %}
+
+{% block app_modals %}
+    {% include "buyer/blocks/profile-detailed.html" %}
 {% endblock %}

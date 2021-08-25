@@ -1,10 +1,10 @@
 @font-face {
     font-family: "SF UI Text";
-    src: url(../fonts/sf-ui-text-regular.ttf);
+    src: url(../../core/fonts/sf-ui-text-regular.ttf);
 }
 @font-face {
     font-family: "SF Compact Text";
-    src: url(../fonts/FontsFree-Net-SFCompactText-Regular.ttf);
+    src: url(../../core/fonts/FontsFree-Net-SFCompactText-Regular.ttf);
 }
 *{
     margin: 0;

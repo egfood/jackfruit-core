@@ -1,6 +1,10 @@
 {% extends 'core/base-with-sidebar.html' %}
 {% load static %}
 
+{% block app_styles %}
+    <link rel="stylesheet" href="{% static 'farmer/css/farmer-style.css' %}">
+{% endblock %}
+
 {% block profile_image %}
     {% if user.profile.photo %}
         {{ user.profile.photo.url }}

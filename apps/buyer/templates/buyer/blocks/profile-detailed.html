@@ -1,0 +1,96 @@
+{% load static %}
+
+<div class="mainWrapOpacity"></div>
+<div class="profileSettings">
+    <span class="close close1"></span>
+    <div class="profileSettingsMenu">
+        <h2>Мой профиль</h2>
+        <div class="burger2">
+            <span></span>
+        </div>
+        <nav class="popupMenu">
+            <a id="profileInfoSet" class="profileSettingsMenuActive">Информация</a>
+            <!-- <a href="#">Конфиденциальность и безопасность</a> -->
+            <a href="#">Уведомления</a>
+            <a id="adressSet">Мои адреса</a>
+            <!-- <a href="#">Мой баланс</a> -->
+        </nav>
+    </div>
+    <form class="profileSettingsForm" action="">
+        <div class="profileInfo">
+            <div class="profilePhotoForm">
+                <div class="photoWrap">
+                    <img src="{% static 'buyer/img/buyer.png' %}" alt="profilePhoto">
+                    <i class="fas fa-pencil-alt changePhoto"></i>
+                </div>
+                <div class="lableInput">
+                    <label for="profileName">Имя</label>
+                    <input type="text" id="profileName">
+                </div>
+                <div class="lableInput">
+                    <label for="profilePhone">Телефон</label>
+                    <input type="tel" id="profilePhone" placeholder='+375 (xx) xxx-xx-xx '>
+                </div>
+
+                <div class="balance">
+                    <span>Ваш баланс составляет:</span><br><span id="balanceCount">0&nbsp;</span><span>руб.</span>
+                </div>
+            </div>
+        </div>
+        <div class="adressSettings">
+            <ul class="adressList">
+                <li>
+                    <span>Минск, Зеленолугская 18</span>
+                    <div class="addressOptions">
+                        <input type="radio" name="defaultAdress" id="defaultAdress">
+                        <i class="fas fa-pencil-alt"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </li>
+                <li>
+                    <span>Минск, Богдановича 66-75</span>
+                    <div class="addressOptions">
+                        <input type="radio" name="defaultAdress" id="defaultAdress">
+                        <i class="fas fa-pencil-alt"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </li>
+                <li>
+                    <span>Минск, Богдановича 66-75</span>
+                    <div class="addressOptions">
+                        <input type="radio" name="defaultAdress" id="defaultAdress">
+                        <i class="fas fa-pencil-alt"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </li>
+                <li>
+                    <span>Минск, Богдановича 66-75</span>
+                    <div class="addressOptions">
+                        <input type="radio" name="defaultAdress" id="defaultAdress">
+                        <i class="fas fa-pencil-alt"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </li>
+
+            </ul>
+            <button type="button" class="addAdress">Добавить адрес</button>
+            <!-- <label for="serviceZone">Мои адреса</label>
+            <div class="selectWrapper">
+                <select name="serviceZone" id="serviceZone">
+                    <option value="">Адрес 1</option>
+                    <option value="">Адрес 2</option>
+                </select>
+            </div>
+            <label for="addZone">Добавить адрес</label>
+            <input id="addZone" type="text" placeholder="Введите адрес">
+            <label for="otherInformation">Дополнительная информация (напишите, если у вас есть шлагбаум или другую информацию для курьера)</label>
+            <textarea name="otherInformation" id="otherInformation"></textarea> -->
+
+        </div>
+        <div class="formButtons">
+            <button type="reset">Отменить</button>
+            <button type="submit">Сохранить</button>
+        </div>
+    </form>
+
+</div>
