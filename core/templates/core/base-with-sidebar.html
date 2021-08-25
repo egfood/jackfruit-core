@@ -17,8 +17,8 @@
                 </a>
                 <div class="sectionsMenu">
                     <span>РАЗДЕЛЫ</span>
-                    <a href="#" class="hideMenu"><i class="fas fa-chevron-left"></i></a>
-                    <a href="#" class="showMenu"><i class="fas fa-chevron-right"></i></a>
+                    <a class="hideMenu"><i class="fas fa-chevron-left"></i></a>
+                    <a class="showMenu"><i class="fas fa-chevron-right"></i></a>
                 </div>
                 <nav>
 
@@ -48,7 +48,7 @@
                             {#                            </div>#}
                             <div id="jprofileHeader" class="profileHeader">
                                 <span class="name">{{ user.email }}</span>
-                                <a class="profilePhoto" href="#">
+                                <a class="profilePhoto">
                                     <img src="{% block profile_image %}{% endblock %}" alt="profile photo" height="38"
                                          width="38">
                                 </a>
