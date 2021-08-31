@@ -4,7 +4,7 @@ from django.core import validators
 from apps.farmer.models.profile import FarmerProfile
 
 
-class FarmerRegistrationProfileForm(forms.ModelForm):
+class FarmerSignupProfileForm(forms.ModelForm):
     name = forms.CharField(required=True, label='Имя', widget=forms.TextInput(attrs={"id": "profileName"}))
     phone = forms.CharField(required=True, label='Телефон',
                             widget=forms.TextInput(attrs={'placeholder': '+375 (xx) xxx-xx-xx ', "id": "profilePhone"}))

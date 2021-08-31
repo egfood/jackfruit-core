@@ -2,8 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from apps.buyer.forms.profile import BuyerProfileForm
-from apps.buyer.models import BuyerProfile
+from apps.buyer.forms.profile import BuyerSignupProfileForm
+from apps.buyer.models.profile import BuyerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
 
@@ -29,7 +29,7 @@ class BuyerSignupView(CreateView):
 class BuyerWelcomeView(CreateView):
     template_name = 'buyer/pages/buyer-welcome.html'
     model = BuyerProfile
-    form_class = BuyerProfileForm
+    form_class = BuyerSignupProfileForm
     success_url = reverse_lazy('buyer:home')
 
     # @method_decorator(login_required)

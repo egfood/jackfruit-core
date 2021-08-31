@@ -13,10 +13,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import datetime
 import os
 from urllib.parse import urlunsplit
+from urllib.parse import urlunsplit
 
 from django.utils.timezone import get_current_timezone
 from environs import Env
-from urllib.parse import urlunsplit
+
 from core.emailer.mailgun_sender import MailGunSender
 from core.emailer.stub_sender import StubSender
 
@@ -214,6 +215,9 @@ CSV_EXPORT_COLUMN_NAMES = {
     }
 }
 ITEMS_PER_PAGE = 10
+BUYER_BALANCE_VALUE_HINT1 = "'+': проект должен покупателю, "
+BUYER_BALANCE_VALUE_HINT2 = "'-': покупатель должен проекту"
+BUYER_BALANCE_VALUE_HINT = BUYER_BALANCE_VALUE_HINT1 + BUYER_BALANCE_VALUE_HINT2
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 

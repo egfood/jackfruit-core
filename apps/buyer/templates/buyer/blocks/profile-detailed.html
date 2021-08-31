@@ -15,29 +15,65 @@
             <a id="adressSet">Мои адреса</a>
             <!-- <a href="#">Мой баланс</a> -->
         </nav>
-    </div>
-    <form class="profileSettingsForm" action="">
-        <div class="profileInfo">
-            <div class="profilePhotoForm">
-                <div class="photoWrap">
-                    <img src="{% static 'buyer/img/buyer.png' %}" alt="profilePhoto">
-                    <i class="fas fa-pencil-alt changePhoto"></i>
-                </div>
-                <div class="lableInput">
-                    <label for="profileName">Имя</label>
-                    <input type="text" id="profileName">
-                </div>
-                <div class="lableInput">
-                    <label for="profilePhone">Телефон</label>
-                    <input type="tel" id="profilePhone" placeholder='+375 (xx) xxx-xx-xx '>
-                </div>
-
-                <div class="balance">
-                    <span>Ваш баланс составляет:</span><br><span id="balanceCount">0&nbsp;</span><span>руб.</span>
-                </div>
-            </div>
+        <hr>
+        <div class="balance">
+            <span>Ваш баланс: </span><br>
+            <span id="balanceCount">{{ buyer_balance }}</span><span> {{ CURRENT_CURRENCY }}</span>
+            {% if buyer_balance %}
+                <p>
+                    <small class="lh-sm text-black-50">
+                        {{ BUYER_BALANCE_VALUE_HINT1 }}<br>{{ BUYER_BALANCE_VALUE_HINT2 }}
+                    </small>
+                </p>
+            {% endif %}
         </div>
-        <div class="adressSettings">
+
+    </div>
+    <div class="profileSettingsForm">
+        <div class="profileInfo">
+
+            <form class="profilePhotoForm">
+
+                {% include 'farmer/toasts/profile-updated.html' %}
+                {% include 'farmer/toasts/profile-error.html' %}
+
+                {% csrf_token %}
+
+                {% for field in buyer_profile_form %}
+
+                    {% if field.field.widget.input_type == 'file' %}
+                        <div class="profilePhotoForm">
+                            <label for="{{ field.id_for_label }}">
+                            <span class="photoWrap">
+                                {% if field.value and field.value.url %}
+                                    <img src="{{ field.value.url }}" alt="You own photo" width="150" height="150">
+                                {% else %}
+                                    <img src="{% static "buyer/img/buyer.png" %}" alt="Buyer profile photo">
+                                {% endif %}
+                                <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
+                                       style="display:none" accept="image/*" id="{{ field.id_for_label }}">
+                                <i class="fas fa-pencil-alt changePhoto"></i>
+                            </span>
+                            </label>
+                        </div>
+                    {% else %}
+                        <div class="lableInput">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+            </form>
+
+            <div class="formButtons">
+                <button type="reset">Отменить</button>
+                <button type="submit">Сохранить</button>
+            </div>
+
+
+        </div>
+        <form class="adressSettings">
             <ul class="adressList">
                 <li>
                     <span>Минск, Зеленолугская 18</span>
@@ -86,11 +122,13 @@
             <label for="otherInformation">Дополнительная информация (напишите, если у вас есть шлагбаум или другую информацию для курьера)</label>
             <textarea name="otherInformation" id="otherInformation"></textarea> -->
 
-        </div>
-        <div class="formButtons">
-            <button type="reset">Отменить</button>
-            <button type="submit">Сохранить</button>
-        </div>
-    </form>
+            <div class="formButtons">
+                <button type="reset">Отменить</button>
+                <button type="submit">Сохранить</button>
+            </div>
+
+        </form>
+
+    </div>
 
 </div>

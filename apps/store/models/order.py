@@ -4,7 +4,7 @@ from functools import cached_property
 from django.conf import settings
 from django.db import models
 
-from apps.buyer.models import BuyerProfile
+from apps.buyer.models.profile import BuyerProfile
 from core.models.base import FoodAbstract
 from .delivery import FoodDelivery
 from .location import Location

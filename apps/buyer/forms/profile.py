@@ -1,14 +1,10 @@
 from django import forms
 from django.core import validators
 
-from apps.buyer.models import BuyerProfile
+from ..models.profile import BuyerProfile
 
 
-class BuyerProfileForm(forms.ModelForm):
-    REGION = (
-        ('minsk', 'Минск'),
-        ('minskRegion', 'Минская область')
-    )
+class BuyerSignupProfileForm(forms.ModelForm):
     name = forms.CharField(required=True, label='Имя', widget=forms.TextInput(attrs={"id": "profileName"}))
     phone = forms.CharField(required=True, label='Телефон',
                             widget=forms.TextInput(attrs={'placeholder': '+375 (xx) xxx-xx-xx ', "id": "profilePhone"}))
@@ -20,3 +16,9 @@ class BuyerProfileForm(forms.ModelForm):
     class Meta:
         model = BuyerProfile
         fields = ('name', 'phone', 'region', 'photo')
+
+
+class BuyerAreaProfileForm(forms.ModelForm):
+    class Meta:
+        model = BuyerProfile
+        exclude = ('user', 'region',)

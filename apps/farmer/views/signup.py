@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
-from apps.farmer.forms.profile import FarmerRegistrationProfileForm
+from apps.farmer.forms.profile import FarmerSignupProfileForm
 from apps.farmer.models.profile import FarmerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
@@ -29,7 +29,7 @@ class FarmerSignupView(CreateView):
 class FarmerWelcomeView(CreateView):
     template_name = 'farmer/pages/farmer-welcome.html'
     model = FarmerProfile
-    form_class = FarmerRegistrationProfileForm
+    form_class = FarmerSignupProfileForm
     success_url = reverse_lazy('farmer:foodstuffs')
 
     # @method_decorator(login_required)

@@ -18,6 +18,9 @@ m:
 cs:
 	docker-compose exec web python manage.py collectstatic --noinput -l
 
+csu:
+	docker-compose exec web python manage.py createsuperuser
+
 du:
 	docker-compose exec web python manage.py demo_users create
 
