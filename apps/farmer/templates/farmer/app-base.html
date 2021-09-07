@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block app_styles %}
+    <link rel="stylesheet" href="{% static 'core/css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'farmer/css/farmer-style.css' %}">
 {% endblock %}
 
@@ -17,7 +18,7 @@
     {% include "farmer/blocks/profile-detailed.html" %}
 {% endblock %}
 
-
 {% block app_footer_scripts %}
+    <script src="{% static 'core/js/profile-base.js' %}"></script>
     <script src="{% static 'farmer/js/farmer-profile.js' %}"></script>
 {% endblock %}

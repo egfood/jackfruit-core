@@ -755,27 +755,3 @@ button img{
     background-color: #4D9774 !Important;
     border: solid 1px #292929;
 } */
-
-.jmodal-spinner-overlay{
-    min-width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    position: absolute;
-    z-index: 2;
-    padding: 30px;
-    left: 0;
-    top: 0;
-}
-
-.jmodal-spinner-overlay .spinner-border{
-    display: inline-table;
-    width: 3rem; height: 3rem;
-}
-
-.jform-changed .jsubmit {
-    background-color: #60B072;
-    color: #fff;
-}
-.jform-changed .jsubmit:hover {
-    background-color: #0D7A8D;
-}

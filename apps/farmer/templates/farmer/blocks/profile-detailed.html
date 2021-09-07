@@ -15,10 +15,10 @@
         </nav>
     </div>
 
-    <form id="jfarmer-profile-form" action="" data-api-url="{{ farmer_profile_api_url }}">
+    <form id="jfarmer-profile-form" data-api-url="{{ farmer_profile_api_url }}">
 
-        {% include 'farmer/toasts/profile-updated.html' %}
-        {% include 'farmer/toasts/profile-error.html' %}
+        {% include 'core/toasts/profile-updated.html' %}
+        {% include 'core/toasts/profile-error.html' %}
 
         {% csrf_token %}
 

@@ -6,4 +6,4 @@ from ..models.profile import BuyerProfile
 class BuyerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = BuyerProfile
-        fields = "__all__"
+        fields = ('photo', 'phone', 'name')

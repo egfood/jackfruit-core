@@ -21,4 +21,4 @@ class BuyerSignupProfileForm(forms.ModelForm):
 class BuyerAreaProfileForm(forms.ModelForm):
     class Meta:
         model = BuyerProfile
-        exclude = ('user', 'region',)
+        exclude = ('user', 'region', 'date_creation', 'date_updated')

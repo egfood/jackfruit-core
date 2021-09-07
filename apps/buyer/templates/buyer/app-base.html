@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block app_styles %}
+    <link rel="stylesheet" href="{% static 'core/css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'buyer/css/buyer-style.css' %}">
 {% endblock %}
 
@@ -15,4 +16,9 @@
 
 {% block app_modals %}
     {% include "buyer/blocks/profile-detailed.html" %}
+{% endblock %}
+
+{% block app_footer_scripts %}
+    <script src="{% static 'core/js/profile-base.js' %}"></script>
+    <script src="{% static 'buyer/js/buyer-profile.js' %}"></script>
 {% endblock %}

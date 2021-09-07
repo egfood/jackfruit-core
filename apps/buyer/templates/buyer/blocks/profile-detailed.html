@@ -30,12 +30,12 @@
 
     </div>
     <div class="profileSettingsForm">
-        <div class="profileInfo">
+        <div class="jprofile-tab-content-js profileInfo">
 
-            <form class="profilePhotoForm">
+            <form id="jbuyer-profile-form"  data-api-url="{{ buyer_profile_api_url }}" class="profilePhotoForm">
 
-                {% include 'farmer/toasts/profile-updated.html' %}
-                {% include 'farmer/toasts/profile-error.html' %}
+                {% include 'core/toasts/profile-updated.html' %}
+                {% include 'core/toasts/profile-error.html' %}
 
                 {% csrf_token %}
 
@@ -67,13 +67,18 @@
             </form>
 
             <div class="formButtons">
-                <button type="reset">Отменить</button>
-                <button type="submit">Сохранить</button>
+                <button class="close1" type="reset">Отменить</button>
+                <button id="jsubmit-js" class="jsubmit">
+                <span id="jsubmit-spinner" class="spinner-border spinner-border-sm text-light d-none" role="status"
+                      aria-hidden="true"></span>
+                    <span>Сохранить</span>
+                </button>
             </div>
 
 
         </div>
-        <form class="adressSettings">
+
+        <form class="jprofile-tab-content-js adressSettings">
             <ul class="adressList">
                 <li>
                     <span>Минск, Зеленолугская 18</span>
