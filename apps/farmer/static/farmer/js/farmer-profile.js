@@ -10,7 +10,8 @@ $(document).ready(function () {
         toast_success = $('#jprofile-toast-updated'),
         toast_error = $('#jprofile-toast-error'),
         toast_error_body = $("#jprofile-toast-error-body", toast_error),
-        profile_api_url = profile_form.attr('data-api-url');
+        profile_api_url = profile_form.attr('data-api-url'),
+        profile_images = $('.jimg-updated-on-upload-new-js');
 
 
     profile_form_inputs.on('change', function () {
@@ -19,7 +20,9 @@ $(document).ready(function () {
 
     $("#jprofileHeader").on('click', function () {
         let wi = profile_form;
-        load_profile_form_data(overlay_with_spinner, profile_api_url, profile_form, toast_error_body, toast_error);
+        load_profile_form_data(
+            overlay_with_spinner, profile_api_url, profile_form, toast_error_body, toast_error, wi, profile_images
+        );
     });
 
     profile_form_submit_button.on('click', function (e) {
@@ -27,7 +30,7 @@ $(document).ready(function () {
         let wi = profile_form;
         save_profile_form(
             profile_form, profile_form_csrf, profile_form_buttons, profile_form_submit_button_spinner, profile_api_url,
-            toast_success, toast_error, toast_error_body, wi
+            toast_success, toast_error, toast_error_body, wi, profile_images
         );
     });
 
