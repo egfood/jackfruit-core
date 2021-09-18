@@ -46,9 +46,11 @@
                             <label for="{{ field.id_for_label }}">
                             <span class="photoWrap">
                                 {% if field.value and field.value.url %}
-                                    <img src="{{ field.value.url }}" alt="You own photo" width="150" height="150">
+                                    <img class="jimg-updated-on-upload-new-js" width="150" height="150"
+                                         src="{{ field.value.url }}" alt="You own photo">
                                 {% else %}
-                                    <img src="{% static "buyer/img/buyer.png" %}" alt="Buyer profile photo">
+                                    <img class="jimg-updated-on-upload-new-js"
+                                         src="{% static "buyer/img/buyer.png" %}" alt="Buyer profile photo">
                                 {% endif %}
                                 <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
                                        style="display:none" accept="image/*" id="{{ field.id_for_label }}">
