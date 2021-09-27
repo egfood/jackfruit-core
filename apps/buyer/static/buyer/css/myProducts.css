@@ -1,0 +1,311 @@
+.productContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.calendarWrap a.calendar {
+    margin: 0;
+}
+
+.showcase {
+    display: flex;
+    margin: 0 20px 10px 0;
+}
+
+.showcase h1 {
+    margin-right: 44px;
+}
+
+.addProductInBasket button {
+    background-color: #60B072;
+    color: #fff;
+}
+
+.addProductInBasket button:hover {
+    background-color: #0D7A8D;
+}
+
+.vegFrame {
+    margin: 10px;
+    max-width: 300px;
+    min-width: 280px;
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
+}
+
+.vegFrame img {
+    display: block;
+    margin: 0 auto;
+}
+
+.vegFrameHeader {
+    margin-bottom: 10px;
+}
+
+.vegFrameHeader, .vegFrameOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vegFrameHeader input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+}
+
+.vegFrame .stars > div {
+    cursor: pointer;
+}
+
+.vegFrame h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.vegFrameMenu {
+    cursor: pointer;
+}
+
+.vegFrameMenu:hover > div {
+    background-color: #6C7076;;
+}
+
+.vegFrameMenu > div {
+    width: 3px;
+    height: 3px;
+    background-color: #BEC3CA;
+    margin: 3px;
+    border-radius: 50%;
+}
+
+.vegFrameOptions p {
+    font-size: 12px;
+    color: #676D76;
+    font-family: "SF Compact Text";
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.vegFrameOptions > div {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.vegFrameOptions .fa-shopping-basket {
+    font-size: 35px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #BEC3CA;
+}
+
+.vegFrameOptions .fa-shopping-basket:hover {
+    color: #4D9774;
+}
+
+.inBasket.active .fa-shopping-basket {
+    color: #0D7A8D;
+}
+
+.vegFrameDropMenu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 4px;
+    left: 120px;
+    top: 35px;
+    box-shadow: 0px 2px 12px rgba(38, 43, 46, 0.16);
+}
+
+.farmer {
+    display: flex;
+    align-items: center;
+}
+
+.farmer img {
+    width: 30px;
+}
+
+.farmer span {
+    font-size: 12px;
+    margin-left: 10px;
+    color: #4D9774;
+}
+
+.farmer:hover span {
+    font-weight: bold;
+}
+
+.farmer .farmerHovered {
+    display: none;
+}
+
+.farmer:hover .farmerUnhovered {
+    display: none;
+}
+
+.farmer:hover .farmerHovered {
+    display: block;
+}
+
+.editForm {
+    display: none;
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.actionsTd {
+    position: relative;
+}
+
+.actionsTd .vegFrameDropMenu {
+    left: -5vw;
+    top: 10px;
+}
+
+.vegFrameDropMenu ul {
+    margin-bottom: 0;
+}
+
+.vegFrameDropMenu li {
+    cursor: pointer;
+    margin: 10px;
+    display: flex;
+    line-height: 18px;
+}
+
+.vegFrameDropMenu li:hover {
+    color: red;
+}
+
+.vegFrameDropMenu li:hover i {
+    color: red;
+}
+
+.vegFrameMenuActive {
+    position: relative;
+}
+
+.table {
+    white-space: nowrap;
+}
+
+.table img {
+    width: 70px;
+}
+
+.table input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+}
+
+.editForm {
+    padding: 40px 30px 20px 30px;
+    width: 370px;
+}
+
+.editForm h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.editItems {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.editItems input {
+    width: 56px;
+}
+
+.editItems > div {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.editItems > div p {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 35px;
+}
+
+.editForm button[type="submit"] {
+    background-color: #60B072;
+    color: #fff;
+}
+
+.editForm button[type="submit"]:hover {
+    background-color: #0D7A8D;
+}
+
+.unit {
+
+}
+
+.starsAndPriceWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.number {
+    position: relative;
+}
+
+.price {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.basketMessage, .basketMessage2 {
+    display: none;
+    position: absolute;
+    padding: 20px;
+    width: 70%;
+    height: 35%;
+    background-color: #fff;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.25);
+}
+
+.basketMessage i.fas.fa-shopping-basket {
+    font-size: 35px;
+    color: #0D7A8D;
+}
+
+.basketMessage i {
+    font-size: 24px;
+    color: #0D7A8D;
+}
+
+.basketMessage2 i {
+    font-size: 24px;
+    color: #BEC3CA;
+}
+
+
+.middleRating {
+    font-size: 12px;
+}
+
+.middleRating span {
+    color: #4D9774;
+}

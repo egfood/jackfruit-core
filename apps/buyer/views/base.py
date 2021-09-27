@@ -15,7 +15,7 @@ class BuyerBasePagesView(BaseView):
     @property
     def left_sidebar_menu_items(self):
         return [
-            MenuItem(title="Витрина", link=reverse("buyer:home"), icon="fas fa-store"),
+            MenuItem(title="Витрина", link=reverse("buyer:storefront"), icon="fas fa-store"),
             MenuItem(title="Корзина", link=reverse("buyer:cart"), icon="fas fa-shopping-basket"),
             MenuItem(title="Платежи", link=reverse("buyer:home"), icon="fas fa-money-bill-wave-alt"),
             MenuItem(title="Фермеры", link=reverse("buyer:farmers-rating"), icon="fas fa-star"),

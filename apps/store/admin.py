@@ -7,14 +7,23 @@ from .models.location import Location
 from .models.order import FoodOrder
 from .models.order_item import FoodOrderItem
 from .models.product import RootProduct
+from .models.product_category import ProductCategory
 
 
 @admin.register(RootProduct)
-class FoodPriceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_visible', 'date_creation', 'date_updated')
-    list_filter = ('is_visible', 'date_creation', 'date_updated')
+class RootProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_visible', 'category', 'date_creation', 'date_updated')
+    list_filter = ('is_visible', 'category', 'date_creation', 'date_updated')
     search_fields = ('name',)
-    ordering = ('name', 'is_visible')
+    ordering = ('name', 'is_visible', 'category', 'date_creation', 'date_updated')
+
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'date_creation', 'date_updated')
+    list_filter = ('date_creation', 'date_updated')
+    search_fields = ('name',)
+    ordering = ('name', 'date_creation', 'date_updated')
 
 
 @admin.register(FoodDelivery)

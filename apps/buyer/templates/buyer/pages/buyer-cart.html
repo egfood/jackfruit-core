@@ -7,22 +7,9 @@
 {% block page_content %}
     <div class="myProducts">
         <h1>Моя корзина</h1>
-        <button class="addProduct"><span>+</span> Добавить продукт</button>
+        <a href="{% url "buyer:storefront" %}" class="addProduct"><span>+</span> Добавить продукт</a>
     </div>
 
-    <div class="displayingBoxes">
-        <div class="tileDisplaying displayingBoxesActive">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="listDisplaying">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
     <div class="centralImg">
         <div class="centralImgWrap">
             <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">

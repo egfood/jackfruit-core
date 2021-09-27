@@ -1,0 +1,9 @@
+{% extends 'buyer/pages/buyer-storefront-base.html' %}
+
+{% block storefront_category_select %}
+    <option selected>Все продукты</option>
+
+    {% for fpc in farmer_product_categories %}
+        <option value="{{ fpc.get_buyer_url }}">{{ fpc.name }}</option>
+    {% endfor %}
+{% endblock %}
