@@ -14,8 +14,8 @@ class ProductCategory(FoodAbstract):
     def get_not_empty_categories(cls):
         return cls.objects.filter(root_product__farmer_product__isnull=False)
 
-    @classmethod
-    def get_category_from_list_or_404(cls, category_pk, limited_categories):
+    @staticmethod
+    def get_category_from_list_or_404(category_pk, limited_categories):
         if category_pk in limited_categories:
             return category_pk
         raise Http404("Product category not found or empty")

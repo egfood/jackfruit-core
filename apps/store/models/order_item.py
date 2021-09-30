@@ -35,7 +35,7 @@ class FoodOrderItem(FoodAbstract):
     @property
     def item_total(self):
         if self._item_total is None:
-            self._item_total = round(self.weight * self.product.price / int(self.product.quantity_per_price), 2)
+            self._item_total = round(self.weight * self.product.price / int(self.product.value), 2)
         return self._item_total
 
     @property

@@ -1,6 +1,7 @@
 {% extends 'buyer/app-base.html' %}
 
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}Витрина{% endblock %}
 {% block page_styles %}
@@ -37,691 +38,67 @@
     {% endif %}
 
     <div class="productContainer">
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
+
+        {% for fp in farmer_products %}
+
+            <div class="vegFrame">
+                <div class="vegFrameHeader">
+                    <div class="farmer">
+                        <img class="farmerUnhovered" src="{% static 'buyer/img/farmer3_edited.jpg' %}" alt="Farmer">
+                        <img class="farmerHovered" src="{% static 'buyer/img/farmer3.png' %}" alt="Farmer">
+                        <span>{{ fp.farmer.name }}</span>
                     </div>
                 </div>
-                <div class="unit">(кг)</div>
+
+                {% if fp.product.image %}
+                    <img class="img-fluid" width="175" src="{{ fp.product.image.url }}" alt="Product image">
+                {% endif %}
+
+                <h3>{{ fp.product.name }}</h3>
+                <div class="starsAndPriceWrap">
+
+                    <div class="stars">
+                        <span id="myAppraisal">{{ fp.rating }}</span>
+                        {% for i in max_rating|times %}
+                            {% if forloop.counter <= fp.rating %}
+                                <div class="goldStar"></div>
+                            {% else %}
+                                <div class="grayStar"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="price">
+                        <div>{{ fp.price }} руб/{{ fp.value }}{{ fp.unit }}</div>
+                    </div>
+                </div>
+                <div class="vegFrameOptions">
+                    <div class="inBasket">
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <div class="basketMessage">
+                        <i class="fas fa-check"></i>
+                        <span>Товар добавлен в корзину</span>
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <div class="basketMessage2">
+                        <i class="fas fa-check"></i>
+                        <span>Товар удален из корзины</span>
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <div class="ordered">
+                        <div class="number">
+                            <span class="minus">-</span>
+                            <input type="text" value="1" placeholder="кг"/>
+                            <span class="plus">+</span>
+                        </div>
+                    </div>
+                    <div class="unit">({{ fp.value }}{{ fp.unit }})</div>
+                </div>
+
             </div>
 
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/751.png" alt="">
-            <h3>Огурец родничок</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/51-1.png" alt="">
-            <h3>Перец болгарский</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/282.png" alt="">
-            <h3>Тыква</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/319-1.png" alt="">
-            <h3>Кукуруза</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
-        <div class="vegFrame">
-            <div class="vegFrameHeader">
-                <a class="farmer" href="#">
-                    <img class="farmerUnhovered" src="images/farmer3_edited.jpg" alt="Farmer">
-                    <img class="farmerHovered" src="images/farmer3.png" alt="Farmer">
-                    <span>Иван Иванов</span>
-                </a>
-                <div class="vegFrameMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="vegFrameDropMenu">
-                    <ul>
-                        <li class="delete"><i class="fas fa-info-circle"></i>&nbsp;О продукте</li>
-                    </ul>
-                </div>
-            </div>
-            <img src="images/20695.png" alt="">
-            <h3>Томат черри</h3>
-            <div class="starsAndPriceWrap">
-                <div class="stars">
-                    <span id="myAppraisal">4.0&nbsp;</span>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="goldStar"></div>
-                    <div class="grayStar"></div>
-                </div>
-                <div class="price">
-                    <div>6,5 руб/кг</div>
-                </div>
-            </div>
-            <div class="vegFrameOptions">
-                <div class="inBasket">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage">
-                    <i class="fas fa-check"></i>
-                    <span>Товар добавлен в корзину</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="basketMessage2">
-                    <i class="fas fa-check"></i>
-                    <span>Товар удален из корзины</span>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="ordered">
-                    <div class="number">
-                        <span class="minus">-</span>
-                        <input type="text" value="1" placeholder="кг"/>
-                        <span class="plus">+</span>
-                    </div>
-                </div>
-                <div class="unit">(кг)</div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

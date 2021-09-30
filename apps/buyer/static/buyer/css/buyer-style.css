@@ -272,7 +272,7 @@ h2{
     width: 13px;
     height: 10px;
     right: 10px;
-    background: url("../images/Line 1.png") no-repeat right center;
+    background: url("../img/corner.png") no-repeat right center;
 }
 
 span.name{
@@ -893,10 +893,10 @@ button img{
     background-repeat: no-repeat;
 }
 .goldStar{
-    background-image: url(../images/Star3.png);
+    background-image: url(../img/star_filled.png);
 }
 .grayStar{
-    background-image: url(../images/Star5.png);
+    background-image: url(../img/star_empty.png);
 }
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 
 from apps.store.models.product import RootProduct
 from core.models import FoodAbstract
@@ -30,8 +31,18 @@ class FarmerProduct(FoodAbstract):
         return f"Продукт #{self.product.id} [фермер={self.farmer.name}#{self.farmer.id}]"
 
     @classmethod
-    def get_visible_products(cls, farmer_products_queryset=None, category=None):
+    def get_visible_products(cls, farmer_products_queryset=None, category_pk=None):
         source = cls if farmer_products_queryset is None else farmer_products_queryset
-        if category is not None:
-            source = source.filter(product__category=category).select_related('product__category')
-        return source.objects.filter(product__is_visible=True).select_related('product')
+        if category_pk is not None:
+            source = source.objects.filter(product__category=category_pk).select_related('product__category')
+        return source.filter(product__is_visible=True).select_related('product')
+
+    @classmethod
+    def get_ratings(cls, products_queryset=None, return_dict_by_pk=False):
+        base_queryset = products_queryset if products_queryset else cls.objects
+        result = base_queryset.annotate(average_rating=Avg('order_item__farmer_feedback__rating')).values(
+            'pk', 'average_rating'
+        )
+        if return_dict_by_pk:
+            return {qs['pk']: qs['average_rating'] for qs in result}
+        return  result
