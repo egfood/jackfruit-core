@@ -32,9 +32,9 @@ class FarmerProduct(FoodAbstract):
 
     @classmethod
     def get_visible_products(cls, farmer_products_queryset=None, category_pk=None):
-        source = cls if farmer_products_queryset is None else farmer_products_queryset
+        source = cls.objects if farmer_products_queryset is None else farmer_products_queryset
         if category_pk is not None:
-            source = source.objects.filter(product__category=category_pk).select_related('product__category')
+            source = source.filter(product__category=category_pk).select_related('product__category')
         return source.filter(product__is_visible=True).select_related('product')
 
     @classmethod
