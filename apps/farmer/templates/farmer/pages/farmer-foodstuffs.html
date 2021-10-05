@@ -6,6 +6,7 @@
 
 {% block page_styles %}
     <link rel="stylesheet" href="{% static 'farmer/css/myProducts.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/pagination.css' %}">
 {% endblock %}
 
 {% block page_content %}
@@ -18,7 +19,7 @@
     {% include 'farmer/blocks/foodstuffs/product-table.html' %}
 
     {% if page.object_list %}
-        {% include 'farmer/blocks/foodstuffs/pagination.html' %}
+        {% include 'core/blocks/pagination.html' %}
     {% endif %}
 
 {% endblock %}

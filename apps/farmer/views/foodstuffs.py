@@ -1,13 +1,13 @@
 from django.conf import settings
-from django.core.paginator import Paginator
 from django.shortcuts import render
 
 from apps.farmer.forms.product import AddFarmerProductForm
+from core.views.mixins import PaginationMixin
 from .base import FarmerBasePagesView
 from ..models.product import FarmerProduct
 
 
-class FarmerFoodstuffsPageView(FarmerBasePagesView):
+class FarmerFoodstuffsPageView(FarmerBasePagesView, PaginationMixin):
     template_name = "farmer/pages/farmer-foodstuffs.html"
 
     def post(self, request, *args, **kwargs):
@@ -21,14 +21,8 @@ class FarmerFoodstuffsPageView(FarmerBasePagesView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product_list = FarmerProduct.objects.filter(farmer=self.request.user.profile)
-        paginator = Paginator(product_list, settings.COUNT_OF_FOODSTUFF_ITEMS_PER_PAGE)
-        if 'page' in self.request.GET:
-            page_num = self.request.GET['page']
-        else:
-            page_num = 1
-        page = paginator.get_page(page_num)
         form = AddFarmerProductForm()
         context['product_list'] = product_list
         context['form'] = form
-        context['page'] = page
+        context['page'] = self.get_paginate_page(product_list, settings.COUNT_OF_FOODSTUFF_ITEMS_PER_PAGE)
         return context

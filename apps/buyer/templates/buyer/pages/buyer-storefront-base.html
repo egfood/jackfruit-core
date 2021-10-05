@@ -6,6 +6,7 @@
 {% block title %}Витрина{% endblock %}
 {% block page_styles %}
     <link rel="stylesheet" href="{% static 'buyer/css/myProducts.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/pagination.css' %}">
     <link rel="stylesheet"
           href="{% static 'core/vendors/jquery/plugins/localizable-calendar/javascript-calendar.css' %}">
 {% endblock %}
@@ -100,25 +101,9 @@
 
         {% endfor %}
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item active pageNumber"><a class="page-link" href="#">1</a></li>
-            <li class="page-item pageNumber"><a class="page-link" href="#">2</a></li>
-            <li class="page-item pageNumber"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+
+    {% include 'core/blocks/pagination.html' %}
+
 {% endblock %}
 
 {% block page_footer_scripts %}

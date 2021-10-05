@@ -1,0 +1,17 @@
+.pagination > li > .page-link {
+    background-color: white;
+    color: #676D76;
+}
+
+.pagination > li > .page-link:focus,
+.pagination > li > .page-link:hover {
+    color: #676D76;
+    border: #4D9774 solid 1px;
+    background-color: #fff;
+}
+
+.pagination > .active > .page-link {
+    color: white;
+    background-color: #4D9774 !Important;
+    border: solid 1px #dee2e6 !Important;
+}

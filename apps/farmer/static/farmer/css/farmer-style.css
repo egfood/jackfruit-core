@@ -2,11 +2,13 @@
     font-family: "SF UI Text";
     src: url(../../core/fonts/sf-ui-text-regular.ttf);
 }
+
 @font-face {
     font-family: "SF Compact Text";
     src: url(../../core/fonts/FontsFree-Net-SFCompactText-Regular.ttf);
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     border: 0;
@@ -14,30 +16,35 @@
     font-family: "SF UI Text", sans-serif;
     color: #121F2D;
 }
-html{
+
+html {
     height: 100%;
 }
-body{
+
+body {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-li{
+li {
     list-style: none;
 }
-a{
-    text-decoration: none!important;
+
+a {
+    text-decoration: none !important;
 }
+
 button {
     height: 40px;
     cursor: pointer;
     padding: 10px;
-    line-height: 20px!important;
-    margin-bottom: 10px!important;
-    border-radius: 4px!important;
+    line-height: 20px !important;
+    margin-bottom: 10px !important;
+    border-radius: 4px !important;
 }
-select{
+
+select {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
@@ -46,42 +53,48 @@ select{
     outline: 0;
     cursor: pointer;
 }
-input{
+
+input {
     padding-left: 10px;
 }
+
 input, select {
     border-radius: 3px;
     z-index: 1;
-    border: 1px solid#BEC3CA;
+    border: 1px solid #BEC3CA;
     font-size: 14px;
     padding: 5px;
     height: 40px;
-    
+
 
 }
+
 label {
     display: block;
     margin-bottom: 3px;
     font-size: 14px;
     font-family: "SF Compact Text";
     color: #676D76;
-    margin-bottom: 0!important;
+    margin-bottom: 0 !important;
 }
-h1{
-    font-size: 24px!important;
+
+h1 {
+    font-size: 24px !important;
     margin-right: 20px;
-    font-weight: bold!important;
+    font-weight: bold !important;
 }
-h2{
+
+h2 {
     font-size: 22px;
 }
 
-.generalWrap{
+.generalWrap {
     background-color: #E5E5E5;
     flex: 1 0 auto;
     position: relative;
 }
-.mainWrap{
+
+.mainWrap {
     max-width: 1366px;
     margin: 0 auto;
     display: flex;
@@ -89,7 +102,7 @@ h2{
 }
 
 
-.mainMenu{
+.mainMenu {
     width: 242px;
     transition: width .3s;
     background-color: #2E3C54;
@@ -99,26 +112,31 @@ h2{
     z-index: 3;
     overflow: hidden;
 }
-.mainMenu *{
+
+.mainMenu * {
     color: #fff;
 }
-.mainMenu i{
+
+.mainMenu i {
     display: inline;
 }
-.mainMenu #exit{
+
+.mainMenu #exit {
     position: absolute;
     bottom: 50px;
     width: 100%;
 }
-.showMenu{
+
+.showMenu {
     display: none;
 }
-.showMenu:hover{
+
+.showMenu:hover {
     color: #fff;
     font-weight: bold;
 }
 
-.logo{
+.logo {
     width: 145px;
     display: block;
     font-family: "SF UI Text";
@@ -129,16 +147,19 @@ h2{
     margin-left: 20px;
     margin-bottom: 40px;
 }
-.logo img{
+
+.logo img {
     padding-right: 10px;
 }
-.sectionsMenu{
+
+.sectionsMenu {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.sectionsMenu span{
+
+.sectionsMenu span {
     font-family: SF UI Text;
     font-style: normal;
     font-weight: 500;
@@ -146,45 +167,51 @@ h2{
     line-height: 13px;
     margin-left: 20px;
 }
-.hideMenu{
+
+.hideMenu {
     margin-right: 20px;
 }
-.hideMenu:hover{
+
+.hideMenu:hover {
     color: #fff;
     font-weight: bold;
 }
 
-.activeMenuElement{
+.activeMenuElement {
     background-color: rgba(255, 255, 255, 0.15);
     font-weight: bold;
 }
 
-.mainMenu nav{
+.mainMenu nav {
     display: flex;
     flex-direction: column;
 
 }
-.mainMenu nav a{
+
+.mainMenu nav a {
     padding: 10px 10px 10px 20px;
 }
-.mainMenu nav a:hover{
+
+.mainMenu nav a:hover {
     background-color: rgba(255, 255, 255, 0.15);
 }
-.mainMenu nav a span{
+
+.mainMenu nav a span {
     margin-left: 10px;
     white-space: nowrap;
 }
 
 
-.headerWrap{
+.headerWrap {
     max-width: 1366px;
     margin: 0 auto;
-    z-index: 2; 
+    z-index: 2;
     position: fixed;
     left: 0;
     right: 0;
 }
-.header{
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -196,40 +223,48 @@ h2{
     box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
 }
 
-.headerOptions{
+.headerOptions {
     display: flex;
     align-items: center;
 }
-#langSwitch{
+
+#langSwitch {
     border: 0 none;
     font-size: 14px;
 }
 
-.selectWrapper{
+.selectWrapper {
     position: relative;
     width: 474px;
 }
-.selectWrapper.selectWrapperLang{
+
+.selectWrapper.selectWrapperLang {
     width: 80px;
 }
-.selectWrapper.productOptionsSelectWrapper{
+
+.selectWrapper.productOptionsSelectWrapper {
     width: 129px;
 }
-.selectWrapper.showPageCountSelectWrapper{
+
+.selectWrapper.showPageCountSelectWrapper {
     width: 50px;
     margin: 0 10px;
 }
-.selectWrapper.showPageCountSelectWrapper::before{
+
+.selectWrapper.showPageCountSelectWrapper::before {
     top: 12px;
 }
-.selectWrapper.sortSelectWrapper{
+
+.selectWrapper.sortSelectWrapper {
     width: 150px;
 }
-.selectWrapper.sortSelectWrapper::before{
+
+.selectWrapper.sortSelectWrapper::before {
     left: 130px;
     background: url("../images/Line 1_green.png") no-repeat right center;
 }
-.selectWrapper::before{
+
+.selectWrapper::before {
     content: "";
     position: absolute;
     pointer-events: none;
@@ -240,37 +275,45 @@ h2{
     background: url("../images/Line 1.png") no-repeat right center;
 }
 
-span.name{
+span.name {
     font-size: 14px;
 }
-.profilePhotoForm{
+
+.profilePhotoForm {
     float: left;
     margin-bottom: 20px;
     position: relative;
     margin-right: 40px;
 }
-.profilePhotoForm img{
+
+.profilePhotoForm img {
     border-radius: 50%;
 }
-#profileName{
+
+#profileName {
     margin-bottom: 20px;
 }
-#profilePhone{
+
+#profilePhone {
     margin-bottom: 45px;
 }
-#profileName, #profilePhone{
+
+#profileName, #profilePhone {
     width: 282px;
 }
-#location, #serviceZone, #farmName{
+
+#location, #serviceZone, #farmName {
     width: 100%;
     margin-bottom: 20px;
 }
-.profilePhoto img{
+
+.profilePhoto img {
     display: block;
     border-radius: 50%;
     margin-left: 20px;
 }
-.changePhoto{
+
+.changePhoto {
     width: 32px;
     height: 32px;
     background-color: #4D9774;
@@ -284,41 +327,49 @@ span.name{
     right: 0px;
     cursor: pointer;
 }
-.profileHeader{
+
+.profileHeader {
     display: flex;
     align-items: center;
     cursor: pointer;
     margin-left: 40px;
 }
-.profileHeader span.name{
+
+.profileHeader span.name {
     font-size: 14px;
 }
-.mainContentWrap{
+
+.mainContentWrap {
     background-color: #F4F4EF;
     width: 100%;
     padding-left: 242px;
     transition: padding .3s;
 }
-.maincontentWrapPadding{
+
+.maincontentWrapPadding {
     padding-left: 60px;
     transition: padding 0.3s
 }
-.mainContent{
+
+.mainContent {
     padding: 80px 20px 20px 20px;
 }
-.mainContent h2{
-    text-align: center;
-}
-.mainContent p{
+
+.mainContent h2 {
     text-align: center;
 }
 
-.myProducts{
+.mainContent p {
+    text-align: center;
+}
+
+.myProducts {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
-.addProduct{
+
+.addProduct {
     background-color: #60B072;
     color: #fff;
     padding: 5px 10px;
@@ -327,63 +378,75 @@ span.name{
     cursor: pointer;
     font-size: 14px;
 }
-.addProduct:hover{
+
+.addProduct:hover {
     background-color: #0D7A8D;
 }
-.addProduct span{
+
+.addProduct span {
     font-size: 20px;
     padding-right: 5px;
     color: #fff;
 }
-.displayingItems{
+
+.displayingItems {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
     flex-wrap: wrap;
 
 }
-.displayingItems > div{
+
+.displayingItems > div {
     display: flex;
 }
-.pageSettings{
+
+.pageSettings {
     align-items: center;
     flex-wrap: wrap;
 }
-.pageSettings span{
+
+.pageSettings span {
     font-size: 14px;
     color: #4C5C6F;
 }
-.pageSettings select{
+
+.pageSettings select {
     margin-bottom: 0;
 }
-.onPage{
+
+.onPage {
     margin-right: 40px;
 }
-#sort{
+
+#sort {
     background-color: transparent;
     border: 0;
     font-size: 14px;
     color: #4D9774;
 
 }
-.sort{
+
+.sort {
     align-items: center;
 }
-#showPageCount{
+
+#showPageCount {
     height: 32px;
     border-radius: 3px;
     font-size: 14px;
 }
 
-.pageSwitch a{
+.pageSwitch a {
     color: #4C5C6F;
 }
-.tileDisplaying{
+
+.tileDisplaying {
     background: #fff;
     width: 30px;
     height: 30px;
     border-radius: 3px;
-    border: 1px solid#BEC3CA;
+    border: 1px solid #BEC3CA;
     margin-left: 10px;
     cursor: pointer;
     display: flex;
@@ -393,12 +456,12 @@ span.name{
     padding: 3px;
 }
 
-.listDisplaying{
+.listDisplaying {
     background: #fff;
     width: 30px;
     height: 30px;
     border-radius: 3px;
-    border: 1px solid#BEC3CA;
+    border: 1px solid #BEC3CA;
     margin-left: 10px;
     cursor: pointer;
     display: flex;
@@ -407,14 +470,15 @@ span.name{
     align-items: center;
     padding: 2px 0;
 }
-.tileDisplaying > div{
+
+.tileDisplaying > div {
     width: 8px;
     height: 8px;
-    border: 1px solid#BEC3CA;
+    border: 1px solid #BEC3CA;
     border-radius: 1px;
 }
 
-.listDisplaying > div{
+.listDisplaying > div {
     display: block;
     height: 2px;
     background-color: #BEC3CA;
@@ -422,30 +486,37 @@ span.name{
     border-radius: 1px;
 }
 
-.displayingBoxes{
+.displayingBoxes {
     display: flex;
     justify-content: flex-end;
 }
-.displayingBoxesActive{
-    border: 1px solid#4D9774;
+
+.displayingBoxesActive {
+    border: 1px solid #4D9774;
 }
-.displayingBoxesActive > div{
-    border: 1px solid#4D9774;
+
+.displayingBoxesActive > div {
+    border: 1px solid #4D9774;
 }
-.displayingBoxesActive > a{
-    border: 1px solid#4D9774;
+
+.displayingBoxesActive > a {
+    border: 1px solid #4D9774;
 }
-.centralImg{
+
+.centralImg {
     display: flex;
     justify-content: space-around;
 }
-.centralImgWrap{
+
+.centralImgWrap {
     position: relative;
 }
-.centralImg img{
+
+.centralImg img {
     margin: 100px 0 50px;
 }
-.addPruductsButtonPlus{
+
+.addPruductsButtonPlus {
     position: absolute;
     background-color: #60B072;
     color: #fff;
@@ -459,10 +530,12 @@ span.name{
     top: 250px;
     cursor: pointer;
 }
-.addPruductsButtonPlus:hover{
+
+.addPruductsButtonPlus:hover {
     background-color: #0D7A8D;
 }
-.popupWindow{
+
+.popupWindow {
     display: none;
     position: fixed;
     z-index: 4;
@@ -470,68 +543,72 @@ span.name{
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 4px;
-  }
+}
 
-  .popup {
+.popup {
     position: relative;
     padding: 20px;
     border-radius: 3px;
     background-color: #fff;
     box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
-  }
-  .popup form {
+}
+
+.popup form {
     display: flex;
     flex-direction: column;
-  }
-  .popup h2 {
+}
+
+.popup h2 {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
-  }
-  .popup form span{
+}
+
+.popup form span {
     font-size: 14px;
     font-family: "SF Compact Text";
-  }
+}
 
-  .popup button {
+.popup button {
     padding: 10px;
     cursor: pointer;
-  }
-  .popup input, .popup select{
-      margin-bottom: 20px;
-  }
+}
 
-  .close {
+.popup input, .popup select {
+    margin-bottom: 20px;
+}
+
+.close {
     position: absolute;
     right: 40px;
     top: 15px;
     width: 10px;
     height: 10px;
     opacity: 0.3;
-  }
+}
 
-  .close:hover {
+.close:hover {
     opacity: 1;
-  }
+}
 
-  .close:before, .close:after {
+.close:before, .close:after {
     position: absolute;
     left: 15px;
     content: " ";
     height: 25px;
     width: 4px;
     background-color: #121F2D;;
-  }
+}
 
-  .close:before {
+.close:before {
     transform: rotate(45deg);
-  }
+}
 
-  .close:after {
+.close:after {
     transform: rotate(-45deg);
-  }
+}
 
-  .recieved {
+.recieved {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -541,36 +618,42 @@ span.name{
     height: 16vw;
     background-image: url(../images/popupBG.png);
     border-radius: 2vw;
-  }
+}
 
-.productOptions{
+.productOptions {
     display: flex;
     justify-content: space-between;
 }
-.productOptions > div{
+
+.productOptions > div {
     width: 129px;
 }
-.productPrice{
+
+.productPrice {
     display: flex;
     align-items: center;
 }
-input.weight{
+
+input.weight {
     width: 129px;
 }
-.itemPrice{
+
+.itemPrice {
     display: flex;
     flex-direction: column;
     position: relative;
 }
-#itemPrice{
+
+#itemPrice {
     width: 129px;
     margin-right: 10px;
 }
-.rubInsideInput{
+
+.rubInsideInput {
     position: absolute;
     height: 40px;
     width: 60px;
-    border-left: 1px solid#BEC3CA;
+    border-left: 1px solid #BEC3CA;
     top: 21px;
     right: 0;
     z-index: 2;
@@ -578,35 +661,41 @@ input.weight{
     padding-left: 10px;
 }
 
-#middlePrice{
+#middlePrice {
     color: #4D9774;
 }
-.middlePrice span{
+
+.middlePrice span {
     color: #8F949B;
 }
-.addMoreProducts{
+
+.addMoreProducts {
     color: #4D9774;
     margin-bottom: 20px;
     font-weight: bold;
 }
-.formButtons{
+
+.formButtons {
     display: flex;
     justify-content: space-between;
 }
-.formButtons button{
-    margin-bottom: 0!important;
+
+.formButtons button {
+    margin-bottom: 0 !important;
 }
-.formButtons .jsubmit{
+
+.formButtons .jsubmit {
     background-color: #DFE3E9;
     color: #A0A7B2;
 }
-.formButtons button[type="reset"]{
+
+.formButtons button[type="reset"] {
     background-color: #fff;
     color: #4F4F4F;
     border: 1px solid #6C7076;
 }
 
-.profileSettings{
+.profileSettings {
     max-width: 750px;
     background-color: #fff;
     display: flex;
@@ -621,22 +710,27 @@ input.weight{
     z-index: 4;
     border-radius: 4px;
 }
-.profileSettingsMenu{
+
+.profileSettingsMenu {
     width: 30%;
     margin-right: 20px;
 }
-.profileSettingsMenu h2{
+
+.profileSettingsMenu h2 {
     margin-bottom: 50px;
 }
-.profileSettingsMenu nav a{
+
+.profileSettingsMenu nav a {
     display: block;
     padding: 10px;
     color: #292929;
 }
-.profileSettingsMenu nav a:hover{
+
+.profileSettingsMenu nav a:hover {
     background-color: #F0F5F8;
 }
-.profileSettingsMenu nav a.profileSettingsMenuActive{
+
+.profileSettingsMenu nav a.profileSettingsMenuActive {
     background-color: #F0F5F8;
 }
 
@@ -645,75 +739,87 @@ input.weight{
     display: none;
 }
 
-.openCloseMenu{
+.openCloseMenu {
     width: 60px;
     transition: width .3s;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.openCloseMenu span{
+
+.openCloseMenu span {
     display: none;
 }
-.openCloseMenu a.logo{
+
+.openCloseMenu a.logo {
     text-align: center;
     margin-left: 0;
 }
-.openCloseMenu a.logo img, .openCloseMenu .sectionsMenu{
+
+.openCloseMenu a.logo img, .openCloseMenu .sectionsMenu {
     padding: 0;
 }
-.openCloseMenu nav{
+
+.openCloseMenu nav {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.openCloseMenu nav a{
+
+.openCloseMenu nav a {
     text-align: center;
     padding: 10px 0;
 }
 
-.calendar{
+.calendar {
     margin: 0 20px 10px 10px;
 }
-.fa-calendar-alt{
+
+.fa-calendar-alt {
     color: #4D9774;
 }
-table{
+
+table {
     background-color: #fff;
     box-shadow: 0px 2px 6px rgba(38, 43, 46, 0.08);
     border-radius: 4px 4px 0px 0px;
 }
-table tr td{
-    vertical-align: middle!important;
+
+table tr td {
+    vertical-align: middle !important;
 }
-.print{
-    background-color:#4D9774;;
+
+.print {
+    background-color: #4D9774;;
     color: #fff;
 }
-.print .fa-print{
+
+.print .fa-print {
     color: #fff;
     font-size: 14px;
 }
-.print:hover{
+
+.print:hover {
     background-color: #0D7A8D;
 }
-button img{
+
+button img {
     margin-right: 10px;
 }
 
 
-
-.mainContent p.totalSum{
+.mainContent p.totalSum {
     font-size: 22px;
     font-weight: bold;
     text-align: right;
 }
 
 
-.mainWrap{
+.mainWrap {
     position: relative;
 }
-.mainWrapOpacity{
+
+.mainWrapOpacity {
     display: none;
     content: "";
     position: absolute;
@@ -725,33 +831,3 @@ button img{
     opacity: .7;
     z-index: 3;
 }
-
-
-.pagination > li > a
-{
-    background-color: white;
-    color: #676D76;
-}
-
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #676D76;
-    border: #4D9774 solid 1px;
-    background-color: #fff;
-}
-
-.pagination > .active > a
-{
-    color: white;
-    background-color: #4D9774 !Important;
-    border: solid 1px #dee2e6 !Important;
-}
-
-/* .pagination > .active > a:hover
-{
-    background-color: #4D9774 !Important;
-    border: solid 1px #292929;
-} */

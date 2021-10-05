@@ -12,7 +12,7 @@ class ProductCategory(FoodAbstract):
 
     @classmethod
     def get_not_empty_categories(cls):
-        return cls.objects.filter(root_product__farmer_product__isnull=False)
+        return cls.objects.filter(root_product__farmer_product__isnull=False).distinct()
 
     @staticmethod
     def get_category_from_list_or_404(category_pk, limited_categories):
