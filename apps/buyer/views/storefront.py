@@ -15,6 +15,16 @@ class BuyerStorefrontBaseView(BuyerBasePagesView, PaginationMixin):
         context['max_rating'] = settings.MAX_PRODUCT_RATING
         return context
 
+    @staticmethod
+    def enrich_with_rating(farmer_products: QuerySet):
+        ratings = FarmerProduct.get_ratings(farmer_products, return_dict_by_pk=True)
+        updated_farmer_products = []
+        for fp in farmer_products:
+            updated_fp = fp
+            updated_fp.rating = ratings[fp.pk]
+            updated_farmer_products.append(updated_fp)
+        return updated_farmer_products
+
 
 class BuyerStorefrontAllProductsView(BuyerStorefrontBaseView):
     template_name = 'buyer/pages/buyer-storefront-all-products.html'
@@ -22,7 +32,8 @@ class BuyerStorefrontAllProductsView(BuyerStorefrontBaseView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = self.get_paginate_page(
-            FarmerProduct.get_visible_products(), settings.COUNT_OF_STOREFRONT_PRODUCTS_PER_PAGE
+            self.enrich_with_rating(FarmerProduct.get_visible_products()),
+            settings.COUNT_OF_STOREFRONT_PRODUCTS_PER_PAGE
         )
         context['farmer_products'] = context['page'].object_list
         return context
@@ -44,13 +55,3 @@ class BuyerStorefrontByProductCategoryView(BuyerStorefrontBaseView):
         )
         context['farmer_products'] = context['page'].object_list
         return context
-
-    @staticmethod
-    def enrich_with_rating(farmer_products: QuerySet):
-        ratings = FarmerProduct.get_ratings(farmer_products, return_dict_by_pk=True)
-        updated_farmer_products = []
-        for fp in farmer_products:
-            updated_fp = fp
-            updated_fp.rating = ratings[fp.pk]
-            updated_farmer_products.append(updated_fp)
-        return updated_farmer_products

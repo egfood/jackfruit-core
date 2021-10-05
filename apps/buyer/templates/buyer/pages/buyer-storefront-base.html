@@ -54,16 +54,22 @@
                 <h3>{{ fp.product.name }}</h3>
                 <div class="starsAndPriceWrap">
 
-                    <div class="stars">
-                        <span id="myAppraisal">{{ fp.rating }}</span>
-                        {% for i in max_rating|times %}
-                            {% if forloop.counter <= fp.rating %}
-                                <div class="goldStar"></div>
-                            {% else %}
-                                <div class="grayStar"></div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                    {% if fp.rating %}
+                        <div class="stars">
+                            <span id="myAppraisal">{{ fp.rating }}</span>
+                            {% for i in max_rating|times %}
+                                {% if forloop.counter <= fp.rating %}
+                                    <div class="goldStar"></div>
+                                {% else %}
+                                    <div class="grayStar"></div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="stars">
+                            <span id="myAppraisal" class="text-black-50 fw-lighter fs-6">Нет оценок</span>
+                        </div>
+                    {% endif %}
 
                     <div class="price">
                         <div>{{ fp.price }} руб/{{ fp.value }}{{ fp.unit }}</div>
