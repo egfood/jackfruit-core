@@ -206,7 +206,7 @@ CSV_EXPORT_COLUMN_NAMES = {
         'total_weight': 'общий вес', 'total_price': 'итого', 'orders_count': 'заказов', 'farmer': 'фермер'
     },
     "ORDERS_IN_DELIVERY": {
-        'id': 'id', 'text_delivery': 'Доставка', 'text_user':'Имя', 'total_cost':f'всего, {CURRENT_CURRENCY}',
+        'id': 'id', 'text_delivery': 'Доставка', 'text_user': 'Имя', 'total_cost': f'всего, {CURRENT_CURRENCY}',
         'text_total_weight': 'вес', 'home': 'домашний адрес', 'office': 'адрес офиса', 'text_phone': 'Телефон'
     },
     "ORDER_POSITION_IN_DELIVERY": {
@@ -214,7 +214,7 @@ CSV_EXPORT_COLUMN_NAMES = {
         'text_safety_weight': 'вес позиции'
     }
 }
-ITEMS_PER_PAGE = 10
+COUNT_OF_FOODSTUFF_ITEMS_PER_PAGE = env.int('COUNT_OF_FOODSTUFF_ITEMS_PER_PAGE', 10)
 BUYER_BALANCE_VALUE_HINT1 = "'+': проект должен покупателю, "
 BUYER_BALANCE_VALUE_HINT2 = "'-': покупатель должен проекту"
 BUYER_BALANCE_VALUE_HINT = BUYER_BALANCE_VALUE_HINT1 + BUYER_BALANCE_VALUE_HINT2
