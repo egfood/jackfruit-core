@@ -15,4 +15,4 @@ class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
         delivery = FoodDelivery.get_nearest_delivery()
         if delivery is None:
             raise HasNoActiveDelivery
-        return FoodOrderItem.get_buyer_order_items(self.request, delivery, need_order_creation=True)
+        return FoodOrderItem.get_buyer_cart_items(self.request, delivery, need_order_creation=True)
