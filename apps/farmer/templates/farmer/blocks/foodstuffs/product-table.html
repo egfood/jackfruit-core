@@ -18,7 +18,13 @@
 
         {% for pr in page.object_list %}
             <tr>
-                <td><img src="{{ pr.product.image.url }}" alt="Изображение продукта">{{ pr.product.name }}</td>
+                <td>
+					{% if pr.product.image %}
+						<img src="{{ pr.product.image.url }}" alt="Изображение продукта">{{ pr.product.name }}
+					{% else %}
+						<img src="{% static 'core/img/no_img.png' %}" alt="Изображение продукта">{{ pr.product.name }}
+					{% endif %}
+				</td>
                 <td>{{ pr.value }}</td>
                 <td>вывести кол-во из заказов</td>
                 <td>{{ pr.get_unit_display }}</td>
