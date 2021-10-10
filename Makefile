@@ -43,3 +43,7 @@ stop:
 
 d:
 	docker-compose down --volumes
+	
+demo:
+	docker-compose exec web python manage.py create_tree
+
