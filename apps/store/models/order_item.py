@@ -3,16 +3,16 @@ from functools import cached_property
 
 from django.conf import settings
 from django.db import models
+from django.db.models import QuerySet
 
+from apps.farmer.models.product import FarmerProduct
 from core.models import FoodAbstract
 from .order import FoodOrder
-from apps.farmer.models.product import FarmerProduct
 
 log = logging.getLogger(__name__)
 
 
 class FoodOrderItem(FoodAbstract):
-
     _item_total = None
     _weight = None
     _text_weight = None
@@ -26,11 +26,20 @@ class FoodOrderItem(FoodAbstract):
     order = models.ForeignKey(FoodOrder, verbose_name='Заказ', related_name='order_item', on_delete=models.CASCADE)
 
     @classmethod
-    def get_user_order_items(cls, request, delivery):
-        order = cls.objects.filter(delivery=delivery, user=request.user).first()
-        if order is not None:
-            query_set = cls.objects.filter(order=order)
-            return query_set
+    def get_buyer_order_items(cls, request, delivery, need_order_creation=False) -> QuerySet:
+        food_orders_args = {
+            "delivery": delivery,
+            "buyer": request.user.profile
+        }
+        order = FoodOrder.objects.filter(**food_orders_args).first()
+        if order:
+            queryset = cls.objects.filter(order=order)
+        elif need_order_creation:
+            order = FoodOrder.objects.create(**food_orders_args)
+            queryset = cls.objects.filter(order=order)
+        else:
+            queryset = None
+        return queryset
 
     @property
     def item_total(self):

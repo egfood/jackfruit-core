@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-from django.conf import settings
 from core.models.base import FoodAbstract
 
 
@@ -38,9 +38,9 @@ class FoodDelivery(FoodAbstract):
 
     delivery_state_message.short_description = 'Статус'
 
-    @staticmethod
-    def get_nearest_delivery():
-        deliveries = FoodDelivery.objects.all().order_by('date')
+    @classmethod
+    def get_nearest_delivery(cls):
+        deliveries = cls.objects.all().order_by('date')
         if deliveries is None:
             return
         active_deliveries = [d for d in deliveries if not d.is_deactivated]
