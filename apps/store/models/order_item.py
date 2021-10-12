@@ -61,8 +61,6 @@ class FoodOrderItem(FoodAbstract):
 
     @cached_property
     def item_total(self):
-        print(
-            f'self.weight={self.weight}, self.product.price={self.product.price}, int(self.product.value)={int(self.product.value)}')
         return round(self.weight * self.product.price / int(self.product.value), 2)
 
     @cached_property
