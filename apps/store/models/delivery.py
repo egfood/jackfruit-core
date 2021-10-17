@@ -47,7 +47,7 @@ class FoodDelivery(FoodAbstract):
         return active_deliveries[0] if active_deliveries else None
 
     def __str__(self):
-        return f'Доставка {self.date.strftime("%d %b %Y")} ({self.delivery_state_message()})'
+        return f'Delivery {self.date.strftime("%d %b %Y")} ({self.delivery_state_message()})'
 
     @property
     def short_name(self):

@@ -52,7 +52,9 @@ class BuyerStorefrontBaseView(BuyerBasePagesView, PaginationMixin):
                 updated_fp = fp
                 updated_fp.order_item_value = order_item_values.get(fp.pk)
                 updated_farmer_products.append(updated_fp)
-        return updated_farmer_products
+            return updated_farmer_products
+        else:
+            return farmer_products
 
     def get_enriched_farmer_products(self):
         farmer_products = FarmerProduct.get_visible_products(category_pk=self.current_category_pk)

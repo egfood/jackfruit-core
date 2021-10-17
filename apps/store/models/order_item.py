@@ -65,6 +65,8 @@ class FoodOrderItem(FoodAbstract):
 
     @cached_property
     def weight(self):
+        if self.value is None and self.actual_value:
+            raise ValueError("The 'value' and 'actual_value' properties can't be a Null together!")
         return self.value if self.actual_value is None else self.actual_value
 
     @cached_property
