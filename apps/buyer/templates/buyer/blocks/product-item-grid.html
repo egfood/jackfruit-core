@@ -49,6 +49,11 @@
             <span>Товар добавлен в корзину</span>
             <i class="fas fa-shopping-basket"></i>
         </div>
+        <div class="jmessage-update-js basketMessage">
+            <i class="fas fa-check"></i>
+            <span>Товар изменен корзине</span>
+            <i class="fas fa-shopping-basket"></i>
+        </div>
         <div class="jmessage-removed-js basketMessage2">
             <i class="fas fa-check"></i>
             <span>Товар удален из корзины</span>
@@ -57,7 +62,8 @@
         <div class="ordered">
             <div class="number">
                 <span class="minus">-</span>
-                <input class="jproduct-value-input-js" type="text"
+                <input data-product-api="{% url "store-api:order-item" farmer_product_pk=fp.pk %}"
+                       class="jproduct-value-input-js" type="text"
                        value="{% if fp.order_item_value %}{{ fp.order_item_value }}{% else %}1{% endif %}"/>
                 <span class="plus">+</span>
             </div>

@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    let csrf = $('#jbasket-container-js').attr('data-csrf');
+    let csrf = $('#jbasket-container-js').attr('data-csrf'),
+        is_send_api_request = false;
 
     $(".vegFrameMenu").click(function () {
         $(this).siblings(".vegFrameDropMenu").fadeIn(200);
@@ -9,12 +10,43 @@ $(document).ready(function () {
         window.location = $(this).val();
     });
 
+    $('.jproduct-value-input-js').on('change', function () {
+        let order_item_api_url = $(this).attr('data-product-api'),
+            order_item_container = $(this).closest('.jorder-item-container-js'),
+            input_value = $(this).val(),
+            in_basket_button = $('.inBasket', order_item_container),
+            is_order_item_exists_in_cart = in_basket_button.hasClass('active');
+
+        if (input_value !== undefined && is_order_item_exists_in_cart === true && is_send_api_request === false) {
+            let form_data = new FormData();
+
+            is_send_api_request = true;
+
+            form_data.append("value", input_value);
+            $.ajax({
+                url: order_item_api_url,
+                type: "PUT",
+                headers: {'X-CSRFToken': csrf},
+                data: form_data,
+                processData: false,
+                contentType: false,
+            })
+                .done(function (result) {
+                    $('.jmessage-update-js', order_item_container).finish().fadeIn(100).delay(2000).fadeOut(1000);
+                    is_send_api_request = false;
+                })
+                .fail(function (result) {
+                    window.alert('[Update] PUT request error! <Need toast message!>');
+                    is_send_api_request = false;
+                });
+        }
+    });
+
     $('.jorder-item-in-backet-js').on('click', function () {
         let order_item_api_url = $(this).attr('data-product-api'),
             order_item_container = $(this).closest('.jorder-item-container-js'),
             in_basket_button = $(this).closest('.inBasket'),
-            is_order_item_exists_in_cart = in_basket_button.hasClass('active'),
-            is_send_api_request = false;
+            is_order_item_exists_in_cart = in_basket_button.hasClass('active');
 
         if (is_order_item_exists_in_cart === true && is_send_api_request === false) {
             is_send_api_request = true;
