@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from functools import cached_property
 
 from django.conf import settings
 from django.db import models
@@ -49,7 +50,7 @@ class FoodDelivery(FoodAbstract):
     def __str__(self):
         return f'Delivery {self.date.strftime("%d %b %Y")} ({self.delivery_state_message()})'
 
-    @property
+    @cached_property
     def short_name(self):
         if self.__short_name is None:
             self.__short_name = f'#{self.pk}({self.date.strftime("%d %b %Y")})'

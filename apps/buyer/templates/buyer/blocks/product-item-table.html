@@ -1,0 +1,58 @@
+{% load static %}
+
+<div class="table-responsive">
+    <table class="table table-hover tableOrders">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Наиминование</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in order_items %}
+            <tr>
+
+                <td>
+                    <img height="50" src="{{ item.product.product.image.url }}" alt="{{ item.product.product.name }}">
+                </td>
+
+                <td>{{ item.product.product.name }}<br>
+                    <div class="farmer">
+                        <img class="farmerUnhovered" src="{% static 'buyer/img/farmer3_edited.jpg' %}" alt="Farmer">
+                        <img class="farmerHovered" src="{% static 'buyer/img/farmer3.png' %}" alt="Farmer">
+                        <span>{{ item.product.farmer.name }}</span>
+                    </div>
+                </td>
+
+                <td>{{ item.product.price }} за {{ item.product.value }}{{ item.product.get_unit_display }}</td>
+
+                <td>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="{{ item.value }}"/>
+                        <span class="plus">+</span>
+                        <span>&nbsp;{{ item.product.get_unit_display }} </span>
+                    </div>
+                </td>
+
+                <td>{{ item.item_total }} руб.</td>
+
+                <td>
+                    <div class="ordersMoreActions">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
