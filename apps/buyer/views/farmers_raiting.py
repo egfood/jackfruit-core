@@ -1,5 +1,6 @@
+from django.conf import settings
 from .base import BuyerBasePagesView
-from apps.farmer.models.feedback import FarmerFeedback
+from apps.farmer.models.profile import FarmerProfile
 
 
 class BuyerFarmersRatingView(BuyerBasePagesView):
@@ -7,5 +8,6 @@ class BuyerFarmersRatingView(BuyerBasePagesView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ratings'] = FarmerFeedback.objects.all()
+        context['farmers'] = FarmerProfile.objects.all()
+        context['max_rating'] = settings.MAX_PRODUCT_RATING
         return context

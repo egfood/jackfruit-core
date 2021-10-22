@@ -49,4 +49,3 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'Location for user {selected_user} created'))
         except IntegrityError:
             self.stdout.write(self.style.ERROR('Location not created'))
-        # TODO юзать генератор имен

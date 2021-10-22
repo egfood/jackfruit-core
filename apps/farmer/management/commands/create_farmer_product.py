@@ -20,11 +20,11 @@ class Command(BaseCommand):
         parser.add_argument('--call',
                             action='store_true',
                             default=False,
-                            help='Используется при отправке команды через call_command(запуск создания мз create_tree)')
+                            help='Used when sending a command through call_command(launch creation_tree)')
 
     def handle(self, *args, **options):
         total = options['total']
-        if profile.FarmerProfile.objects.all().count() == 0 or RootProduct.objects.all().count() == 0:
+        if profile.FarmerProfile.objects.all().exists() or RootProduct.objects.all().exists():
             call_command('create_farmer_profile', '--total=1')
             call_command('create_root_product', '--total=1')
         if options['call']:

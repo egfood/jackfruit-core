@@ -1,35 +1,73 @@
 {% extends 'buyer/app-base.html' %}
 
+
+{% load my_filters %}
 {% load static %}
+
+{% block page_styles %}
+	<link rel="stylesheet" href="{% static 'buyer/css/rating.css' %}">
+{% endblock %}
 
 {% block title %}Рейтинг фермеров{% endblock %}
 
 {% block page_content %}
-    <div class="table-responsive">
-        <table class="table table-hover farmersTable">
-            <thead>
-            <tr>
-                <th>&#8470;</th>
-                <th>Фермер</th>
-                <th>Популярные продукты</th>
-                <th>Населенный пункт</th>
-                <th>Рейтинг</th>
-                <th>Отзывы</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for rating in ratings %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </div>
+	<div class="d-flex justify-content-between">
+		<h1>Рейтинг фермеров</h1>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover farmersTable">
+			<thead>
+			<tr>
+				<th>&#8470;</th>
+				<th>Фермер</th>
+				<th>Популярные продукты</th>
+				<th>Населенный пункт</th>
+				<th>Рейтинг</th>
+				<th>Отзывы</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for farmer in farmers %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td class="profilePhotoTd">
+						{% if farmer.photo %}
+							<img src="{{ farmer.photo.url }}" width="42" height="42"  alt="Изображение фермера">
+						{% else %}
+							<img src="{% static 'buyer/img/buyer.png' %}" width="42" height="42" alt="Изображение фермера">
+						{% endif %}
+					{{ farmer.name}}
+					</td>
+					<td>
+						{% if farmer.popular_product|the_list %}
+							{{ farmer.popular_product|join:", " }}
+						{% else %}
+							{{ farmer.popular_product }}
+						{% endif %}
+					</td>
+					<td>{{ farmer.service_zone }}</td>
+					<td class="starsTd">
+					{% if farmer.rating is None%}
+						<div class="stars">
+							<span>{{ farmer.rating|default_if_none:"Нет Оценок"  }}&nbsp;</span>
+						</div>
+							{% else %}
+						<div class="stars">
+							<span>{{ farmer.rating}}&nbsp;</span>
+							{% for i in max_rating|times %}
+								{% if forloop.counter <= farmer.rating %}
+									<div class="goldStar"></div>
+								{% else %}
+									<div class="grayStar"></div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endif %}
+					</td>
+					<td>{{ farmer.feedback }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

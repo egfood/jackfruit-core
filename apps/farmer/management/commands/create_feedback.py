@@ -20,7 +20,7 @@ class Command(BaseCommand):
         parser.add_argument('--call',
                             action='store_true',
                             default=False,
-                            help='Используется при отправке команды через call_command(запуск создания мз create_tree)')
+                            help='Used when sending a command through call_command(launch creation_tree)')
 
     def handle(self, *args, **options):
         total = options['total']

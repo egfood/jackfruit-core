@@ -13,3 +13,4 @@ requests-mock==1.8.0
 djangorestframework==3.12.2
 django-bootstrap4==1.1.0
 django-simple-menu==1.2.1
+russian-names==0.1.2

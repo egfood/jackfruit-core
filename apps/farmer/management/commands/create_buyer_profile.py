@@ -3,10 +3,15 @@ import string
 
 from django.core.management.base import BaseCommand
 from django.db import IntegrityError
-from django.utils.crypto import get_random_string
 
 from apps.buyer.models import profile
 from core.models import user
+from russian_names import RussianNames
+
+
+def name_gen():
+    random_user_name = RussianNames(count=1, patronymic=False, surname=False).get_person()
+    return random_user_name
 
 
 def email_gen():
@@ -22,15 +27,15 @@ class Command(BaseCommand):
                             type=int,
                             default=1,
                             help='Number of created Buyer profile')
-        parser.add_argument('-p', '--prefix',
-                            type=str,
-                            default='Buyer',
-                            nargs='?',
-                            help='Prefix for the created user')
+        # parser.add_argument('-p', '--prefix',
+        #                     type=str,
+        #                     default='Buyer',
+        #                     nargs='?',
+        #                     help='Prefix for the created user')
 
     def handle(self, *args, **options):
         total = options['total']
-        prefix = options['prefix']
+        # prefix = options['prefix']
         user_password = '11111QqQ'
         try:
             for i in range(total):
@@ -43,7 +48,7 @@ class Command(BaseCommand):
                     phone=''.join(['25' or '29' or '33' or '44',
                                    str(random.randint(1111111, 9999999))]),
                     region='Minsk',
-                    name=f'{prefix}_{get_random_string()}')
+                    name=name_gen())
                 self.stdout.write(self.style.SUCCESS(f'Account {buyer_profile.name} was successfully created, '
                                                      f' email - {selected_green_user.email}, '
                                                      f'password - {user_password}'))

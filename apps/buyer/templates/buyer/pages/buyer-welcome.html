@@ -9,15 +9,11 @@
         </div>
     </label>
 {% endblock %}
-{{ user.is_authenticated }}
 {{ user.pk }}
-{#{{ request.user.email }}#}
 {% block form %}
-{#    <div class="inputsWrap">#}
 {{ user.is_authenticated }}
     {{ user.get_email }}
         {% for field in form %}
-{#            {{ field }}#}
             {% if field.field.widget.input_type != 'select' and field.field.widget.input_type != "file" %}
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
@@ -25,7 +21,6 @@
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
             {% endif %}
-{#     </div>#}
         {% endfor %}
 
 {% endblock %}
