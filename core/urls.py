@@ -21,6 +21,7 @@ from django.urls import path, re_path
 
 from apps.buyer.api import urls as buyer_urls
 from apps.farmer.api import urls as farmer_urls
+from apps.store.api import urls as store_urls
 from core.forms.forgot_password import ChildPasswordResetForm
 from core.views import *
 
@@ -48,6 +49,7 @@ urlpatterns = [
                   re_path(r'^healthcheck/', include('health_check.urls')),
                   path('summernote/', include('django_summernote.urls')),
                   path('api/v1/farmer/', include(farmer_urls, namespace='farmer_api')),
+                  path('api/v1/store/', include(store_urls, namespace='store_api')),
                   path('api/v1/buyer/', include(buyer_urls, namespace='buyer_api')),
               ] + static(str(settings.VERSION), document_root=settings.STATIC_ROOT)
 

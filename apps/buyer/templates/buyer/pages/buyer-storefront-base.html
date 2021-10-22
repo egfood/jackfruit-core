@@ -1,7 +1,6 @@
 {% extends 'buyer/app-base.html' %}
 
 {% load static %}
-{% load custom_filters %}
 
 {% block title %}Витрина{% endblock %}
 {% block page_styles %}
@@ -34,72 +33,11 @@
         </div>
     {% endif %}
 
-    <div class="productContainer">
+    <div id="jbasket-container-js" class="productContainer" data-csrf="{{ csrf_token }}">
 
         {% for fp in farmer_products %}
 
-            <div class="vegFrame">
-                <div class="vegFrameHeader">
-                    <div class="farmer">
-                        <img class="farmerUnhovered" src="{% static 'buyer/img/farmer3_edited.jpg' %}" alt="Farmer">
-                        <img class="farmerHovered" src="{% static 'buyer/img/farmer3.png' %}" alt="Farmer">
-                        <span>{{ fp.farmer.name }}</span>
-                    </div>
-                </div>
-
-                {% if fp.product.image %}
-                    <img class="img-fluid" width="175" src="{{ fp.product.image.url }}" alt="Product image">
-                {% endif %}
-
-                <h3>{{ fp.product.name }}</h3>
-                <div class="starsAndPriceWrap">
-
-                    {% if fp.rating %}
-                        <div class="stars">
-                            <span id="myAppraisal">{{ fp.rating }}</span>
-                            {% for i in max_rating|times %}
-                                {% if forloop.counter <= fp.rating %}
-                                    <div class="goldStar"></div>
-                                {% else %}
-                                    <div class="grayStar"></div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div class="stars">
-                            <span id="myAppraisal" class="text-black-50 fw-lighter fs-6">Нет оценок</span>
-                        </div>
-                    {% endif %}
-
-                    <div class="price">
-                        <div>{{ fp.price }} руб/{{ fp.value }}{{ fp.unit }}</div>
-                    </div>
-                </div>
-                <div class="vegFrameOptions">
-                    <div class="inBasket">
-                        <i class="fas fa-shopping-basket"></i>
-                    </div>
-                    <div class="basketMessage">
-                        <i class="fas fa-check"></i>
-                        <span>Товар добавлен в корзину</span>
-                        <i class="fas fa-shopping-basket"></i>
-                    </div>
-                    <div class="basketMessage2">
-                        <i class="fas fa-check"></i>
-                        <span>Товар удален из корзины</span>
-                        <i class="fas fa-shopping-basket"></i>
-                    </div>
-                    <div class="ordered">
-                        <div class="number">
-                            <span class="minus">-</span>
-                            <input type="text" value="1" placeholder="кг"/>
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                    <div class="unit">({{ fp.value }}{{ fp.unit }})</div>
-                </div>
-
-            </div>
+            {% include 'buyer/blocks/product-item-grid.html' %}
 
         {% endfor %}
     </div>

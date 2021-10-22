@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="{% static 'buyer/css/buyer-style.css' %}">
 {% endblock %}
 
+{% block top_menu %}
+    <a href="{% url 'buyer:cart' %}" class="basket">
+        <i class="fas fa-shopping-basket"></i>
+        <p id="totalSumm">{{ cart_total }} руб.</p>
+    </a>
+{% endblock %}
+
 {% block profile_image %}
     {% if user.profile.photo %}
         {{ user.profile.photo.url }}

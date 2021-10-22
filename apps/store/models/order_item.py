@@ -3,20 +3,16 @@ from functools import cached_property
 
 from django.conf import settings
 from django.db import models
+from django.db.models import QuerySet
 
+from apps.farmer.models.product import FarmerProduct
 from core.models import FoodAbstract
 from .order import FoodOrder
-from apps.farmer.models.product import FarmerProduct
 
 log = logging.getLogger(__name__)
 
 
 class FoodOrderItem(FoodAbstract):
-
-    _item_total = None
-    _weight = None
-    _text_weight = None
-
     product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='order_item',
                                 on_delete=models.CASCADE)
     value = models.PositiveIntegerField(verbose_name=f'Масса (от покупателя) ({settings.WEIGHT_UNIT_ABBREVIATION})',
@@ -26,31 +22,58 @@ class FoodOrderItem(FoodAbstract):
     order = models.ForeignKey(FoodOrder, verbose_name='Заказ', related_name='order_item', on_delete=models.CASCADE)
 
     @classmethod
-    def get_user_order_items(cls, request, delivery):
-        order = cls.objects.filter(delivery=delivery, user=request.user).first()
-        if order is not None:
-            query_set = cls.objects.filter(order=order)
-            return query_set
+    def get_buyer_cart_total(cls, buyer_profile, delivery) -> float:
+        food_orders_args = {
+            "delivery": delivery,
+            "buyer": buyer_profile
+        }
+        order = FoodOrder.objects.filter(**food_orders_args).first()
+        if order:
+            return sum(order_item.item_total for order_item in cls.objects.filter(order=order))
+        return 0.0
 
-    @property
+    @classmethod
+    def get_buyer_cart_items_count(cls, buyer_profile, delivery) -> int:
+        food_orders_args = {
+            "delivery": delivery,
+            "buyer": buyer_profile
+        }
+        order = FoodOrder.objects.filter(**food_orders_args).first()
+        if order:
+            return cls.objects.filter(order=order).count()
+        return 0
+
+    @classmethod
+    def get_buyer_cart_items(cls, request, delivery, need_order_creation=False) -> QuerySet:
+        food_orders_args = {
+            "delivery": delivery,
+            "buyer": request.user.profile
+        }
+        order = FoodOrder.objects.filter(**food_orders_args).first()
+        if order:
+            queryset = cls.objects.filter(order=order)
+        elif need_order_creation:
+            order = FoodOrder.objects.create(**food_orders_args)
+            queryset = cls.objects.filter(order=order)
+        else:
+            queryset = None
+        return queryset
+
+    @cached_property
     def item_total(self):
-        if self._item_total is None:
-            self._item_total = round(self.weight * self.product.price / int(self.product.value), 2)
-        return self._item_total
+        return round(self.weight * self.product.price / int(self.product.value), 2)
 
-    @property
+    @cached_property
     def weight(self):
-        if self._weight is None:
-            self._weight = self.value if self.actual_value is None else self.actual_value
-        return self._weight
+        if self.value is None and self.actual_value:
+            raise ValueError("The 'value' and 'actual_value' properties can't be a Null together!")
+        return self.value if self.actual_value is None else self.actual_value
 
-    @property
+    @cached_property
     def text_weight(self):
-        if self._text_weight is None:
-            self._text_weight = f"{self.weight} {settings.WEIGHT_UNIT_ABBREVIATION}"
-        return self._text_weight
+        return f"{self.weight} {settings.WEIGHT_UNIT_ABBREVIATION}"
 
-    @property
+    @cached_property
     def text_safety_weight(self):
         base = self.text_weight
         if self.actual_value:

@@ -4,20 +4,50 @@
 
 {% block title %}Моя корзина{% endblock %}
 
-{% block page_content %}
-    <div class="myProducts">
-        <h1>Моя корзина</h1>
-        <a href="{% url "buyer:storefront" %}" class="addProduct"><span>+</span> Добавить продукт</a>
-    </div>
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'buyer/css/orders.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/pagination.css' %}">
+{% endblock %}
 
-    <div class="centralImg">
-        <div class="centralImgWrap">
-            <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
-            <div class="addPruductsButtonPlus">+</div>
+{% block page_content %}
+
+    <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex align-items-center flex-wrap">
+            <h1>Моя корзина</h1>
+            <div class="deliveryDate">
+                <span>Доставка {{ delivery.date }}</span>
+            </div>
+        </div>
+        <div class="ordersHeaderButtons">
+            <button class="addProduct">Оформление заказа</button>
         </div>
     </div>
 
-    <h2>В Вашей корзине пока пусто</h2>
-    <p>Давайте это исправим)</p>
+    {% if order_items %}
+
+        {% include "buyer/blocks/product-item-table.html" %}
+        {% include "core/blocks/pagination.html" %}
+
+        <p class="totalSum" id="totalSum">Итого: {{ order_total }} руб.</p>
+
+    {% else %}
+
+        <div class="myProducts">
+            <h1>Моя корзина</h1>
+            <a href="{% url "buyer:storefront" %}" class="addProduct"><span>+</span> Добавить продукт</a>
+        </div>
+
+        <div class="centralImg">
+            <div class="centralImgWrap">
+                <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
+                <div class="addPruductsButtonPlus">+</div>
+            </div>
+        </div>
+
+        <h2>В Вашей корзине пока пусто</h2>
+        <p>Давайте это исправим)</p>
+
+    {% endif %}
 
 {% endblock %}
+
