@@ -15,11 +15,11 @@ class FarmerProfile(AbsProfile):
     def stringify_profile_type(self):
         return "фермера"
 
-    def popular_product(self, quantity=3):
+    def popular_products(self, quantity=3):
         popular_product_queryset = self.farmerproduct_set.annotate(popular=Count('order_item')).values('popular',
                                                                                                        'product__name')
         if not popular_product_queryset.all().exists():
-            return 'У данного фермера еще не было продаж'
+            return []
         my_dict = {qs['popular']: qs['product__name'] for qs in popular_product_queryset}
         popular_product_list = list(my_dict.items())
         popular_product_list.sort(reverse=True)
