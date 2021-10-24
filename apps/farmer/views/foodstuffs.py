@@ -21,8 +21,6 @@ class FarmerFoodstuffsPageView(FarmerBasePagesView, PaginationMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product_list = FarmerProduct.objects.filter(farmer=self.request.user.profile)
-        form = AddFarmerProductForm()
-        context['product_list'] = product_list
-        context['form'] = form
-        context['page'] = self.get_paginate_page(product_list, settings.COUNT_OF_FOODSTUFF_ITEMS_PER_PAGE)
+        context['form'] = AddFarmerProductForm()
+        context['page'], context['product_list'] = self.get_paginate_page_and_subjects(product_list, settings.COUNT_OF_FOODSTUFF_ITEMS_PER_PAGE)
         return context

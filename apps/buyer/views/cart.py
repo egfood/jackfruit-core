@@ -13,7 +13,8 @@ class BuyerCartView(BuyerBasePagesView, PaginationMixin):
         context = super().get_context_data(**kwargs)
         context['delivery'] = FoodDelivery.get_nearest_delivery()
         order_items = FoodOrderItem.get_buyer_cart_items(self.request, context['delivery'])
-        context['page'] = self.get_paginate_page(order_items, settings.COUNT_OF_CART_PRODUCTS_PER_PAGE)
-        context['order_items'] = context['page'].object_list
+        context['page'], context['order_items'] = self.get_paginate_page_and_subjects(
+            order_items, settings.COUNT_OF_CART_PRODUCTS_PER_PAGE
+        )
         context['order_total'] = FoodOrderItem.get_buyer_cart_total(self.request.user.profile, context['delivery'])
         return context

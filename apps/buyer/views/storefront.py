@@ -18,8 +18,9 @@ class BuyerStorefrontBaseView(BuyerBasePagesView, PaginationMixin):
         context['farmer_product_categories'] = self.product_categories
         context['max_rating'] = settings.MAX_PRODUCT_RATING
         farmer_products = self.get_enriched_farmer_products()
-        context['page'] = self.get_paginate_page(farmer_products, settings.COUNT_OF_STOREFRONT_PRODUCTS_PER_PAGE)
-        context['farmer_products'] = context['page'].object_list
+        context['page'], context['farmer_products'] = self.get_paginate_page_and_subjects(
+            farmer_products, settings.COUNT_OF_STOREFRONT_PRODUCTS_PER_PAGE
+        )
         return context
 
     @cached_property
