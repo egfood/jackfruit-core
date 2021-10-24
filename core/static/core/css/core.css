@@ -1,0 +1,8 @@
+.jbtn button {
+    background-color: #60B072;
+    color: #fff;
+}
+
+.jbtn button:hover {
+    background-color: #0D7A8D;
+}
