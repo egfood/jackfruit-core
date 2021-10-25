@@ -11,19 +11,19 @@
 
 {% block page_content %}
 
-    <div class="d-flex justify-content-between flex-wrap">
-        <div class="d-flex align-items-center flex-wrap">
-            <h1>Моя корзина</h1>
-            <div class="deliveryDate">
-                <span>Доставка {{ delivery.date }}</span>
+    {% if order_items %}
+
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex align-items-center flex-wrap">
+                <h1>Моя корзина</h1>
+                <div class="deliveryDate">
+                    <span>Доставка {{ delivery.date }}</span>
+                </div>
+            </div>
+            <div class="ordersHeaderButtons">
+                <button class="addProduct">Оформление заказа</button>
             </div>
         </div>
-        <div class="ordersHeaderButtons">
-            <button class="addProduct">Оформление заказа</button>
-        </div>
-    </div>
-
-    {% if order_items %}
 
         {% include "buyer/blocks/product-item-table.html" %}
         {% include "core/blocks/pagination.html" %}
@@ -34,7 +34,9 @@
 
         <div class="myProducts">
             <h1>Моя корзина</h1>
-            <a href="{% url "buyer:storefront" %}" class="addProduct"><span>+</span> Добавить продукт</a>
+            <a href="{% url "buyer:storefront" %}" class="jbtn">
+                <button><span>+</span> Добавить продукт</button>
+            </a>
         </div>
 
         <div class="centralImg">
@@ -51,3 +53,15 @@
 
 {% endblock %}
 
+{% block page_modals %}
+
+    <div id="jorder-js">
+        {% include 'buyer/popups/send-order-form.html' %}
+        {% include 'buyer/popups/add-location-form.html' %}
+    </div>
+
+{% endblock %}
+
+{% block page_footer_scripts %}
+    <script src="{% static 'buyer/js/order.js' %}"></script>
+{% endblock %}

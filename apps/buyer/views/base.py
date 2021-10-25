@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from core.menu_data import MenuItem
 from core.views.base import BaseView
+from ..forms.location import BuyerLocationForm
 from ..forms.profile import BuyerAreaProfileForm
 from ..models.balance import BuyerBalance
 from apps.store.models.order_item import FoodOrderItem
@@ -44,6 +45,7 @@ class BuyerBasePagesView(BaseView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['app_home_url'] = reverse('buyer:home')
+        context['location_form'] = BuyerLocationForm()
         if hasattr(self.request.user, 'profile'):
             context['buyer_profile_api_url'] = reverse('buyer-api:profile',
                                                        kwargs={'pk': self.buyer_profile.id})

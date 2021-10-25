@@ -27,8 +27,14 @@ class FoodOrder(FoodAbstract):
         unique_together = ['delivery', 'buyer', 'location']
 
     ORDER_STATE_CHOICES = (
-        ('awaiting_processing', 'В процессе'),
+        ('created', 'Создан'),
+        ('awaiting_processing', 'Ожидает обработки'),
         ('delivered', 'Доставлено'),
+    )
+
+    PAYMENT_TYPE_CHOICES = (
+        ('cash', 'Наличными'),
+        ('card', 'Картой'),
     )
 
     delivery = models.ForeignKey(FoodDelivery, verbose_name='Доставка', related_name='order',
@@ -39,6 +45,8 @@ class FoodOrder(FoodAbstract):
                               on_delete=models.CASCADE)
     location = models.ForeignKey(Location, verbose_name='Адрес', related_name='order', on_delete=models.SET_NULL,
                                  null=True)
+    payment_type = models.state = models.CharField(verbose_name='Способ оплаты', max_length=100,
+                                                   choices=PAYMENT_TYPE_CHOICES, default=PAYMENT_TYPE_CHOICES[0][0])
 
     @cached_property
     def total_cost(self):

@@ -1,5 +1,6 @@
 import logging
 from functools import cached_property
+from typing import Tuple
 
 from django.conf import settings
 from django.db import models
@@ -44,7 +45,7 @@ class FoodOrderItem(FoodAbstract):
         return 0
 
     @classmethod
-    def get_buyer_cart_items(cls, request, delivery, need_order_creation=False) -> QuerySet:
+    def get_buyer_cart_items(cls, request, delivery, need_order_creation=False) -> Tuple[QuerySet, FoodOrder]:
         food_orders_args = {
             "delivery": delivery,
             "buyer": request.user.profile
@@ -57,7 +58,7 @@ class FoodOrderItem(FoodAbstract):
             queryset = cls.objects.filter(order=order)
         else:
             queryset = None
-        return queryset
+        return queryset, order
 
     @cached_property
     def item_total(self):

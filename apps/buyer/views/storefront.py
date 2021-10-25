@@ -45,7 +45,7 @@ class BuyerStorefrontBaseView(BuyerBasePagesView, PaginationMixin):
         return updated_farmer_products
 
     def enrich_with_order_items(self, farmer_products):
-        order_items = FoodOrderItem.get_buyer_cart_items(self.request, FoodDelivery.get_nearest_delivery())
+        order_items, _ = FoodOrderItem.get_buyer_cart_items(self.request, FoodDelivery.get_nearest_delivery())
         updated_farmer_products = []
         if order_items:
             order_item_values = {item.product.pk: item.value for item in order_items.prefetch_related('product')}

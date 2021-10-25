@@ -1,0 +1,29 @@
+<div class="contactData" id="jlocation-add-from-js">
+    <span class="close close1"></span>
+    <h3>Укажите ваши контактные данные</h3>
+
+    <form id="jlocation-form" class="jform-compact"
+          data-csrf="{{ csrf_token }}"
+          data-location-api-url="{% url 'store-api:location' %}">
+        {% for field in location_form %}
+            <div>
+                {{ field.errors }}
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                    {% if field.field.required %}
+                        <span class="obligatoryField">&nbsp;*</span>
+                    {% endif %}
+                </label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </form>
+
+    <div class="formButtons">
+        <button id="jlocation-btn-reset-js" type="reset">Отменить</button>
+        <button id="jlocation-btn-send-js" type="submit">Добавить контакт</button>
+    </div>
+</div>
