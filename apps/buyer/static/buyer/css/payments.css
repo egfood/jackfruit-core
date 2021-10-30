@@ -1,0 +1,15 @@
+.dateOfPayments{
+    display: flex;
+}
+.estimateFeedbackBtn{
+    display: flex;
+    align-items: center;
+    background-color: #60B072;
+    color: #fff;
+    line-height: 14px!important;
+    white-space: nowrap;
+    margin: 0!important;
+}
+.estimateFeedbackBtn:hover{
+    background-color: #0D7A8D;
+}

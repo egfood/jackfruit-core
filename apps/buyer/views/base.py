@@ -37,7 +37,7 @@ class BuyerBasePagesView(BaseView):
                 title="Корзина", link=reverse("buyer:cart"), icon="fas fa-shopping-basket",
                 counter=self.cart_items_count
             ),
-            MenuItem(title="Платежи", link=reverse("buyer:home"), icon="fas fa-money-bill-wave-alt"),
+            MenuItem(title="Мои Заказы", link=reverse("buyer:payments"), icon="fas fa-money-bill-wave-alt"),
             MenuItem(title="Фермеры", link=reverse("buyer:farmers-rating"), icon="fas fa-star"),
         ]
 

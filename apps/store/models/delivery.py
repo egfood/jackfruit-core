@@ -47,6 +47,14 @@ class FoodDelivery(FoodAbstract):
         active_deliveries = [d for d in deliveries if not d.is_deactivated]
         return active_deliveries[0] if active_deliveries else None
 
+    @staticmethod
+    def nearest_delivery(queryset):
+        deliveries = queryset.order_by('date')
+        if deliveries is None:
+            return
+        active_deliveries = [d for d in deliveries if not d.is_deactivated]
+        return active_deliveries[0] if active_deliveries else None
+
     def __str__(self):
         return f'Delivery {self.date.strftime("%d %b %Y")} ({self.delivery_state_message()})'
 

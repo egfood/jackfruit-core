@@ -64,6 +64,10 @@ class FoodOrderItem(FoodAbstract):
         return round(self.weight * self.product.price / int(self.product.value), 2)
 
     @cached_property
+    def text_item_total(self):
+        return f'{self.item_total} {settings.CURRENT_CURRENCY}'
+
+    @cached_property
     def weight(self):
         if self.value is None and self.actual_value:
             raise ValueError("The 'value' and 'actual_value' properties can't be a Null together!")

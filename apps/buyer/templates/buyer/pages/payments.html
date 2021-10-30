@@ -1,0 +1,59 @@
+{% extends 'buyer/app-base.html' %}
+
+{% load static %}
+
+{% block page_styles %}
+ <link rel="stylesheet" href="{% static 'buyer/css/payments.css' %}">
+{% endblock %}
+
+{% block title %}Мои заказы{% endblock %}
+
+{% block page_content %}
+	<div class="d-flex justify-content-between flex-wrap">
+		<div class="d-flex align-items-center flex-wrap">
+			<h1>Мои заказы</h1>
+			{% if nearest_delivery %}
+				<li>Ближайшая дата доставки: {{ nearest_delivery.short_name }} </li>
+			{% endif %}
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Дата</th>
+					<th>Комментарий</th>
+					<th>Вычет, руб</th>
+					<th>Сyмма, руб</th>
+					<th>Оценить / Оставить отзыв</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					{% for order in orders %}
+					<td>{{ order.delivery.date }} </td>
+					<td>
+						{% if order.buyer_balance %}
+							{{ order.buyer_balance.description }}
+						{% else %}
+							-----
+						{% endif %}
+					</td>
+{#					<td>{{ order.description_order.description }}</td>#}
+					<td>
+						{% if order.buyer_balance.value %}
+							{{ order.buyer_balance.value }}
+						{% else %}
+							-----
+						{% endif %}
+					</td>
+					<td>{{ order.total_cost }}</td>
+					<td>
+						<a href="{% url 'buyer:estimate_feedback' order_id=order.pk %}"><button type="button" class="estimateFeedbackBtn">Оценить / Оставить отзыв</button></a>
+					</td>
+				</tr>
+					{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

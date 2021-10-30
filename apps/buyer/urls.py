@@ -16,4 +16,6 @@ urlpatterns = [
     path('storefront/category/<int:category_pk>', BuyerStorefrontByProductCategoryView.as_view(),
          name='storefront-by-category'),
     path('', BuyerHomeView.as_view(), name='home'),
+    path('payments/', BuyerOrders.as_view(), name='payments'),
+    path('payments/estimate-feedback/<int:order_id>/', BuyerOrdersFeedback.as_view(), name='estimate_feedback')
 ]

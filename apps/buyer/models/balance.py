@@ -11,8 +11,9 @@ class BuyerBalance(FoodAbstract):
     The model record reflects the current financial commitments between the project and the buyers by one order.
     Use a positive number if the project owes the buyer and a negative number if the buyer owes the project.
     """
-    order = models.ForeignKey(FoodOrder, verbose_name='Заказ', related_name='buyer_balance', on_delete=models.CASCADE)
+    order = models.OneToOneField(FoodOrder, verbose_name='Заказ', related_name='buyer_balance', on_delete=models.CASCADE)
     value = models.DecimalField("Значение", max_digits=9, decimal_places=2, help_text=settings.BUYER_BALANCE_VALUE_HINT)
+    description = models.CharField(verbose_name='Комментарий к заказу', blank=True, null=True, max_length=200)
 
     @classmethod
     def get_total_balance(cls, buyer_profile):
