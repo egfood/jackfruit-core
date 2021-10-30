@@ -10,7 +10,7 @@ class AddFarmerProductForm(forms.ModelForm):
 
     def save(self, commit=True):
         farmer_product = super().save(commit=False)
-        farmer_product.farmer = self.farmer
+        farmer_product.farmer = self.farmer.profile
         if commit:
             farmer_product.save()
         return farmer_product
