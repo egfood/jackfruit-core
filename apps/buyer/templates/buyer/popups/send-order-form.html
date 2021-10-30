@@ -1,0 +1,47 @@
+<div id="jpopup-send-order-js" class="popupWindow">
+
+    {% include 'core/blocks/spinner.html' %}
+
+    <div class="popup">
+        <div class="popupBg"></div>
+        <span class="close close1"></span>
+
+        <h2>Оформление заказа</h2>
+        <form id="popupForm" action="">
+
+            {{ order_form.location.label_tag }}
+            <div style="cursor: pointer;" id="jlocation-add-js">
+                <i class="fas fa-plus text-success"></i>Добавить
+            </div>
+            <div class="selectWrapper">
+                {{ order_form.location }}
+            </div>
+            <div class="productOptions">
+                <div class="productMeasurement">
+                    {{ order_form.payment_type.label_tag }}
+                    <div class="selectWrapper productOptionsSelectWrapper">
+                        {{ order_form.payment_type }}
+                    </div>
+                </div>
+
+                <div class="calendarWrap w-auto">
+                    <label for="calendar">Дата доставки</label>
+                    <div class="calendar">
+                        <i class="far fa-calendar-alt"></i>
+                        <span class="pl-1">{{ delivery.date }}</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="productPrice">Стоимость заказа
+                <span class="totalOrderPrice">{{ order_total }}</span>
+                <span>руб.</span>
+            </div>
+            <div class="formButtons">
+                <button type="reset">Отменить</button>
+                <button id="orderSubmit" type="submit">Подтвердить заказ</button>
+            </div>
+        </form>
+    </div>
+
+</div>

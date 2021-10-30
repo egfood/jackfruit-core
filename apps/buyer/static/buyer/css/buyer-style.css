@@ -1037,7 +1037,7 @@ button img {
     box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
 }
 
-.contactData > div {
+.jform-compact > div {
     display: flex;
     align-items: center;
     justify-content: space-between;

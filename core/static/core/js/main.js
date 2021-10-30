@@ -194,11 +194,11 @@ $(document).ready(function () {
         $(".contactData").fadeIn(400);
         $(".profileSettings").css("display", "none");
     })
-    $(".contactData button[type='reset']").click(function () {
-        $(".contactData").fadeOut(200);
-        $(".profileSettings").css("display", "flex");
-        
-    })
+    // $(".contactData button[type='reset']").click(function () {
+    //     $(".contactData").fadeOut(200);
+    //     $(".profileSettings").css("display", "flex");
+    //
+    // })
 
     $(".leaveFeedback").click(function () {
         $("body").css("overflow", "hidden");

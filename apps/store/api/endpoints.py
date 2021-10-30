@@ -1,12 +1,17 @@
 from functools import cached_property
 
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_404 as drf_get_object_or_404
+from rest_framework.generics import (
+    RetrieveUpdateDestroyAPIView, ListCreateAPIView,
+    get_object_or_404 as drf_get_object_or_404
+)
+from rest_framework.mixins import UpdateModelMixin
 
 from apps.store.models.delivery import FoodDelivery
 from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
 from .exceptions import HasNoActiveDelivery
-from .serializers import FoodOrderItemSerializer
+from .serializers import FoodOrderItemSerializer, LocationSerializer
+from ..models.location import Location
 
 
 class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
@@ -23,7 +28,8 @@ class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
             return delivery
 
     def get_queryset(self):
-        return FoodOrderItem.get_buyer_cart_items(self.request, self.delivery, need_order_creation=True)
+        result, _ = FoodOrderItem.get_buyer_cart_items(self.request, self.delivery, need_order_creation=True)
+        return result
 
     def get_object(self):
         """
@@ -63,3 +69,9 @@ class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
         }
         order, _ = FoodOrder.objects.get_or_create(**order_args)
         return {'order': order, 'product_id': farmer_product_pk}
+
+class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
+    serializer_class = LocationSerializer
+
+    def get_queryset(self):
+        return Location.objects.filter(user=self.request.user)
