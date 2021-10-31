@@ -33,7 +33,7 @@
         </div>
     {% endif %}
 
-    <div id="jbasket-container-js" class="productContainer" >
+    <div id="jbasket-container-js" class="productContainer" data-csrf="{{ csrf_token }}">
 
         {% for fp in farmer_products %}
 
