@@ -1,4 +1,4 @@
-<div id="jpopup-send-order-js" class="popupWindow">
+<div id="jpopup-send-order-js" class="popupWindow jinitiator-of-add-location-js jpopup-cl-send-order-js">
 
     {% include 'core/blocks/spinner.html' %}
 
@@ -10,7 +10,7 @@
         <form id="popupForm" action="">
 
             {{ order_form.location.label_tag }}
-            <div style="cursor: pointer;" id="jlocation-add-js">
+            <div style="cursor: pointer;" class="jshow-add-location-js">
                 <i class="fas fa-plus text-success"></i>Добавить
             </div>
             <div class="selectWrapper">

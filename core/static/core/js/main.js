@@ -190,10 +190,6 @@ $(document).ready(function () {
     })
 
     $("#profilePhone, #phoneNumber").inputmask({"mask": "+375(99) 999-99-99"});
-    $(".addAdress").click(function () {
-        $(".contactData").fadeIn(400);
-        $(".profileSettings").css("display", "none");
-    })
     // $(".contactData button[type='reset']").click(function () {
     //     $(".contactData").fadeOut(200);
     //     $(".profileSettings").css("display", "flex");

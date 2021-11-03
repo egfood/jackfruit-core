@@ -1,8 +1,12 @@
-<div class="contactData" id="jlocation-add-from-js">
+<div class="contactData" id="jpopup-location-add-js">
+
+    {% include 'buyer/toasts/location-creation-error.html' %}
+
     <span class="close close1"></span>
     <h3>Укажите ваши контактные данные</h3>
 
-    <form id="jlocation-form" class="jform-compact"
+    <form id="jlocation-form-js"
+          class="jform-wide"
           data-csrf="{{ csrf_token }}"
           data-location-api-url="{% url 'store-api:location' %}">
         {% for field in location_form %}
