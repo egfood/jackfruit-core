@@ -75,3 +75,6 @@ class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
 
     def get_queryset(self):
         return Location.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
