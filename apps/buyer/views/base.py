@@ -43,19 +43,18 @@ class BuyerBasePagesView(BaseView):
         ]
 
     def get_context_data(self, **kwargs):
+        if not hasattr(self.request.user, 'profile'):
+            raise ValueError('Buyer profile can not found.')
+
         context = super().get_context_data(**kwargs)
         context['app_home_url'] = reverse('buyer:home')
         context['location_form'] = BuyerLocationForm()
-        if hasattr(self.request.user, 'profile'):
-            context['buyer_profile_api_url'] = reverse('buyer-api:profile',
-                                                       kwargs={'pk': self.buyer_profile.id})
-            context['buyer_profile_form'] = BuyerAreaProfileForm(instance=self.buyer_profile)
-            context['buyer_balance'] = BuyerBalance.get_total_balance(self.buyer_profile)
-            context['cart_total'] = FoodOrderItem.get_buyer_cart_total(self.buyer_profile, self.nearest_delivery)
-            context['cart_items_count'] = self.cart_items_count
-            context['CURRENT_CURRENCY'] = settings.CURRENT_CURRENCY
-            context['BUYER_BALANCE_VALUE_HINT1'] = settings.BUYER_BALANCE_VALUE_HINT1
-            context['BUYER_BALANCE_VALUE_HINT2'] = settings.BUYER_BALANCE_VALUE_HINT2
-        else:
-            messages.error(self.request, 'Buyer profile can not found.')
+        context['buyer_profile_api_url'] = reverse('buyer-api:profile', kwargs={'pk': self.buyer_profile.id})
+        context['buyer_profile_form'] = BuyerAreaProfileForm(instance=self.buyer_profile)
+        context['buyer_balance'] = BuyerBalance.get_total_balance(self.buyer_profile)
+        context['cart_total'] = FoodOrderItem.get_buyer_cart_total(self.buyer_profile, self.nearest_delivery)
+        context['cart_items_count'] = self.cart_items_count
+        context['CURRENT_CURRENCY'] = settings.CURRENT_CURRENCY
+        context['BUYER_BALANCE_VALUE_HINT1'] = settings.BUYER_BALANCE_VALUE_HINT1
+        context['BUYER_BALANCE_VALUE_HINT2'] = settings.BUYER_BALANCE_VALUE_HINT2
         return context
