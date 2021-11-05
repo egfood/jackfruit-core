@@ -70,11 +70,9 @@ class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
         order, _ = FoodOrder.objects.get_or_create(**order_args)
         return {'order': order, 'product_id': farmer_product_pk}
 
+
 class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
     serializer_class = LocationSerializer
 
     def get_queryset(self):
         return Location.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)

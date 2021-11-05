@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="ordersHeaderButtons">
-                <button class="addProduct">Оформление заказа</button>
+                <button id="jbtn-send-order" class="addProduct">Оформление заказа</button>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
 
 {% block page_modals %}
 
-    <div id="jorder-js">
+    <div id="jorder-js" >
         {% include 'buyer/popups/send-order-form.html' %}
     </div>
 

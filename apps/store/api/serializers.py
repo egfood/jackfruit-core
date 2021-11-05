@@ -11,6 +11,10 @@ class FoodOrderItemSerializer(serializers.ModelSerializer):
 
 
 class LocationSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Location
-        exclude = ('office_name', 'location_type', 'city_district', 'sort_key')
+        fields = ('id', 'short_name', 'user', 'location_type', 'name', 'phone', 'office_name', 'office_name',
+                  'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
+                  'floor', 'room')

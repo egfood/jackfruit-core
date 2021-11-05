@@ -67,20 +67,23 @@ class Location(FoodAbstract):
         return self.location_type == self.LOCATION_TYPE_CHOICES[1][0]
 
     def __str__(self):
-        if self.location_type == 'office':
+        if self.is_office():
             result = f'Офис {self.office_name}#{self.id}'
-        elif self.location_type == 'private':
+        elif self.is_private():
             result = f'{self.get_street_type_display()} {self.street_value}'
             if self.building:
-                result += f' {self.building}'
+                result += f' - {self.building}'
             if self.porch:
                 result += f' п.{self.porch}'
             if self.floor:
                 result += f' эт.{self.floor}'
             if self.room:
-                result += f' кв.{self.room}'
+                result += f' {"кв." if self.is_private() else "оф."} {self.room}'
             if self.city_district:
                 result += f'[{self.city_district}]'
         else:
             result = f'Неопределенный адрес #{self.id}'
         return result
+
+    def short_name(self):
+        return self.__str__()
