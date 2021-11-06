@@ -83,10 +83,11 @@
         <form class="jprofile-tab-content-js adressSettings">
 
             {% if buyer_locations %}
-                <div id="jprofile-locations-js">
+                <div id="jprofile-locations-js" data-api-locations-list-url="{% url "store_api:location" %}">
+                    {# This code can be updated by JS #}
                     {% for location in buyer_locations %}
                         <p class="pb-2">
-                            <i class="fas fa-map-marked-alt text-success"></i> {{ location.get_full_address }}
+                            <i class="fas fa-map-marked-alt text-success"></i> {{ location.full_address }}
                         </p>
                     {% endfor %}
                 </div>

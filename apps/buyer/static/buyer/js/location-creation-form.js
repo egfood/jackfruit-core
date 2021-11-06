@@ -8,7 +8,10 @@ $(document).ready(function () {
         order_form = $("#jform-send-order-js"),
         order_toast_error = $("#jorder-creation-toast-error-js"),
         order_toast_error_body = $("#jorder-creation-toast-error-body-js", toast_error),
-        spinner_block = $("#jmodal-spinner-block");
+        spinner_block = $("#jmodal-spinner-block"),
+        profile_toast_error = $('#jprofile-toast-error'),
+        profile_toast_error_body = $("#jprofile-toast-error-body", toast_error),
+        locations_block = $("#jprofile-locations-js");
 
     $(".jshow-add-location-js").click(function () {
         let parent_popup = $(this).closest('.jinitiator-of-add-location-js');
@@ -34,6 +37,9 @@ $(document).ready(function () {
             })
                 .done(function (result) {
                     update_order_locations(spinner_block, order_form, order_toast_error, order_toast_error_body);
+                    update_profile_locations(
+                        spinner_block, locations_block, profile_toast_error, profile_toast_error_body
+                    );
                     is_send_request_to_create_location = false;
                     parent_popup.fadeIn(400);
                     location_popup.css("display", "none");

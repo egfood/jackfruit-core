@@ -8,7 +8,7 @@
         $.each(options, function (index, option) {
             $option = $("<option></option>")
                 .attr("value", option.id)
-                .text(option.short_name);
+                .text(option.short_address);
             self.append($option);
         });
     };

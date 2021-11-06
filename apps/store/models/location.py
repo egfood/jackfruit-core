@@ -1,3 +1,5 @@
+from functools import cached_property
+
 from django.conf import settings
 from django.db import models
 from django.db.models import QuerySet
@@ -86,10 +88,12 @@ class Location(FoodAbstract):
             result = f'Неопределенный адрес #{self.id}'
         return result
 
-    def get_short_address(self):
+    @cached_property
+    def short_address(self):
         return self.__str__()
 
-    def get_full_address(self):
+    @cached_property
+    def full_address(self):
         result = f'[{self.get_location_type_display()}] т. {self.phone} '
         if self.is_office():
             result += f'{self.office_name} [{self.city_district}]'
