@@ -1,21 +1,20 @@
 from functools import cached_property
 
 from django.conf import settings
-from django.contrib import messages
 from django.urls import reverse
 
+from apps.store.models.delivery import FoodDelivery
+from apps.store.models.location import Location
+from apps.store.models.order_item import FoodOrderItem
 from core.menu_data import MenuItem
 from core.views.base import BaseView
 from ..forms.location import BuyerLocationForm
 from ..forms.profile import BuyerAreaProfileForm
 from ..models.balance import BuyerBalance
-from apps.store.models.order_item import FoodOrderItem
-from apps.store.models.delivery import FoodDelivery
 
 
 class BuyerBasePagesView(BaseView):
     login_url = '/login/'
-
 
     @cached_property
     def buyer_profile(self):
@@ -23,7 +22,7 @@ class BuyerBasePagesView(BaseView):
 
     @cached_property
     def nearest_delivery(self):
-        return  FoodDelivery.get_nearest_delivery()
+        return FoodDelivery.get_nearest_delivery()
 
     @cached_property
     def cart_items_count(self):
@@ -49,6 +48,7 @@ class BuyerBasePagesView(BaseView):
         context = super().get_context_data(**kwargs)
         context['app_home_url'] = reverse('buyer:home')
         context['location_form'] = BuyerLocationForm()
+        context['buyer_locations'] = Location.get_user_locations(self.request.user)
         context['buyer_profile_api_url'] = reverse('buyer-api:profile', kwargs={'pk': self.buyer_profile.id})
         context['buyer_profile_form'] = BuyerAreaProfileForm(instance=self.buyer_profile)
         context['buyer_balance'] = BuyerBalance.get_total_balance(self.buyer_profile)

@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
+from django.db.models import QuerySet
 
-from core.models import FoodAbstract
+from core.models import FoodAbstract, GreenUser
 
 
 class Location(FoodAbstract):
@@ -85,5 +86,30 @@ class Location(FoodAbstract):
             result = f'Неопределенный адрес #{self.id}'
         return result
 
-    def short_name(self):
+    def get_short_address(self):
         return self.__str__()
+
+    def get_full_address(self):
+        result = f'[{self.get_location_type_display()}] т. {self.phone} '
+        if self.is_office():
+            result += f'{self.office_name} [{self.city_district}]'
+        elif self.is_private():
+            result += f'{self.get_street_type_display()} {self.street_value}'
+            if self.building:
+                result += f' - {self.building}'
+            if self.porch:
+                result += f' п.{self.porch}'
+            if self.floor:
+                result += f' эт.{self.floor}'
+            if self.room:
+                result += f' кв.{self.room}'
+            if self.city_district:
+                result += f'[{self.city_district}]'
+        else:
+            result = f'Неопределенный адрес #{self.id}'
+
+        return result
+
+    @classmethod
+    def get_user_locations(cls, user: GreenUser) -> QuerySet:
+        return cls.objects.filter(user=user)

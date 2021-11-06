@@ -81,47 +81,20 @@
         </div>
 
         <form class="jprofile-tab-content-js adressSettings">
-            <ul class="adressList">
-                <li>
-                    <span>Минск, Зеленолугская 18</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li>
-                    <span>Минск, Богдановича 66-75</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li>
-                    <span>Минск, Богдановича 66-75</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li>
-                    <span>Минск, Богдановича 66-75</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
 
-            </ul>
+            {% if buyer_locations %}
+                <div id="jprofile-locations-js">
+                    {% for location in buyer_locations %}
+                        <p class="pb-2">
+                            <i class="fas fa-map-marked-alt text-success"></i> {{ location.get_full_address }}
+                        </p>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Вы пока не добавляли адреса доставки</p>
+            {% endif %}
+
             <button type="button" class="addAdress jshow-add-location-js">Добавить адрес</button>
-
-            <div class="formButtons">
-                <button type="reset">Отменить</button>
-                <button type="submit">Сохранить</button>
-            </div>
 
         </form>
 
