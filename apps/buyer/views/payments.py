@@ -1,9 +1,9 @@
 import profile
 
-from apps.buyer.views import BuyerBasePagesView
-from apps.store.models import delivery, order
 from apps.buyer.models import balance
 from apps.buyer.models import profile
+from apps.buyer.views import BuyerBasePagesView
+from apps.store.models import delivery, order
 
 
 class BuyerOrders(BuyerBasePagesView):
@@ -16,7 +16,6 @@ class BuyerOrders(BuyerBasePagesView):
         buyer_profile = profile.BuyerProfile.objects.get(user_id=user_id)
         buyer_delivery = delivery.FoodDelivery.objects.filter(order__buyer__user_id=user_id)
         context['nearest_delivery'] = delivery.FoodDelivery.nearest_delivery(buyer_delivery)
-        context['short_name'] = delivery.FoodDelivery.short_name
         context['orders'] = orders_queryset
         context['total'] = balance.BuyerBalance.get_total_balance(buyer_profile=buyer_profile)
         return context

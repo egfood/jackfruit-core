@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="mainWrapOpacity"></div>
-<div class="profileSettings">
+<div class="profileSettings jinitiator-of-add-location-js jprofile-settings-js">
     <span class="close close1"></span>
     <div class="profileSettingsMenu">
         <h2>Мой профиль</h2>
@@ -81,58 +81,21 @@
         </div>
 
         <form class="jprofile-tab-content-js adressSettings">
-            <ul class="adressList">
-                <li>
-                    <span>Минск, Зеленолугская 18</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li>
-                    <span>Минск, Богдановича 66-75</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li>
-                    <span>Минск, Богдановича 66-75</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li>
-                    <span>Минск, Богдановича 66-75</span>
-                    <div class="addressOptions">
-                        <input type="radio" name="defaultAdress" id="defaultAdress">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="far fa-trash-alt"></i>
-                    </div>
-                </li>
 
-            </ul>
-            <button type="button" class="addAdress">Добавить адрес</button>
-            <!-- <label for="serviceZone">Мои адреса</label>
-            <div class="selectWrapper">
-                <select name="serviceZone" id="serviceZone">
-                    <option value="">Адрес 1</option>
-                    <option value="">Адрес 2</option>
-                </select>
-            </div>
-            <label for="addZone">Добавить адрес</label>
-            <input id="addZone" type="text" placeholder="Введите адрес">
-            <label for="otherInformation">Дополнительная информация (напишите, если у вас есть шлагбаум или другую информацию для курьера)</label>
-            <textarea name="otherInformation" id="otherInformation"></textarea> -->
+            {% if buyer_locations %}
+                <div id="jprofile-locations-js" data-api-locations-list-url="{% url "store_api:location" %}">
+                    {# This code can be updated by JS #}
+                    {% for location in buyer_locations %}
+                        <p class="pb-2">
+                            <i class="fas fa-map-marked-alt text-success"></i> {{ location.full_address }}
+                        </p>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Вы пока не добавляли адреса доставки</p>
+            {% endif %}
 
-            <div class="formButtons">
-                <button type="reset">Отменить</button>
-                <button type="submit">Сохранить</button>
-            </div>
+            <button type="button" class="addAdress jshow-add-location-js">Добавить адрес</button>
 
         </form>
 

@@ -6,11 +6,11 @@ $(document).ready(function () {
         $(".mainWrapOpacity").css("display", "block");
     });
 
-    $("#popupForm").submit(function (event) {
+    $("#jform-send-order-js").submit(function (event) {
         event.preventDefault();
-    })
+    });
 
-    $("#popupForm").submit(function (event) {
+    $("#jform-send-order-js").submit(function (event) {
         event.preventDefault();
         $(".popupWindow").fadeOut(200);
         $(".recievedWindow").fadeIn(200);
@@ -18,8 +18,8 @@ $(document).ready(function () {
             $(".recievedWindow").fadeOut(200);
             $(".generalWrap").css("filter", "none");
             $(".mainWrapOpacity").css("display", "none");
-        })   
-    })
+        });
+    });
 
     $(document).mouseup(function (e){ 
         var block = $(".vegFrameDropMenu, .profileSettings, .popupWindow, .popupMessengers, .editForm, .icalendar, .contactData, .feedbackPopup, .orderSuccess");
@@ -190,10 +190,6 @@ $(document).ready(function () {
     })
 
     $("#profilePhone, #phoneNumber").inputmask({"mask": "+375(99) 999-99-99"});
-    $(".addAdress").click(function () {
-        $(".contactData").fadeIn(400);
-        $(".profileSettings").css("display", "none");
-    })
     // $(".contactData button[type='reset']").click(function () {
     //     $(".contactData").fadeOut(200);
     //     $(".profileSettings").css("display", "flex");

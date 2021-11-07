@@ -1,3 +1,44 @@
+(function ($, window) {
+    $.fn.replaceLocations = function (locations) {
+        var self, $option;
+
+        this.empty();
+        self = this;
+
+        $.each(locations, function (index, loc) {
+            let item = "<p class='pb-2'><i class='fas fa-map-marked-alt text-success'></i> " + loc.full_address + "</p>";
+            self.append(item);
+        });
+    };
+})(jQuery, window);
+
+
+function update_profile_locations(spinner, locations_block, toast_error, toast_error_body) {
+    let is_send_request_to_update_location = false;
+
+    if (is_send_request_to_update_location === false) {
+        spinner.show();
+        is_send_request_to_update_location = true;
+
+        $.ajax({
+            url: locations_block.attr("data-api-locations-list-url"),
+            type: "GET"
+        })
+            .done(function (result) {
+                is_send_request_to_update_location = false;
+                locations_block.replaceLocations(result);
+                spinner.hide();
+            })
+            .fail(function (result) {
+                toast_error_body.text(result);
+                let toast = new bootstrap.Toast(toast_error);
+                is_send_request_to_update_location = false;
+                spinner.hide();
+                toast.show();
+            });
+    }
+}
+
 $(document).ready(function () {
 
     let overlay_with_spinner = $("#jmodal-spinner-block"),
@@ -33,5 +74,6 @@ $(document).ready(function () {
             toast_success, toast_error, toast_error_body, wi, profile_images
         );
     });
+
 
 });
