@@ -22,7 +22,7 @@ csu:
 	docker-compose exec web python manage.py createsuperuser
 
 du:
-	docker-compose exec web python manage.py demo_users create
+	docker-compose exec web python manage.py create_tree
 
 sh:
 	docker-compose exec web python manage.py shell
