@@ -18,7 +18,12 @@
             <tr>
 
                 <td>
-                    <img height="50" src="{{ item.product.product.image.url }}" alt="{{ item.product.product.name }}">
+                    {% if item.product.product.image %}
+                        <img height="50" src="{{ item.product.product.image.url }}"
+                             alt="{{ item.product.product.name }}">
+                    {% else %}
+                        <img height="50" src="{% static 'core/img/Rectangle.svg' %}" alt="default image">
+                    {% endif %}
                 </td>
 
                 <td>{{ item.product.product.name }}<br>
