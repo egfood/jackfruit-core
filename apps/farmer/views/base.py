@@ -16,7 +16,7 @@ class FarmerBasePagesView(BaseView, LoginRequiredMixin):
         return [
             MenuItem(title="Мои продукты", link=reverse("farmer:foodstuffs"), icon="fab fa-pagelines"),
             # MenuItem(title="Заказы", link=reverse("farmer:orders"), icon="fas fa-shopping-basket"),
-            MenuItem(title="Платежи", link=reverse("farmer:foodstuffs"), icon="fas fa-money-bill-wave-alt"),
+            MenuItem(title="Мои продажи", link=reverse("farmer:payments"), icon="fas fa-money-bill-wave-alt"),
             MenuItem(title="Мой рейтинг", link=reverse("farmer:foodstuffs"), icon="fas fa-star"),
         ]
 

@@ -1,0 +1,38 @@
+{% extends 'buyer/app-base.html' %}
+
+{% load static %}
+
+{% block page_styles %}
+ <link rel="stylesheet" href="{% static 'farmer/css/payments.css' %}">
+{% endblock %}
+
+{% block title %}Мои продажи{% endblock %}
+
+{% block page_content %}
+
+<h1>Мои продажи</h1>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Дата</th>
+					<th>Продукт</th>
+					<th>Вычет, руб</th>
+					<th>Сумма, руб</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for payment in payments %}
+				<tr>
+					<td>{{ payment.delivery.date }}</td>
+					<td>{{ payment.product.product.name}}</td>
+					<td>{{ payment.deduction }}</td>
+					<td>{{ payment.sum_price }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<p class="totalSum">Итого: {{ total }} руб.</p>
+	{% include 'core/blocks/pagination.html' %}
+{% endblock %}

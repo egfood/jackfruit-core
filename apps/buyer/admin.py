@@ -39,4 +39,4 @@ class BuyerProfileAdmin(admin.ModelAdmin):
 class BuyerBalanceAdmin(admin.ModelAdmin):
     list_display = ('value', 'order')
     list_filter = ('order',)
-    ordering = ('date_creation', 'order', 'order__buyer')
+    ordering = ('date_creation', 'order',)

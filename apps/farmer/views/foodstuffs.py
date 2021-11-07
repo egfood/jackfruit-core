@@ -14,7 +14,10 @@ class FarmerFoodstuffsPageView(FarmerBasePagesView, PaginationMixin):
         form = AddFarmerProductForm(data=request.POST, farmer=request.user)
         if form.is_valid():
             form.save()
-            return render(request, self.template_name, {'form': form})
+            context = self.get_context_data()
+            return render(request, self.template_name, {'form': context['form'],
+                                                        'page': context['page'],
+                                                        'product_list': context['product_list']})
         else:
             return render(request, self.template_name, {'form': form})
 

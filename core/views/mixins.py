@@ -6,6 +6,6 @@ class PaginationMixin:
         if pagination_objects:
             page_number = self.request.GET.get('page')
             paginator = Paginator(pagination_objects, objects_per_page)
-            return paginator.get_page(page_number), paginator.object_list
+            return paginator.get_page(page_number), paginator.get_page(page_number).object_list
         else:
             return None, pagination_objects
