@@ -5,10 +5,10 @@ from django.core.paginator import Paginator
 
 class PaginationMixin:
     def get_paginate_page_and_subjects(self, pagination_objects, objects_per_page: int = 10):
-        if not isinstance(pagination_objects, Iterable):
-            raise TypeError('A "pagination_objects" attribute is of invalid type.')
-
         if pagination_objects:
+
+            if not isinstance(pagination_objects, Iterable):
+                raise TypeError('A "pagination_objects" attribute is of invalid type.')
 
             # pagination_objects must be forced converted onto any ordered type for yield consistent results of pagination
             if not isinstance(pagination_objects, list):
