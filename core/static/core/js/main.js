@@ -202,7 +202,7 @@ $(document).ready(function () {
         $(".mainWrapOpacity").css("display", "block");
         $(".feedbackPopup").fadeIn(200);
     })
-    $("#orderSubmit").click(function () {
+    $("#jorder-submit-js").click(function () {
         $(".orderSuccess").css("display", "block");    
     })
 })

@@ -26,6 +26,8 @@ class FoodOrder(FoodAbstract):
         )
         unique_together = ['delivery', 'buyer', 'location']
 
+    ORDER_STATES_WHEN_ORDER_WAS_SENT = ('awaiting_processing', 'delivered')
+
     ORDER_STATE_CHOICES = (
         ('created', 'Создан'),
         ('awaiting_processing', 'Ожидает обработки'),
@@ -50,9 +52,10 @@ class FoodOrder(FoodAbstract):
 
     @cached_property
     def total_cost(self):
-        total_cost = sum([order_item.item_total for order_item in self.order_items_related])
-        order_cost = total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
-        return order_cost
+        if self.location:
+            total_cost = sum([order_item.item_total for order_item in self.order_items_related])
+            order_cost = total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
+            return order_cost
 
     @property
     def total_weight(self):
@@ -99,12 +102,17 @@ class FoodOrder(FoodAbstract):
         from .order_item import FoodOrderItem
         return FoodOrderItem.objects.all()
 
+    @cached_property
+    def is_order_sent_by_user(self):
+        return self.state in self.ORDER_STATES_WHEN_ORDER_WAS_SENT
+
     def __str__(self):
         base = f'{self.delivery} для {self.buyer.name} (profile#{self.buyer.id})'
-        if self.location.is_private():
-            base += '[домой]'
-        elif self.location.is_office():
-            base += '[в офис]'
-        else:
-            log.warning('Unknown type of location.')
+        try:
+            if self.location.is_private():
+                base += '[домой]'
+            elif self.location.is_office():
+                base += '[в офис]'
+        except AttributeError:
+            base += '[не уточненный адрес]'
         return base

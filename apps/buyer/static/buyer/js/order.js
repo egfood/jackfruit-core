@@ -6,7 +6,8 @@ $(document).ready(function () {
         send_order_popup = $("#jpopup-send-order-js"),
         toast_error = $("#jorder-creation-toast-error-js"),
         toast_error_body = $("#jorder-creation-toast-error-body-js", toast_error),
-        spinner_block = $("#jmodal-spinner-block");
+        spinner_block = $("#jmodal-spinner-block"),
+        is_send_request_to_update_order = false;
 
 
     contact_form_reset.on('click', function () {
@@ -16,6 +17,31 @@ $(document).ready(function () {
 
     $("#jbtn-send-order").on('click', function () {
         update_order_locations(spinner_block, order_form, toast_error, toast_error_body);
+    });
+
+    $("#jorder-form-submit-js").on('click', function (){
+        if (is_send_request_to_update_order === false) {
+            is_send_request_to_update_order = true;
+
+            $.ajax({
+                url: order_form.attr("data-api-order-update-url"),
+                type: "PATCH",
+                headers: {'X-CSRFToken': order_form.attr('data-csrf')},
+                data: new FormData(order_form[0]),
+                processData: false,
+                contentType: false,
+            })
+                .done(function (result) {
+                    is_send_request_to_update_order = false;
+                    window.location.reload();
+                })
+                .fail(function (result) {
+                    toast_error_body.text(result.responseText);
+                    let toast = new bootstrap.Toast(toast_error);
+                    is_send_request_to_update_order = false;
+                    toast.show();
+                });
+        }
     });
 
 });

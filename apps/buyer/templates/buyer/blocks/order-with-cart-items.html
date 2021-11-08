@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between flex-wrap">
+    <div class="d-flex align-items-center flex-wrap">
+        <h1>Моя корзина</h1>
+        <div class="deliveryDate">
+            <span>Доставка {{ delivery.date }}</span>
+        </div>
+    </div>
+    <div class="ordersHeaderButtons">
+        <button id="jbtn-send-order" class="addProduct">Оформление заказа</button>
+    </div>
+</div>
+
+{% include "buyer/blocks/product-item-table.html" %}
+{% include "core/blocks/pagination.html" %}
+
+<p class="totalSum" id="totalSum">Итого: {{ order_total }} руб.</p>

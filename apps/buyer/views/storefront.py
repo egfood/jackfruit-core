@@ -1,10 +1,11 @@
 from functools import cached_property
 
 from django.conf import settings
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 from apps.farmer.models.product import FarmerProduct
 from apps.store.models.delivery import FoodDelivery
+from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
 from apps.store.models.product_category import ProductCategory
 from core.views.mixins import PaginationMixin
@@ -12,6 +13,19 @@ from .base import BuyerBasePagesView
 
 
 class BuyerStorefrontBaseView(BuyerBasePagesView, PaginationMixin):
+
+    def get(self, request, *args, **kwargs):
+
+        # Temporary solution for show an unified message after an order sent.
+        order_kwargs = {
+            "delivery": FoodDelivery.get_nearest_delivery(),
+            "buyer": self.request.user.profile
+        }
+        order = FoodOrder.objects.filter(**order_kwargs).first()
+        if order and order.is_order_sent_by_user:
+            return redirect("buyer:cart")
+
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

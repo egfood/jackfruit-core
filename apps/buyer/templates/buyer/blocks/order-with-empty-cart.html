@@ -1,0 +1,18 @@
+{% load static %}
+
+<div class="myProducts">
+    <h1>Моя корзина</h1>
+    <a href="{% url "buyer:storefront" %}" class="jbtn">
+        <button><span>+</span> Добавить продукт</button>
+    </a>
+</div>
+
+<div class="centralImg">
+    <div class="centralImgWrap">
+        <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
+        <div class="addPruductsButtonPlus">+</div>
+    </div>
+</div>
+
+<h2>В Вашей корзине пока пусто</h2>
+<p>Давайте это исправим)</p>

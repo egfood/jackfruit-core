@@ -8,7 +8,8 @@
         <span class="close close1"></span>
 
         <h2>Оформление заказа</h2>
-        <form id="jform-send-order-js" action="" data-api-locations-list-url="{% url "store_api:location" %}">
+        <form id="jform-send-order-js" action="" data-api-locations-list-url="{% url "store_api:location" %}"
+              data-api-order-update-url="{% url "store_api:order" %}" data-csrf="{{ csrf_token }}">
 
             {{ order_form.location.label_tag }}
             <div style="cursor: pointer;" class="jshow-add-location-js">
@@ -40,7 +41,7 @@
             </div>
             <div class="formButtons">
                 <button type="reset">Отменить</button>
-                <button id="orderSubmit" type="submit">Подтвердить заказ</button>
+                <button id="jorder-form-submit-js" class="" type="submit">Подтвердить заказ</button>
             </div>
         </form>
     </div>

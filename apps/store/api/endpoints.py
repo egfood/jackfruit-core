@@ -1,7 +1,7 @@
 from functools import cached_property
 
 from rest_framework.generics import (
-    RetrieveUpdateDestroyAPIView, ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView, ListCreateAPIView, UpdateAPIView,
     get_object_or_404 as drf_get_object_or_404
 )
 from rest_framework.mixins import UpdateModelMixin
@@ -10,8 +10,21 @@ from apps.store.models.delivery import FoodDelivery
 from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
 from .exceptions import HasNoActiveDelivery
-from .serializers import FoodOrderItemSerializer, LocationSerializer
+from .serializers import FoodOrderItemSerializer, LocationSerializer, FoodOrderSerializer
 from ..models.location import Location
+
+
+class OrderUpdateEndpoint(UpdateAPIView):
+    serializer_class = FoodOrderSerializer
+
+    def get_object(self):
+        queryset_kwargs = {
+            'buyer': self.request.user.profile,
+            'delivery': FoodDelivery.get_nearest_delivery()
+        }
+        queryset = self.serializer_class.Meta.model.objects.all()
+        obj = drf_get_object_or_404(queryset, **queryset_kwargs)
+        return obj
 
 
 class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):

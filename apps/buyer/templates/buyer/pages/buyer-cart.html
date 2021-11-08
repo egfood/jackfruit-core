@@ -11,51 +11,21 @@
 
 {% block page_content %}
 
-    {% if order_items %}
-
-        <div class="d-flex justify-content-between flex-wrap">
-            <div class="d-flex align-items-center flex-wrap">
-                <h1>Моя корзина</h1>
-                <div class="deliveryDate">
-                    <span>Доставка {{ delivery.date }}</span>
-                </div>
-            </div>
-            <div class="ordersHeaderButtons">
-                <button id="jbtn-send-order" class="addProduct">Оформление заказа</button>
-            </div>
-        </div>
-
-        {% include "buyer/blocks/product-item-table.html" %}
-        {% include "core/blocks/pagination.html" %}
-
-        <p class="totalSum" id="totalSum">Итого: {{ order_total }} руб.</p>
-
+    {% if order.is_order_sent_by_user %}
+        {% include 'buyer/blocks/order-was-sent.html' %}
     {% else %}
-
-        <div class="myProducts">
-            <h1>Моя корзина</h1>
-            <a href="{% url "buyer:storefront" %}" class="jbtn">
-                <button><span>+</span> Добавить продукт</button>
-            </a>
-        </div>
-
-        <div class="centralImg">
-            <div class="centralImgWrap">
-                <img src="{% static 'core/img/Rectangle.svg' %}" alt="cenralImg" class="tomatoCarrot">
-                <div class="addPruductsButtonPlus">+</div>
-            </div>
-        </div>
-
-        <h2>В Вашей корзине пока пусто</h2>
-        <p>Давайте это исправим)</p>
-
+        {% if order_items %}
+            {% include 'buyer/blocks/order-with-cart-items.html' %}
+        {% else %}
+            {% include 'buyer/blocks/order-with-empty-cart.html' %}
+        {% endif %}
     {% endif %}
 
 {% endblock %}
 
 {% block page_modals %}
 
-    <div id="jorder-js" >
+    <div id="jorder-js">
         {% include 'buyer/popups/send-order-form.html' %}
     </div>
 
