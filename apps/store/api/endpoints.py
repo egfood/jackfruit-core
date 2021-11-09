@@ -14,7 +14,7 @@ from .serializers import FoodOrderItemSerializer, LocationSerializer, FoodOrderS
 from ..models.location import Location
 
 
-class OrderUpdateEndpoint(UpdateAPIView):
+class SubmitOrderEndpoint(UpdateAPIView):
     serializer_class = FoodOrderSerializer
 
     def get_object(self):
@@ -25,6 +25,10 @@ class OrderUpdateEndpoint(UpdateAPIView):
         queryset = self.serializer_class.Meta.model.objects.all()
         obj = drf_get_object_or_404(queryset, **queryset_kwargs)
         return obj
+
+    def perform_update(self, serializer):
+        serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE_CHOICES[1][0])
+
 
 
 class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):

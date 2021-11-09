@@ -16,7 +16,7 @@ class BuyerCartView(BuyerBasePagesView, PaginationMixin):
         order_items, order = FoodOrderItem.get_buyer_cart_items(self.request, context['delivery'])
         context['order'] = order
         context['order_total'] = FoodOrderItem.get_buyer_cart_total(self.request.user.profile, context['delivery'])
-        if not order.is_order_sent_by_user:
+        if order and not order.is_order_sent_by_user:
             context['page'], context['order_items'] = self.get_paginate_page_and_subjects(
                 order_items, settings.COUNT_OF_CART_PRODUCTS_PER_PAGE
             )

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .endpoints import OrderItemByFarmerProductEndpoint, LocationEndpoint, OrderUpdateEndpoint
+from .endpoints import OrderItemByFarmerProductEndpoint, LocationEndpoint, SubmitOrderEndpoint
 
 app_name = 'store-api'
 
@@ -10,5 +10,5 @@ urlpatterns = [
         name='order-item'
     ),
     path('location', LocationEndpoint.as_view(), name='location'),
-    path('order', OrderUpdateEndpoint.as_view(), name='order'),
+    path('order/submit', SubmitOrderEndpoint.as_view(), name='order-submit'),
 ]

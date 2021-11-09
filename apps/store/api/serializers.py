@@ -3,15 +3,15 @@ from rest_framework import serializers
 from apps.store.models.location import Location
 from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
-from core.api.basic_serializers import CurrentBuyerProfileDefault
 
 
 class FoodOrderSerializer(serializers.ModelSerializer):
-    state = serializers.HiddenField(default=FoodOrder.ORDER_STATE_CHOICES[1][0])
+    state = serializers.HiddenField(default=FoodOrder.ORDER_STATE_CHOICES[0][0])
 
     class Meta:
         model = FoodOrder
         fields = ['state', 'location', 'payment_type']
+
 
 class FoodOrderItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,6 +24,7 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        fields = ('id', 'short_address', 'full_address', 'user', 'location_type', 'name', 'phone', 'office_name', 'office_name',
-                  'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
-                  'floor', 'room')
+        fields = (
+        'id', 'short_address', 'full_address', 'user', 'location_type', 'name', 'phone', 'office_name', 'office_name',
+        'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
+        'floor', 'room')
