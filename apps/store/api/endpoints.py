@@ -1,8 +1,7 @@
 from functools import cached_property
 
 from rest_framework.generics import (
-    RetrieveUpdateDestroyAPIView, ListCreateAPIView, UpdateAPIView,
-    get_object_or_404 as drf_get_object_or_404
+    RetrieveUpdateDestroyAPIView, ListCreateAPIView, UpdateAPIView, get_object_or_404 as drf_get_object_or_404
 )
 from rest_framework.mixins import UpdateModelMixin
 
@@ -28,7 +27,6 @@ class SubmitOrderEndpoint(UpdateAPIView):
 
     def perform_update(self, serializer):
         serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE_CHOICES[1][0])
-
 
 
 class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
