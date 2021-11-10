@@ -166,7 +166,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application settings
 
-VERSION = '1.0.1.10'
+VERSION = '1.5.0.0'
 
 STATIC_URL = urlunsplit(("", env.str('STATIC_DOMAIN_NAME'), VERSION + "/", "", ""))
 
