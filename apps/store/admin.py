@@ -46,9 +46,9 @@ class FoodOrderAdmin(admin.ModelAdmin):
 @admin.register(FoodOrderItem)
 class FoodOrderItemAdmin(admin.ModelAdmin):
     list_display = (
-        'product', 'delivery_short_name', 'value', 'actual_value', 'item_total', 'date_creation', 'date_updated'
+        'product', 'order', 'delivery_short_name', 'value', 'actual_value', 'item_total', 'date_creation', 'date_updated'
     )
-    list_filter = ('product', 'date_creation', 'date_updated')
+    list_filter = ('order', 'product', 'date_creation', 'date_updated')
     ordering = ('product', 'value', 'actual_value', 'date_creation', 'date_updated')
 
 

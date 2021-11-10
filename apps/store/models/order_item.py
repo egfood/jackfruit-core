@@ -88,10 +88,11 @@ class FoodOrderItem(FoodAbstract):
     @cached_property
     def delivery_short_name(self):
         base = f"Дост. {self.order.delivery.short_name}"
-        if self.order.location.is_office():
-            base += "(в офис)"
-        elif self.order.location.is_private():
-            base += "(домой)"
+        if self.order.location:
+            if self.order.location.is_office():
+                base += "(в офис)"
+            elif self.order.location.is_private():
+                base += "(домой)"
         else:
             log.warning("Unknown type of location")
         return base
