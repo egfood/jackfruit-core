@@ -7,5 +7,5 @@ class EstimateFeedbackForm(forms.ModelForm):
 
     class Meta:
         model = feedback.FarmerFeedback
-        fields = ('feedback',)
+        fields = ('feedback', 'rating')
         widgets = {"feedback": widgets.Textarea(attrs={"id": "feedbackPopup"}),}

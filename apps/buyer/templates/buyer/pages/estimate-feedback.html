@@ -4,77 +4,71 @@
 {% load static %}
 
 {% block page_styles %}
-	<link rel="stylesheet" href="{% static 'buyer/css/orders.css' %}">
- 	<link rel="stylesheet" href="{% static 'buyer/css/estimateFeedback.css' %}">
+    <link rel="stylesheet" href="{% static 'buyer/css/orders.css' %}">
+    <link rel="stylesheet" href="{% static 'buyer/css/estimateFeedback.css' %}">
 {% endblock %}
 
 {% block title %}Мои заказы{% endblock %}
 
 {% block page_content %}
-		<div class="d-flex justify-content-between flex-wrap">
-			<div class="d-flex align-items-center flex-wrap">
-				<h1>Оценить / Оставить отзыв</h1>
-				<div class="deliveryDate">
-					<span>Дата доставки: {{ order.delivery.date }}</span>
-				</div>
-			</div>
-			<div class="ordersHeaderButtons">
-				<a class="backToMyOrdersList" href="{% url 'buyer:payments' %}"><button type="button"><i class="fas fa-long-arrow-alt-left"></i>&nbsp;Мои заказы</button></a>
-			</div>
-		</div>
-		<div class="table-responsive">
-			<table class="table tableOrders">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Наименование</th>
-						<th>Объем</th>
-						<th>Стоимость</th>
-						<th>Оценить</th>
-						<th>Оставить отзыв</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for o_i in order_item %}
-					<tr>
-						<td>
-							{% if o_i.product.product.image %}
-								<img src="{{ o_i.product.product.image.url}}" width="100" alt="Photo">
-							{% else %}
-								<img src="{% static 'core/img/no_img.png' %}" width="100" alt="Photo">
-							{% endif %}
-						</td>
-						<td>{{ o_i.product.product.name }}</td>
-						<td>{{ o_i.text_weight }}</td>
-						<td>{{ o_i.text_item_total }}</td>
-						<td class="starsTd">
-							<div class="stars">
-								<div class="grayStar onePoint"></div>
-								<div class="grayStar twoPoint"></div>
-								<div class="grayStar threePoint"></div>
-								<div class="grayStar fourPoint"></div>
-								<div class="grayStar fivePoint"></div>
-							</div>
-						</td>
-						<td>
-							<button class="leaveFeedback" data-order-item-pk={{ o_i.pk }} type="button">Оставить отзыв</button>
-						</td>
-					</tr>
-				{% endfor %}
-				<tbody>
-			</table>
-		</div>
-	</div>
-	</div>
-	</div>
-		<div class="feedbackPopup">
-			<span class="close close1"></span>
-			<h3>Напишите Ваш отзыв</h3>
-			<form method="post" action="">
-				{% csrf_token %}
-				{{ form_feedback.order_item_id }}
-					<textarea name="feedback" id="feedbackPopup"></textarea>
-				<button type="submit">Отправить</button>
-			</form>
-		</div>
+    <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex align-items-center flex-wrap">
+            <h1>Оценить / Оставить отзыв</h1>
+            <div class="deliveryDate">
+                <span>Дата доставки: {{ order.delivery.date }}</span>
+            </div>
+        </div>
+        <div class="ordersHeaderButtons">
+            <a class="backToMyOrdersList" href="{% url 'buyer:payments' %}">
+                <button type="button"><i class="fas fa-long-arrow-alt-left"></i>&nbsp;Мои заказы</button>
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table tableOrders">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Наименование</th>
+                <th>Объем</th>
+                <th>Стоимость</th>
+                <th>Оценить и оставить отзыв</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for o_i in order_item %}
+                <tr>
+                    <td>
+                        {% if o_i.product.product.image %}
+                            <img src="{{ o_i.product.product.image.url }}" width="100" alt="Photo">
+                        {% else %}
+                            <img src="{% static 'core/img/no_img.png' %}" width="100" alt="Photo">
+                        {% endif %}
+                    </td>
+                    <td>{{ o_i.product.product.name }}</td>
+                    <td>{{ o_i.text_weight }}</td>
+                    <td>{{ o_i.text_item_total }}</td>
+                    <td>
+                        <button class="leaveFeedback jbtn-show-feedback-popup-js" type="button"
+                                data-api-url="{% url "farmer-api:estimate-feedback" order_item_pk=o_i.pk %}">
+                            Оставить отзыв
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
+
+
+{% block page_modals %}
+    {% include 'buyer/popups/feedback-form.html' %}
+    {% include 'buyer/toasts/feedback-sent-successfully.html' %}
+{% endblock %}
+
+{% block page_footer_scripts %}
+    <script src="{% static 'buyer/js/estimate-feedback.js' %}"></script>
 {% endblock %}

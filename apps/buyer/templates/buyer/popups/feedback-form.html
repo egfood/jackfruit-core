@@ -1,0 +1,9 @@
+<div id="jpopup-estimate-feedback-js" class="feedbackPopup">
+    <span class="close close1"></span>
+    <h3>Напишите Ваш отзыв</h3>
+    <form id="jestimate-feedback-form-js" data-csrf="{{ csrf_token }}">
+        {% include 'buyer/toasts/send-feedback-error.html' %}
+        {{ form_feedback.as_p }}
+        <button id="jbtn-estimate-feedback-js">Отправить</button>
+    </form>
+</div>

@@ -12,6 +12,8 @@ class FarmerProfileSerializer(serializers.ModelSerializer):
 
 class FarmerFeedbackSerializer(serializers.ModelSerializer):
     order_item = serializers.HiddenField(default=None)
+    rating = serializers.IntegerField(required=True, max_value=5, min_value=1)
+    feedback = serializers.CharField(required=True)
 
     class Meta:
         model = FarmerFeedback
