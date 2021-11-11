@@ -50,7 +50,7 @@ jobs:
     - name: Upload static to S3
       uses: jakejarvis/s3-sync-action@master
       env:
-        AWS_S3_BUCKET: "dev-egreen"
+        AWS_S3_BUCKET: "prod-egreen"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: "eu-north-1"
@@ -62,5 +62,5 @@ jobs:
       with:
         token: ${{ secrets.PAT_TOKEN }}
         repository: egfood/egreen_infra
-        event-type: update_stage_tag
+        event-type: update_tag
         client-payload: '{"tag": "${{ steps.get-version.outputs.tag }}"}'
