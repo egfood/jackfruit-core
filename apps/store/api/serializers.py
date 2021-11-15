@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
 from apps.store.models.location import Location
-from apps.store.models.order import FoodOrder
+from apps.store.models.order import FoodOrder, ORDER_STATE
 from apps.store.models.order_item import FoodOrderItem
 
 
 class FoodOrderSerializer(serializers.ModelSerializer):
-    state = serializers.HiddenField(default=FoodOrder.ORDER_STATE_CHOICES[0][0])
+    state = serializers.HiddenField(default=ORDER_STATE.created)
 
     class Meta:
         model = FoodOrder

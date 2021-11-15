@@ -4,7 +4,7 @@ from django.contrib import admin
 # TODO: The file must be reworked for updated models
 from .models.delivery import FoodDelivery
 from .models.location import Location
-from .models.order import FoodOrder
+from .models.order import FoodOrder, ORDER_STATE
 from .models.order_item import FoodOrderItem
 from .models.product import RootProduct
 from .models.product_category import ProductCategory
@@ -38,15 +38,19 @@ class FoodDeliveryAdmin(admin.ModelAdmin):
 
 @admin.register(FoodOrder)
 class FoodOrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'delivery', 'buyer', 'total_cost', 'location', 'state', 'date_updated', 'date_creation')
-    list_filter = ('delivery', 'buyer', 'date_creation', 'date_updated', 'location', 'state')
-    ordering = ('id', 'delivery', 'buyer', 'date_creation', 'date_updated', 'location', 'state')
+    list_display = (
+        'id', 'delivery', 'buyer', 'total_cost', 'location', 'state', 'payment_type', 'date_updated',
+        'date_creation'
+    )
+    list_filter = ('delivery', 'buyer', 'date_creation', 'date_updated', 'location', 'state', 'payment_type')
+    ordering = ('id', 'delivery', 'buyer', 'date_creation', 'date_updated', 'location', 'state', 'payment_type')
 
 
 @admin.register(FoodOrderItem)
 class FoodOrderItemAdmin(admin.ModelAdmin):
     list_display = (
-        'product', 'order', 'delivery_short_name', 'value', 'actual_value', 'item_total', 'date_creation', 'date_updated'
+        'product', 'order', 'delivery_short_name', 'value', 'actual_value', 'item_total', 'date_creation',
+        'date_updated'
     )
     list_filter = ('order', 'product', 'date_creation', 'date_updated')
     ordering = ('product', 'value', 'actual_value', 'date_creation', 'date_updated')
