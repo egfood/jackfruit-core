@@ -13,4 +13,4 @@ class RootProduct(FoodAbstract):
                                  related_name='root_product')
 
     def __str__(self):
-        return f'[Продукт]{self.name}'
+        return f'Б. пр. #{self.id} - {self.name}'

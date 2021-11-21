@@ -28,7 +28,7 @@ class FarmerProduct(FoodAbstract):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
     def __str__(self):
-        return f"Продукт #{self.product.id} [фермер={self.farmer.name}#{self.farmer.id}]"
+        return f"Фер. пр. #{self.product.id} - {self.product.name} [фермер={self.farmer.name}#{self.farmer.id}]"
 
     @classmethod
     def get_visible_products(cls, farmer_products_queryset=None, category_pk=None):
