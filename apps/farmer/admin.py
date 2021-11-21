@@ -21,7 +21,9 @@ class FarmerProfileAdmin(admin.ModelAdmin):
 
 @admin.register(FarmerProduct)
 class FarmerProductAdmin(admin.ModelAdmin):
-    list_display = ('farmer', 'value', 'unit', 'size', 'price')
+    list_display = ('product', 'farmer', 'value', 'unit', 'size', 'price')
+    list_filter = ('product', 'farmer', 'size')
+    ordering = ('product', 'farmer', 'size')
 
 
 @admin.register(FarmerFeedback)
