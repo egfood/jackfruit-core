@@ -16,10 +16,10 @@ log = logging.getLogger(__name__)
 class FoodOrderItem(FoodAbstract):
     product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='order_item',
                                 on_delete=models.CASCADE)
-    value = models.PositiveIntegerField(verbose_name=f'Масса (от покупателя) ({settings.WEIGHT_UNIT_ABBREVIATION})',
-                                        blank=True, null=True)
-    actual_value = models.PositiveIntegerField(verbose_name=f'Фактическая масса ({settings.WEIGHT_UNIT_ABBREVIATION})',
-                                               blank=True, null=True)
+    value = models.DecimalField(verbose_name=f'Масса (от покупателя)', blank=True, null=True, max_digits=10,
+                                decimal_places=2)
+    actual_value = models.DecimalField(verbose_name=f'Фактическая масса', blank=True, null=True, max_digits=10,
+                                       decimal_places=2)
     order = models.ForeignKey(FoodOrder, verbose_name='Заказ', related_name='order_item', on_delete=models.CASCADE)
 
     @classmethod
@@ -76,7 +76,7 @@ class FoodOrderItem(FoodAbstract):
 
     @cached_property
     def text_weight(self):
-        return f"{self.weight} {settings.WEIGHT_UNIT_ABBREVIATION}"
+        return f"{self.weight} {self.product.unit}"
 
     @cached_property
     def text_safety_weight(self):

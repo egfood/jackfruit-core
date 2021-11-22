@@ -99,13 +99,6 @@ class FoodOrder(FoodAbstract):
         return self._order_weight
 
     @property
-    def text_total_weight(self):
-        if self._text_order_weight is None:
-            total_weight = sum([order_item.weight for order_item in self.order_items_related])
-            self._text_order_weight = f"{total_weight} {settings.WEIGHT_UNIT_ABBREVIATION}"
-        return self._text_order_weight
-
-    @property
     def text_delivery(self):
         if self._text_delivery is None:
             self._text_delivery = self.delivery.short_name
