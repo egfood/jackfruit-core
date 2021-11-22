@@ -26,7 +26,7 @@ class SubmitOrderEndpoint(UpdateAPIView):
         return obj
 
     def perform_update(self, serializer):
-        serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE_CHOICES[1][0])
+        serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE.awaiting_processing.name)
 
 
 class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):

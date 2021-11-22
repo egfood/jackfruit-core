@@ -49,17 +49,21 @@ class FoodOrderAdmin(admin.ModelAdmin):
 @admin.register(FoodOrderItem)
 class FoodOrderItemAdmin(admin.ModelAdmin):
     list_display = (
-        'product', 'order', 'delivery_short_name', 'value', 'actual_value', 'item_total', 'date_creation',
-        'date_updated'
+        'product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated'
     )
     list_filter = ('order', 'product', 'date_creation', 'date_updated')
     ordering = ('product', 'value', 'actual_value', 'date_creation', 'date_updated')
-    readonly_fields = ('get_unit',)
 
-    def get_unit(self, obj):
-        return obj.product.unit
+    def get_text_item_total(self, obj):
+        return obj.text_item_total
 
-    get_unit.short_description = 'ед. измерения'
+    get_text_item_total.short_description = 'итого'
+
+    def get_text_total_weight(self, obj):
+        unit = obj.product.get_unit_display()
+        return f'{obj.value} {unit}/ {obj.actual_value or "---"} {unit if obj.actual_value is not None else ""}'
+
+    get_text_total_weight.short_description = "Объем (покуп./факт.)"
 
 
 @admin.register(Location)

@@ -67,6 +67,7 @@ class FoodOrder(FoodAbstract):
         )
         unique_together = ['delivery', 'buyer', 'location']
 
+    ORDER_STATE = ORDER_STATE
     ORDER_STATES_WHEN_ORDER_WAS_SENT = ('awaiting_processing', 'delivered')
 
     PAYMENT_TYPE_CHOICES = (
@@ -127,8 +128,7 @@ class FoodOrder(FoodAbstract):
 
     @cached_property
     def order_items_related(self):
-        from .order_item import FoodOrderItem
-        return FoodOrderItem.objects.all()
+        return self.order_item.all()
 
     @cached_property
     def is_order_sent_by_user(self):

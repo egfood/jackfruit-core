@@ -1,4 +1,5 @@
 import logging
+from decimal import Decimal
 from functools import cached_property
 from typing import Tuple
 
@@ -62,7 +63,19 @@ class FoodOrderItem(FoodAbstract):
 
     @cached_property
     def item_total(self):
-        return round(self.weight * self.product.price / int(self.product.value), 2)
+        return self.get_item_total(volume_from_buyer=self.weight, price=self.product.price,
+                                   value_per_price=self.product.value)
+
+    @cached_property
+    def item_total_from_buyer(self):
+        if self.value is None:
+            raise ValueError(f"Value of product from buyer is not defined.")
+        return self.get_item_total(volume_from_buyer=self.value, price=self.product.price,
+                                   value_per_price=self.product.value)
+
+    @staticmethod
+    def get_item_total(volume_from_buyer: Decimal, price: Decimal, value_per_price: Decimal) -> Decimal:
+        return round(volume_from_buyer * price / value_per_price, 2)
 
     @cached_property
     def text_item_total(self):
