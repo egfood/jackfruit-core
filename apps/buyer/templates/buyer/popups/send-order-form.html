@@ -8,7 +8,8 @@
         <span class="close close1"></span>
 
         <h2>Оформление заказа</h2>
-        <form id="jform-send-order-js" action="" data-api-locations-list-url="{% url "store_api:location" %}"
+        <form id="jform-send-order-js" action=""
+              data-api-locations-list-url="{% url "store_api:location" %}?add_location_type=office"
               data-api-order-update-url="{% url "store_api:order-submit" %}" data-csrf="{{ csrf_token }}">
 
             {{ order_form.location.label_tag }}
