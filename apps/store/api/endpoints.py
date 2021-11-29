@@ -2,7 +2,7 @@ from functools import cached_property
 
 from django.db.models import Q
 from rest_framework.generics import (
-    RetrieveUpdateDestroyAPIView, ListCreateAPIView, UpdateAPIView, get_object_or_404 as drf_get_object_or_404
+    RetrieveUpdateDestroyAPIView, ListCreateAPIView, RetrieveUpdateAPIView, get_object_or_404 as drf_get_object_or_404
 )
 from rest_framework.mixins import UpdateModelMixin
 
@@ -14,7 +14,7 @@ from .serializers import FoodOrderItemSerializer, LocationSerializer, FoodOrderS
 from ..models.location import LocationStatus
 
 
-class SubmitOrderEndpoint(UpdateAPIView):
+class OrderEndpoint(RetrieveUpdateAPIView):
     serializer_class = FoodOrderSerializer
 
     def get_object(self):

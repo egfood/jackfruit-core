@@ -54,10 +54,10 @@ class FoodOrder(FoodAbstract):
 
     @cached_property
     def total_cost(self):
+        total_cost = sum([order_item.item_total for order_item in self.order_items_related])
         if self.location:
-            total_cost = sum([order_item.item_total for order_item in self.order_items_related])
-            order_cost = total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
-            return order_cost
+            return total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
+        return total_cost
 
     @property
     def total_weight(self):
