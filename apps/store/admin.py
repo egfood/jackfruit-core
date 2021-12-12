@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-# from .admin_actions import ExportCSVMixin
+from .admin_actions import ExportCSVMixin
 # TODO: The file must be reworked for updated models
 from .models.delivery import FoodDelivery
 from .models.location import Location
@@ -27,13 +27,13 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(FoodDelivery)
-# class FoodDeliveryAdmin(admin.ModelAdmin, ExportCSVMixin):
-class FoodDeliveryAdmin(admin.ModelAdmin):
+class FoodDeliveryAdmin(admin.ModelAdmin, ExportCSVMixin):
+# class FoodDeliveryAdmin(admin.ModelAdmin):
     list_display = ('date', 'date_creation', 'date_updated', 'delivery_state_message')
     list_filter = ('date', 'date_creation', 'date_updated')
     ordering = ('date',)
 
-    # actions = ["export_products_to_csv", "export_detail_orders_to_csv"]
+    actions = ["export_products_to_csv", "export_detail_orders_to_csv"]
 
 
 @admin.register(FoodOrder)
@@ -48,9 +48,7 @@ class FoodOrderAdmin(admin.ModelAdmin):
 
 @admin.register(FoodOrderItem)
 class FoodOrderItemAdmin(admin.ModelAdmin):
-    list_display = (
-        'product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated'
-    )
+    list_display = ('product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated')
     list_filter = ('order', 'product', 'date_creation', 'date_updated')
     ordering = ('product', 'value', 'actual_value', 'date_creation', 'date_updated')
 

@@ -108,23 +108,28 @@ class FoodOrder(FoodAbstract):
     @property
     def text_user(self):
         if self._text_user is None:
-            self._text_user = self.buyer.email
+            self._text_user = self.buyer.user
         return self._text_user
 
     @property
     def text_phone(self):
         if self._phone is None:
             try:
-                if self.buyer.is_farmer:
-                    self._phone = self.buyer.profile.phone
-                elif self.buyer.is_buyer:
-                    self._phone = self.location.phone
+                if self.buyer.phone:
+                    self._phone = self.buyer.phone
                 else:
                     log.error("Can't fetch phone number from unknown type of user profile")
                     self._phone = ""
             except AttributeError:
                 self._phone = ""
         return self._phone
+
+    @property
+    def locations(self):
+        if self.location.location_type == 'private':
+            return "НА ДОМ"
+        elif self.location.location_type == 'office':
+            return "ОФИС"
 
     @cached_property
     def order_items_related(self):

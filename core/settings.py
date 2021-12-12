@@ -202,12 +202,12 @@ WEIGHT_UNIT_ABBREVIATION = "гр."
 CURRENT_CURRENCY = "Br"
 CSV_EXPORT_COLUMN_NAMES = {
     "PRODUCTS_IN_DELIVERY": {
-        'id': 'id', 'name': 'название', 'price_by_weight': f'цена за вес, {CURRENT_CURRENCY}',
+        'id': 'id', 'product': 'название', 'price_by_weight': f'цена за вес, {CURRENT_CURRENCY}',
         'total_weight': 'общий вес', 'total_price': 'итого', 'orders_count': 'заказов', 'farmer': 'фермер'
     },
     "ORDERS_IN_DELIVERY": {
         'id': 'id', 'text_delivery': 'Доставка', 'text_user': 'Имя', 'total_cost': f'всего, {CURRENT_CURRENCY}',
-        'home': 'домашний адрес', 'office': 'адрес офиса', 'text_phone': 'Телефон'
+        'locations': 'Пункт доставки', 'text_phone': 'Телефон'
     },
     "ORDER_POSITION_IN_DELIVERY": {
         'id': 'id позиции заказа', 'product': 'наименование', 'item_total': f'цена позиции, {CURRENT_CURRENCY}',
