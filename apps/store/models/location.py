@@ -5,10 +5,18 @@ from django.db import models
 from django.db.models import QuerySet
 
 from core.models import FoodAbstract, GreenUser
+from core.status_engine import StatusEnum
+
+
+class LocationStatus(StatusEnum):
+    private = 'частный'
+    office = 'офис'
 
 
 class Location(FoodAbstract):
     SHORT_NAME_CHOICES = settings.OFFICES_SHORT_NAME_CHOICES
+
+    LOCATION_TYPE_CHOICES = LocationStatus
 
     CITY_TYPE_CHOICES = (
         ('city', 'город'),
@@ -30,13 +38,8 @@ class Location(FoodAbstract):
         ('other', 'другое'),
     )
 
-    LOCATION_TYPE_CHOICES = (
-        ('private', 'частный'),
-        ('office', 'офис'),
-    )
-
-    location_type = models.CharField('Тип адреса', max_length=10, choices=LOCATION_TYPE_CHOICES,
-                                     default=LOCATION_TYPE_CHOICES[0][0])
+    location_type = models.CharField('Тип адреса', max_length=10, choices=LocationStatus.get_as_list(),
+                                     default=LocationStatus.private.name)
 
     name = models.CharField('Имя', max_length=200)
     phone = models.CharField("Телефон", max_length=15)
@@ -64,14 +67,14 @@ class Location(FoodAbstract):
                              on_delete=models.SET_NULL, null=True)
 
     def is_private(self):
-        return self.location_type == self.LOCATION_TYPE_CHOICES[0][0]
+        return self.location_type == self.LOCATION_TYPE_CHOICES.private.name
 
     def is_office(self):
-        return self.location_type == self.LOCATION_TYPE_CHOICES[1][0]
+        return self.location_type == self.LOCATION_TYPE_CHOICES.office.name
 
     def __str__(self):
         if self.is_office():
-            result = f'Офис {self.office_name}#{self.id}'
+            result = f'Офис {self.office_name}' if self.office_name else f'Офис #{self.id}'
         elif self.is_private():
             result = f'{self.get_street_type_display()} {self.street_value}'
             if self.building:

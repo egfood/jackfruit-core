@@ -8,8 +8,9 @@
         <span class="close close1"></span>
 
         <h2>Оформление заказа</h2>
-        <form id="jform-send-order-js" action="" data-api-locations-list-url="{% url "store_api:location" %}"
-              data-api-order-update-url="{% url "store_api:order-submit" %}" data-csrf="{{ csrf_token }}">
+        <form id="jform-send-order-js" action=""
+              data-api-locations-list-url="{% url "store_api:location" %}?add_location_type=office"
+              data-api-order-update-url="{% url "store-api:order" %}" data-csrf="{{ csrf_token }}">
 
             {{ order_form.location.label_tag }}
             <div style="cursor: pointer;" class="jshow-add-location-js">
@@ -36,7 +37,7 @@
 
             </div>
             <div class="productPrice">Стоимость заказа
-                <span class="totalOrderPrice">{{ order_total }}</span>
+                <span class="totalOrderPrice jorder-total-text-js">{{ order_total }}</span>
                 <span>руб.</span>
             </div>
             <div class="formButtons">

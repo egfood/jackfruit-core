@@ -10,13 +10,22 @@ class FoodOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FoodOrder
-        fields = ['state', 'location', 'payment_type']
+        fields = ['state', 'location', 'payment_type', 'total_cost']
+
+    def get_total_cost(self, instance):
+        return instance.total_cost
 
 
 class FoodOrderItemSerializer(serializers.ModelSerializer):
+    item_total = serializers.SerializerMethodField()
+
     class Meta:
         model = FoodOrderItem
-        fields = ['value']
+        fields = ['value', 'item_total']
+
+    def get_item_total(self, instance):
+        return instance.item_total
+
 
 
 class LocationSerializer(serializers.ModelSerializer):

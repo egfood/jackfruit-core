@@ -1,7 +1,8 @@
 from functools import cached_property
 
+from django.db.models import Q
 from rest_framework.generics import (
-    RetrieveUpdateDestroyAPIView, ListCreateAPIView, UpdateAPIView, get_object_or_404 as drf_get_object_or_404
+    RetrieveUpdateDestroyAPIView, ListCreateAPIView, RetrieveUpdateAPIView, get_object_or_404 as drf_get_object_or_404
 )
 from rest_framework.mixins import UpdateModelMixin
 
@@ -10,10 +11,10 @@ from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
 from .exceptions import HasNoActiveDelivery
 from .serializers import FoodOrderItemSerializer, LocationSerializer, FoodOrderSerializer
-from ..models.location import Location
+from ..models.location import LocationStatus
 
 
-class SubmitOrderEndpoint(UpdateAPIView):
+class OrderEndpoint(RetrieveUpdateAPIView):
     serializer_class = FoodOrderSerializer
 
     def get_object(self):
@@ -90,4 +91,11 @@ class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
     serializer_class = LocationSerializer
 
     def get_queryset(self):
-        return Location.objects.filter(user=self.request.user)
+        is_added_location_type = self.request.query_params.get("add_location_type")
+
+        # Need to refactoring by pattern matching from Python 3.10
+        qs_filter = Q(user=self.request.user)
+        if is_added_location_type == LocationStatus.office.name:
+            qs_filter = qs_filter | Q(location_type=LocationStatus.office.name)
+
+        return self.serializer_class.Meta.model.objects.filter(qs_filter)
