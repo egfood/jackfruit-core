@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'health_check.db',
     'django_summernote',
     'rest_framework',
+    'simple_history',
 ]
 
 REST_FRAMEWORK = {
@@ -78,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -221,6 +223,7 @@ BUYER_BALANCE_VALUE_HINT1 = "'+': проект должен покупателю
 BUYER_BALANCE_VALUE_HINT2 = "'-': покупатель должен проекту"
 BUYER_BALANCE_VALUE_HINT = BUYER_BALANCE_VALUE_HINT1 + BUYER_BALANCE_VALUE_HINT2
 MAX_PRODUCT_RATING = 5
+SIMPLE_HISTORY_REVERT_DISABLED=True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 

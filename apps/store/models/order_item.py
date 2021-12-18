@@ -15,6 +15,9 @@ log = logging.getLogger(__name__)
 
 
 class FoodOrderItem(FoodAbstract):
+    # historical_product needs for the calculation of a specific order/order_item
+    historical_product = models.ForeignKey(FarmerProduct.history.model, verbose_name='Историчный фермерский продукт',
+                                           related_name='order_item', on_delete=models.CASCADE)
     product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='order_item',
                                 on_delete=models.CASCADE)
     value = models.DecimalField(verbose_name=f'Масса (от покупателя)', blank=True, null=True, max_digits=10,
@@ -63,8 +66,8 @@ class FoodOrderItem(FoodAbstract):
 
     @cached_property
     def item_total(self):
-        return self.get_item_total(volume_from_buyer=self.weight, price=self.product.price,
-                                   value_per_price=self.product.value)
+        return self.get_item_total(volume_from_buyer=self.weight, price=self.historical_product.price,
+                                   value_per_price=self.historical_product.value)
 
     @cached_property
     def item_total_from_buyer(self):

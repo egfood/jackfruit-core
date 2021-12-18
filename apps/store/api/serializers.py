@@ -27,13 +27,13 @@ class FoodOrderItemSerializer(serializers.ModelSerializer):
         return instance.item_total
 
 
-
 class LocationSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Location
         fields = (
-        'id', 'short_address', 'full_address', 'user', 'location_type', 'name', 'phone', 'office_name', 'office_name',
-        'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
-        'floor', 'room')
+            'id', 'short_address', 'full_address', 'user', 'location_type', 'name', 'phone', 'office_name',
+            'office_name',
+            'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
+            'floor', 'room')

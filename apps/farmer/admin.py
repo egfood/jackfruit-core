@@ -1,8 +1,9 @@
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 
-from apps.farmer.models.profile import FarmerProfile
-from apps.farmer.models.product import FarmerProduct
 from apps.farmer.models.feedback import FarmerFeedback
+from apps.farmer.models.product import FarmerProduct
+from apps.farmer.models.profile import FarmerProfile
 
 
 @admin.register(FarmerProfile)
@@ -20,8 +21,9 @@ class FarmerProfileAdmin(admin.ModelAdmin):
 
 
 @admin.register(FarmerProduct)
-class FarmerProductAdmin(admin.ModelAdmin):
+class FarmerProductAdmin(SimpleHistoryAdmin):
     list_display = ('product', 'farmer', 'value', 'unit', 'size', 'price')
+    history_list_display = ['value', 'unit', 'price']
     list_filter = ('product', 'farmer', 'size')
     ordering = ('product', 'farmer', 'size')
 

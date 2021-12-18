@@ -6,6 +6,7 @@ from rest_framework.generics import (
 )
 from rest_framework.mixins import UpdateModelMixin
 
+from apps.farmer.models.product import FarmerProduct
 from apps.store.models.delivery import FoodDelivery
 from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
@@ -84,7 +85,9 @@ class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
             'buyer': self.request.user.profile
         }
         order, _ = FoodOrder.objects.get_or_create(**order_args)
-        return {'order': order, 'product_id': farmer_product_pk}
+        farmer_product = FarmerProduct.objects.get(pk=farmer_product_pk)
+        historical_product = farmer_product.history.latest()
+        return {'order': order, 'product_id': farmer_product_pk, 'historical_product': historical_product}
 
 
 class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):

@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.db import models
 from django.db.models import Avg
+from simple_history.models import HistoricalRecords
 
 from apps.store.models.product import RootProduct
 from core.models import FoodAbstract
@@ -26,6 +28,7 @@ class FarmerProduct(FoodAbstract):
                             default=UNIT_PRODUCT[0][0])
     size = models.CharField(max_length=1, choices=SIZE_CHOICES, verbose_name='Размер', default=SIZE_CHOICES[1][0])
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
+    history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 
     def __str__(self):
         return f"Фер. пр. #{self.product.id} - {self.product.name} [фермер={self.farmer.name}#{self.farmer.id}]"
