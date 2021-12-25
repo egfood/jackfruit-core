@@ -1,4 +1,5 @@
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 
 from .admin_actions import ExportCSVMixin
 # TODO: The file must be reworked for updated models
@@ -8,14 +9,15 @@ from .models.order import FoodOrder
 from .models.order_item import FoodOrderItem
 from .models.product import RootProduct
 from .models.product_category import ProductCategory
+from .models.trade_margin import TradeMargin
 
 
 @admin.register(RootProduct)
 class RootProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_visible', 'category', 'date_creation', 'date_updated')
-    list_filter = ('is_visible', 'category', 'date_creation', 'date_updated')
+    list_display = ('name', 'is_visible', 'category', 'trade_margin', 'date_creation', 'date_updated')
+    list_filter = ('is_visible', 'category', 'date_creation', 'date_updated', 'trade_margin')
     search_fields = ('name',)
-    ordering = ('name', 'is_visible', 'category', 'date_creation', 'date_updated')
+    ordering = ('name', 'is_visible', 'category', 'trade_margin', 'date_creation', 'date_updated')
 
 
 @admin.register(ProductCategory)
@@ -48,8 +50,8 @@ class FoodOrderAdmin(admin.ModelAdmin):
 
 @admin.register(FoodOrderItem)
 class FoodOrderItemAdmin(admin.ModelAdmin):
-    list_display = ('product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated')
-    list_filter = ('order', 'product', 'date_creation', 'date_updated')
+    list_display = ('product', 'historical_product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated')
+    list_filter = ('order', 'product', 'date_creation', 'historical_product', 'date_updated')
     ordering = ('product', 'value', 'actual_value', 'date_creation', 'date_updated')
 
     def get_text_item_total(self, obj):
@@ -75,3 +77,14 @@ class LocationAdmin(admin.ModelAdmin):
         'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
         'floor', 'room', 'sort_key'
     )
+
+@admin.register(TradeMargin)
+class TradeMarginAdmin(SimpleHistoryAdmin):
+    list_display = ('get_total', 'backoffice_margin', 'dev_margin')
+    history_list_display = ('get_total', 'backoffice_margin', 'dev_margin')
+    ordering = ('backoffice_margin', 'dev_margin')
+
+    def get_total(self, obj):
+        return obj.total
+
+    get_total.short_description = 'общая наценка, %'

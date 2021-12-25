@@ -22,10 +22,13 @@ class FarmerProfileAdmin(admin.ModelAdmin):
 
 @admin.register(FarmerProduct)
 class FarmerProductAdmin(SimpleHistoryAdmin):
-    list_display = ('product', 'farmer', 'value', 'unit', 'size', 'price')
+    list_display = ('product', 'farmer', 'value', 'unit', 'size', 'price', 'trade_price')
     history_list_display = ['value', 'unit', 'price']
     list_filter = ('product', 'farmer', 'size')
     ordering = ('product', 'farmer', 'size')
+
+    def get_trade_price(self, obj):
+        return obj.trade_price
 
 
 @admin.register(FarmerFeedback)

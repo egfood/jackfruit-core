@@ -1,3 +1,5 @@
+from functools import cached_property
+
 from django.conf import settings
 from django.db import models
 from django.db.models import Avg
@@ -48,4 +50,14 @@ class FarmerProduct(FoodAbstract):
         )
         if return_dict_by_pk:
             return {qs['pk']: qs['average_rating'] for qs in result}
-        return  result
+        return result
+
+    @cached_property
+    def trade_price(self):
+        root_product_trade_margin = self.product.trade_margin
+        if root_product_trade_margin is not None:
+            from apps.store.models.trade_margin import TradeMargin
+            trade_margin = TradeMargin.get_historical_total(root_product_trade_margin) / 100
+            return round(self.price * (1 + trade_margin), 2)
+        else:
+            return self.price

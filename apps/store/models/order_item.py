@@ -9,6 +9,7 @@ from django.db.models import QuerySet
 
 from apps.farmer.models.product import FarmerProduct
 from core.models import FoodAbstract
+
 from .order import FoodOrder
 
 log = logging.getLogger(__name__)
@@ -20,9 +21,9 @@ class FoodOrderItem(FoodAbstract):
                                            related_name='order_item', on_delete=models.CASCADE)
     product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='order_item',
                                 on_delete=models.CASCADE)
-    value = models.DecimalField(verbose_name=f'Масса (от покупателя)', blank=True, null=True, max_digits=10,
+    value = models.DecimalField(verbose_name='Масса (от покупателя)', blank=True, null=True, max_digits=10,
                                 decimal_places=2)
-    actual_value = models.DecimalField(verbose_name=f'Фактическая масса', blank=True, null=True, max_digits=10,
+    actual_value = models.DecimalField(verbose_name='Фактическая масса', blank=True, null=True, max_digits=10,
                                        decimal_places=2)
     order = models.ForeignKey(FoodOrder, verbose_name='Заказ', related_name='order_item', on_delete=models.CASCADE)
 
@@ -73,12 +74,21 @@ class FoodOrderItem(FoodAbstract):
     def item_total_from_buyer(self):
         if self.value is None:
             raise ValueError(f"Value of product from buyer is not defined.")
-        return self.get_item_total(volume_from_buyer=self.value, price=self.product.price,
-                                   value_per_price=self.product.value)
+        return self.get_item_total(volume_from_buyer=self.value, price=self.historical_product.price,
+                                   value_per_price=self.historical_product.value)
 
-    @staticmethod
-    def get_item_total(volume_from_buyer: Decimal, price: Decimal, value_per_price: Decimal) -> Decimal:
-        return round(volume_from_buyer * price / value_per_price, 2)
+    def get_item_total(self, volume_from_buyer: Decimal, price: Decimal, value_per_price: Decimal) -> Decimal:
+        base_total = volume_from_buyer * price / value_per_price
+        if self.trade_margin is not None:
+            total = base_total * (1 + self.trade_margin)
+        else:
+            total = base_total
+        return round(total, 2)
+
+    @cached_property
+    def trade_margin(self):
+        from apps.store.models.trade_margin import TradeMargin
+        return TradeMargin.get_historical_total(self.product.product.trade_margin) / 100
 
     @cached_property
     def text_item_total(self):
