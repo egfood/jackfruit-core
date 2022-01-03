@@ -209,7 +209,7 @@ CSV_EXPORT_COLUMN_NAMES = {
     },
     "ORDERS_IN_DELIVERY": {
         'id': 'id', 'text_delivery': 'Доставка', 'text_user': 'Имя', 'total_cost': f'всего, {CURRENT_CURRENCY}',
-        'locations': 'Пункт доставки', 'text_phone': 'Телефон'
+        'location': 'Пункт доставки', 'text_phone': 'Телефон'
     },
     "ORDER_POSITION_IN_DELIVERY": {
         'id': 'id позиции заказа', 'product': 'наименование', 'item_total': f'цена позиции, {CURRENT_CURRENCY}',
