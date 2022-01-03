@@ -50,9 +50,11 @@ class FoodOrderAdmin(admin.ModelAdmin):
 
 @admin.register(FoodOrderItem)
 class FoodOrderItemAdmin(admin.ModelAdmin):
-    list_display = ('product', 'historical_product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated')
-    list_filter = ('order', 'product', 'date_creation', 'historical_product', 'date_updated')
+    list_display = ('product', 'order', 'get_text_total_weight', 'get_text_item_total', 'date_creation', 'date_updated')
+    history_list_display = ('price', 'value', 'actual_value', 'value_per_price', 'trade_margin')
+    list_filter = ('order', 'product', 'date_creation', 'date_updated')
     ordering = ('product', 'value', 'actual_value', 'date_creation', 'date_updated')
+    readonly_fields = ('price', 'trade_margin', 'text_item_total')
 
     def get_text_item_total(self, obj):
         return obj.text_item_total
@@ -69,19 +71,19 @@ class FoodOrderItemAdmin(admin.ModelAdmin):
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building',
-        'porch', 'floor', 'room', 'sort_key'
+        'office_name', 'user', 'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value',
+        'building', 'porch', 'floor', 'room', 'sort_key'
     )
     list_filter = ('user', 'location_type', 'city_value', 'city_district', 'street_value', 'building', 'sort_key')
     ordering = (
-        'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
+        'office_name', 'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
         'floor', 'room', 'sort_key'
     )
 
 @admin.register(TradeMargin)
 class TradeMarginAdmin(SimpleHistoryAdmin):
     list_display = ('get_total', 'backoffice_margin', 'dev_margin')
-    history_list_display = ('get_total', 'backoffice_margin', 'dev_margin')
+    history_list_display = ('backoffice_margin', 'dev_margin')
     ordering = ('backoffice_margin', 'dev_margin')
 
     def get_total(self, obj):

@@ -41,8 +41,8 @@ class Location(FoodAbstract):
     location_type = models.CharField('Тип адреса', max_length=10, choices=LocationStatus.get_as_list(),
                                      default=LocationStatus.private.name)
 
-    name = models.CharField('Имя', max_length=200)
-    phone = models.CharField("Телефон", max_length=15)
+    name = models.CharField('Имя', max_length=200, null=True, blank=True)
+    phone = models.CharField("Телефон", max_length=15, null=True, blank=True)
 
     office_name = models.TextField('Короткое название офиса', max_length=settings.OFFICES_SHORT_NAME_LENGTH,
                                    default='', blank=True)

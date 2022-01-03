@@ -14,7 +14,7 @@ class RootProduct(FoodAbstract):
     description = models.TextField('Описание продукта', blank=True)
     category = models.ForeignKey(ProductCategory, on_delete=models.SET_NULL, verbose_name="Категория", null=True,
                                  related_name='root_product')
-    trade_margin = models.ForeignKey(TradeMargin.history.model, on_delete=models.SET_NULL, verbose_name="Наценка",
+    trade_margin = models.ForeignKey(TradeMargin, on_delete=models.SET_NULL, verbose_name="Наценка",
                                      blank=True, null=True, default=None, related_name='root_product')
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 

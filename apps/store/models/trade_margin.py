@@ -8,9 +8,9 @@ from core.models import FoodAbstract
 
 
 class TradeMargin(FoodAbstract):
-    backoffice_margin = models.DecimalField(verbose_name='Наценка бэкофиса, %', blank=True, default=0, max_digits=4,
+    backoffice_margin = models.DecimalField(verbose_name='Наценка бэкофиса, %', blank=True, default=0, max_digits=5,
                                             decimal_places=2)
-    dev_margin = models.DecimalField(verbose_name='Наценка разработчиков, %', blank=True, default=0, max_digits=4,
+    dev_margin = models.DecimalField(verbose_name='Наценка разработчиков, %', blank=True, default=0, max_digits=5,
                                      decimal_places=2)
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 

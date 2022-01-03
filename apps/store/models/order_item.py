@@ -6,26 +6,31 @@ from typing import Tuple
 from django.conf import settings
 from django.db import models
 from django.db.models import QuerySet
+from simple_history.models import HistoricalRecords
 
 from apps.farmer.models.product import FarmerProduct
 from core.models import FoodAbstract
-
+from .product import RootProduct
 from .order import FoodOrder
 
 log = logging.getLogger(__name__)
 
 
 class FoodOrderItem(FoodAbstract):
-    # historical_product needs for the calculation of a specific order/order_item
-    historical_product = models.ForeignKey(FarmerProduct.history.model, verbose_name='Историчный фермерский продукт',
-                                           related_name='order_item', on_delete=models.CASCADE)
     product = models.ForeignKey(FarmerProduct, verbose_name='Фермерский продукт', related_name='order_item',
                                 on_delete=models.CASCADE)
-    value = models.DecimalField(verbose_name='Масса (от покупателя)', blank=True, null=True, max_digits=10,
+    value = models.DecimalField(verbose_name='Объем/Кол./Вес (от покупателя)', blank=True, null=True, max_digits=10,
                                 decimal_places=2)
-    actual_value = models.DecimalField(verbose_name='Фактическая масса', blank=True, null=True, max_digits=10,
+    actual_value = models.DecimalField(verbose_name='Фактический Объем/Кол./Вес', blank=True, null=True, max_digits=10,
                                        decimal_places=2)
     order = models.ForeignKey(FoodOrder, verbose_name='Заказ', related_name='order_item', on_delete=models.CASCADE)
+    history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена (заполняется автоматически)',
+                                blank=True, null=None)
+    value_per_price = models.DecimalField(max_digits=10, decimal_places=1, null=True, blank=True,
+                                          verbose_name='Объем/Кол./Вес за цену (заполняется автоматически)')
+    trade_margin = models.DecimalField(verbose_name='Общая наценка (заполняется автоматически), %', blank=True,
+                                       default=0, max_digits=5, decimal_places=2)
 
     @classmethod
     def get_buyer_cart_total(cls, buyer_profile, delivery) -> float:
@@ -67,31 +72,30 @@ class FoodOrderItem(FoodAbstract):
 
     @cached_property
     def item_total(self):
-        return self.get_item_total(volume_from_buyer=self.weight, price=self.historical_product.price,
-                                   value_per_price=self.historical_product.value)
+        return self.get_item_total(volume_from_buyer=self.weight, price=self.price,
+                                   value_per_price=self.value_per_price)
 
     @cached_property
-    def item_total_from_buyer(self):
+    def item_total_from_buyer(self) -> Decimal:
         if self.value is None:
             raise ValueError(f"Value of product from buyer is not defined.")
-        return self.get_item_total(volume_from_buyer=self.value, price=self.historical_product.price,
-                                   value_per_price=self.historical_product.value)
+        return self.get_item_total(volume_from_buyer=self.value, price=self.price,
+                                   value_per_price=self.value_per_price)
 
     def get_item_total(self, volume_from_buyer: Decimal, price: Decimal, value_per_price: Decimal) -> Decimal:
         base_total = volume_from_buyer * price / value_per_price
         if self.trade_margin is not None:
-            total = base_total * (1 + self.trade_margin)
+            total = base_total * (1 + self.trade_margin_in_hundredths)
         else:
             total = base_total
         return round(total, 2)
 
     @cached_property
-    def trade_margin(self):
-        from apps.store.models.trade_margin import TradeMargin
-        return TradeMargin.get_historical_total(self.product.product.trade_margin) / 100
+    def trade_margin_in_hundredths(self) -> Decimal:
+        return self.trade_margin / 100
 
     @cached_property
-    def text_item_total(self):
+    def text_item_total(self) -> str:
         return f'{self.item_total} {settings.CURRENT_CURRENCY}'
 
     @cached_property
@@ -125,3 +129,14 @@ class FoodOrderItem(FoodAbstract):
 
     def __str__(self):
         return f'Позиция {self.value} г. {self.product}[{self.order}]'
+
+    def save(self, *args, **kwargs):
+        farmer_product = self.product
+        if isinstance(farmer_product, FarmerProduct) :
+            self.price = farmer_product.price
+            self.value_per_price = farmer_product.value
+            root_product = farmer_product.product
+            if isinstance(root_product, RootProduct):
+                self.trade_margin = root_product.trade_margin.total
+        super().save(*args, **kwargs)
+

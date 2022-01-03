@@ -85,9 +85,7 @@ class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
             'buyer': self.request.user.profile
         }
         order, _ = FoodOrder.objects.get_or_create(**order_args)
-        farmer_product = FarmerProduct.objects.get(pk=farmer_product_pk)
-        historical_product = farmer_product.history.latest()
-        return {'order': order, 'product_id': farmer_product_pk, 'historical_product': historical_product}
+        return {'order': order, 'product_id': farmer_product_pk, }
 
 
 class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
