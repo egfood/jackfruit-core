@@ -21,6 +21,8 @@ from environs import Env
 from core.emailer.mailgun_sender import MailGunSender
 from core.emailer.stub_sender import StubSender
 
+VERSION = '1.5.1.0'
+
 # Create Env object for getting environment variables
 env = Env()
 
@@ -62,6 +64,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'rest_framework',
     'simple_history',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -168,10 +171,6 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application settings
 
-VERSION = '1.5.0.0'
-
-STATIC_URL = urlunsplit(("", env.str('STATIC_DOMAIN_NAME'), VERSION + "/", "", ""))
-
 OFFICES_SHORT_NAMES = [
     ('DM3',),
     ('D104',),
@@ -226,6 +225,18 @@ MAX_PRODUCT_RATING = 5
 SIMPLE_HISTORY_REVERT_DISABLED=True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_STORAGE_BUCKET_NAME = env.str('AWS_BUCKET')
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+AWS_LOCATION = 'media'
+STATIC_URL = urlunsplit(("", env.str('STATIC_DOMAIN_NAME'), VERSION + "/", "", ""))
+
+DEFAULT_FILE_STORAGE = 'core.backends.storage.MediaStorage'
 
 if DEBUG:
     mailer = StubSender()
