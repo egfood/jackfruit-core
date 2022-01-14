@@ -21,7 +21,8 @@ from environs import Env
 from core.emailer.mailgun_sender import MailGunSender
 from core.emailer.stub_sender import StubSender
 
-VERSION = '1.5.1.0'
+with open (".version", "r") as version_file:
+    VERSION=version_file.read()
 
 # Create Env object for getting environment variables
 env = Env()
