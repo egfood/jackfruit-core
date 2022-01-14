@@ -62,5 +62,5 @@ jobs:
       with:
         token: ${{ secrets.PAT_TOKEN }}
         repository: egfood/egreen_infra
-        event-type: update_stage_tag
+        event-type: update_tag
         client-payload: '{"tag": "${{ steps.get-version.outputs.tag }}"}'
