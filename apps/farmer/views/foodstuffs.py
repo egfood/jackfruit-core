@@ -1,5 +1,7 @@
 from django.conf import settings
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from apps.farmer.forms.product import AddFarmerProductForm
 from core.views.mixins import PaginationMixin
@@ -14,10 +16,7 @@ class FarmerFoodstuffsPageView(FarmerBasePagesView, PaginationMixin):
         form = AddFarmerProductForm(data=request.POST, farmer=request.user)
         if form.is_valid():
             form.save()
-            context = self.get_context_data()
-            return render(request, self.template_name, {'form': context['form'],
-                                                        'page': context['page'],
-                                                        'product_list': context['product_list']})
+            return HttpResponseRedirect(reverse('farmer:foodstuffs'))
         else:
             return render(request, self.template_name, {'form': form})
 

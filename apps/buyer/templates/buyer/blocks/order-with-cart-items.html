@@ -13,4 +13,7 @@
 {% include "buyer/blocks/product-item-table.html" %}
 {% include "core/blocks/pagination.html" %}
 
-<p class="totalSum" id="totalSum">Итого: {{ order_total }} руб.</p>
+<p class="totalSum" id="jorder-total-js">
+    Итого: <span class="jorder-total-text-js">{{ order_total }} </span>руб.
+    {% include 'buyer/blocks/order-spinner.html' %}
+</p>

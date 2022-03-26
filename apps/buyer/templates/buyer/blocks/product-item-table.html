@@ -1,6 +1,7 @@
 {% load static %}
 
-<div class="table-responsive">
+<div class="table-responsive" id="jorder-item-table-js" data-api-order-url="{% url "store-api:order" %}"
+     data-csrf="{{ csrf_token }}">
     <table class="table table-hover tableOrders">
         <thead>
         <tr>
@@ -34,18 +35,22 @@
                     </div>
                 </td>
 
-                <td>{{ item.product.price }} за {{ item.product.value }}{{ item.product.get_unit_display }}</td>
+                <td>{{ item.product.trade_price }} за {{ item.product.value }}{{ item.product.get_unit_display }}</td>
 
                 <td>
                     <div class="number">
                         <span class="minus">-</span>
-                        <input type="text" value="{{ item.value }}"/>
+                        <input class="jorder-item-js" type="text" value="{{ item.value }}"
+                               data-order-item-api-url="{% url "store-api:order-item" farmer_product_pk=item.product.pk %}"/>
                         <span class="plus">+</span>
                         <span>&nbsp;{{ item.product.get_unit_display }} </span>
                     </div>
                 </td>
 
-                <td>{{ item.item_total }} руб.</td>
+                <td>
+                    <span class="jorder-item-total-js">{{ item.item_total_from_buyer }}</span> руб.
+                    {% include 'buyer/blocks/order-spinner.html' %}
+                </td>
 
                 <td>
                     <div class="ordersMoreActions">

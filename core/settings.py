@@ -21,6 +21,9 @@ from environs import Env
 from core.emailer.mailgun_sender import MailGunSender
 from core.emailer.stub_sender import StubSender
 
+with open (".version", "r") as version_file:
+    VERSION=version_file.read()
+
 # Create Env object for getting environment variables
 env = Env()
 
@@ -61,6 +64,8 @@ INSTALLED_APPS = [
     'health_check.db',
     'django_summernote',
     'rest_framework',
+    'simple_history',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -78,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -166,10 +172,6 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application settings
 
-VERSION = '1.5.0.0'
-
-STATIC_URL = urlunsplit(("", env.str('STATIC_DOMAIN_NAME'), VERSION + "/", "", ""))
-
 OFFICES_SHORT_NAMES = [
     ('DM3',),
     ('D104',),
@@ -202,12 +204,12 @@ WEIGHT_UNIT_ABBREVIATION = "гр."
 CURRENT_CURRENCY = "Br"
 CSV_EXPORT_COLUMN_NAMES = {
     "PRODUCTS_IN_DELIVERY": {
-        'id': 'id', 'name': 'название', 'price_by_weight': f'цена за вес, {CURRENT_CURRENCY}',
+        'id': 'id', 'product': 'название', 'price_by_weight': f'цена за вес, {CURRENT_CURRENCY}',
         'total_weight': 'общий вес', 'total_price': 'итого', 'orders_count': 'заказов', 'farmer': 'фермер'
     },
     "ORDERS_IN_DELIVERY": {
         'id': 'id', 'text_delivery': 'Доставка', 'text_user': 'Имя', 'total_cost': f'всего, {CURRENT_CURRENCY}',
-        'text_total_weight': 'вес', 'home': 'домашний адрес', 'office': 'адрес офиса', 'text_phone': 'Телефон'
+        'location': 'Пункт доставки', 'text_phone': 'Телефон'
     },
     "ORDER_POSITION_IN_DELIVERY": {
         'id': 'id позиции заказа', 'product': 'наименование', 'item_total': f'цена позиции, {CURRENT_CURRENCY}',
@@ -221,8 +223,21 @@ BUYER_BALANCE_VALUE_HINT1 = "'+': проект должен покупателю
 BUYER_BALANCE_VALUE_HINT2 = "'-': покупатель должен проекту"
 BUYER_BALANCE_VALUE_HINT = BUYER_BALANCE_VALUE_HINT1 + BUYER_BALANCE_VALUE_HINT2
 MAX_PRODUCT_RATING = 5
+SIMPLE_HISTORY_REVERT_DISABLED=True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_STORAGE_BUCKET_NAME = env.str('AWS_BUCKET')
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+AWS_LOCATION = 'media'
+STATIC_URL = urlunsplit(("", env.str('STATIC_DOMAIN_NAME'), VERSION + "/", "", ""))
+
+DEFAULT_FILE_STORAGE = 'core.backends.storage.MediaStorage'
 
 if DEBUG:
     mailer = StubSender()

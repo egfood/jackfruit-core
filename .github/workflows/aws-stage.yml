@@ -14,7 +14,7 @@ jobs:
 
     env:
       REGISTRY: "692500277073.dkr.ecr.eu-north-1.amazonaws.com"
-      IMAGE: "stage_egreen"
+      IMAGE: "stage-jackfruit-core"
 
     steps:
     - name: Checkout
@@ -23,8 +23,8 @@ jobs:
     - name: Get the version
       id: get-version
       run: |
-        branch=$(cut -d "/" -f2 <<< ${GITHUB_REF#refs/heads/})
-        echo ::set-output name=tag::$branch
+        version=$(cat .version)
+        echo ::set-output name=tag::$version
 
     - name: Build, tag, and push image to Amazon ECR
       uses: whoan/docker-build-with-cache-action@v5
