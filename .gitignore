@@ -11,3 +11,4 @@ core/migrations/__pycache__/
 core/views/__pycache__/
 /media
 git
+db.sqlite3
