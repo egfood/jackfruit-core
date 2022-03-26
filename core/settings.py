@@ -21,8 +21,8 @@ from environs import Env
 from core.emailer.mailgun_sender import MailGunSender
 from core.emailer.stub_sender import StubSender
 
-with open (".version", "r") as version_file:
-    VERSION=version_file.read()
+with open(".version", "r") as version_file:
+    VERSION = version_file.read()
 
 # Create Env object for getting environment variables
 env = Env()
@@ -223,25 +223,29 @@ BUYER_BALANCE_VALUE_HINT1 = "'+': проект должен покупателю
 BUYER_BALANCE_VALUE_HINT2 = "'-': покупатель должен проекту"
 BUYER_BALANCE_VALUE_HINT = BUYER_BALANCE_VALUE_HINT1 + BUYER_BALANCE_VALUE_HINT2
 MAX_PRODUCT_RATING = 5
-SIMPLE_HISTORY_REVERT_DISABLED=True
+SIMPLE_HISTORY_REVERT_DISABLED = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+IS_AWS_USED = env.bool('IS_AWS_USED', False)
+if IS_AWS_USED:
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
 
-AWS_STORAGE_BUCKET_NAME = env.str('AWS_BUCKET')
-AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
-AWS_LOCATION = 'media'
+    AWS_STORAGE_BUCKET_NAME = env.str('AWS_BUCKET')
+    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+    AWS_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'core.backends.storage.MediaStorage'
+
 STATIC_URL = urlunsplit(("", env.str('STATIC_DOMAIN_NAME'), VERSION + "/", "", ""))
-
-DEFAULT_FILE_STORAGE = 'core.backends.storage.MediaStorage'
 
 if DEBUG:
     mailer = StubSender()
-else:
+
+IS_MAILGUN_USED = env.bool('IS_MAILGUN_USED', False)
+if IS_MAILGUN_USED and not DEBUG:
     MAILGUN_API_KEY = env.str('MAILGUN_API_KEY')
     MAILGUN_DOMAIN = env.str('MAILGUN_DOMAIN')
     mailer = MailGunSender(MAILGUN_API_KEY, MAILGUN_DOMAIN)
