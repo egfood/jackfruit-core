@@ -13,8 +13,16 @@
     <form action="" method="post">
         {% csrf_token %}
         {% for field in form %}
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
+			{% if field.name != 'captcha' %}
+				<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+				{{ field }}
+			{% else %}
+				<label for="{{ field.id_for_label }}">{{ captcha_label }}</label>
+				<div class="captcha_fields">
+                {{ field }}
+			</div>
+				{{ field.errors }}
+			{% endif %}
         {% endfor %}
         <button type="submit">Войти</button>
         <span class="haveAccount">Забыли пароль? <a href="{% url 'forgot_password' %}">Восстановить</a></span>

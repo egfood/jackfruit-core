@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'simple_history',
     'storages',
+    'captcha',
 ]
 
 REST_FRAMEWORK = {
@@ -249,3 +250,8 @@ if IS_MAILGUN_USED and not DEBUG:
     MAILGUN_API_KEY = env.str('MAILGUN_API_KEY')
     MAILGUN_DOMAIN = env.str('MAILGUN_DOMAIN')
     mailer = MailGunSender(MAILGUN_API_KEY, MAILGUN_DOMAIN)
+
+CAPTCHA_IMAGE_SIZE = (120, 50)
+CAPTCHA_TIMEOUT = 3
+CAPTCHA_LENGTH = 4
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'

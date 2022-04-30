@@ -1,3 +1,5 @@
+import core.settings
+
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -6,6 +8,7 @@ from apps.buyer.forms.profile import BuyerSignupProfileForm
 from apps.buyer.models.profile import BuyerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
+from core.views import captcha_label
 
 
 class BuyerSignupView(CreateView):
@@ -24,6 +27,10 @@ class BuyerSignupView(CreateView):
             http_response = super().form_invalid(form)
         return http_response
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['captcha_label'] = captcha_label()
+        return context
 
 # TODO: After login/logout implementation the view must be decorated login_required
 class BuyerWelcomeView(CreateView):

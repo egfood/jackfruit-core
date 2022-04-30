@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.shortcuts import resolve_url
 
+import core.settings
 from core.forms.login import AuthenticationUserForm
 
 
@@ -13,6 +14,7 @@ class CustomLoginView(LoginView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['version'] = settings.VERSION
+        context['captcha_label'] = captcha_label()
         return context
 
     def get_success_url(self):
@@ -28,3 +30,11 @@ class CustomLoginView(LoginView):
         else:
             view_name = "farmer:foodstuffs" if user.is_farmer else "buyer:home"
             return resolve_url(view_name)
+
+
+def captcha_label():
+    if core.settings.CAPTCHA_CHALLENGE_FUNCT == 'captcha.helpers.math_challenge':
+        label = 'Введите решение примера с картинки'
+    else:
+        label = 'Введите символы с картинки'
+    return label

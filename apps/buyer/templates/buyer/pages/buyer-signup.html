@@ -9,12 +9,19 @@
 {% endblock %}
 {% block fields_signup %}
     {% for field in form %}
+{#		{{ field.name }}#}
         {#            TODO Переопределить виджет#}
-        {% if field.field.widget.input_type != 'checkbox' %}
+        {% if field.field.widget.input_type != 'checkbox' and field.name != 'captcha' %}
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             {{ field }}
             {{ field.errors }}
-        {% else %}
+        {% elif  field.name == 'captcha' %}
+			<label for="{{ field.id_for_label }}">{{ captcha_label }}</label>
+			<div class="captcha_fields">
+                {{ field }}
+			</div>
+			{{ field.errors }}
+			{% else %}
             <div class="checkbox">
                 {{ field }}
                 <label for="{{ field.id_for_label }}">Cоглашаюсь с <a href="buyer/terms_and_conditions_buyer.pdf"

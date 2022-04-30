@@ -2,10 +2,12 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
+import core.settings
 from apps.farmer.forms.profile import FarmerSignupProfileForm
 from apps.farmer.models.profile import FarmerProfile
 from core.forms.user import UserCreationForm
 from core.models import GreenUser
+from core.views import captcha_label
 
 
 class FarmerSignupView(CreateView):
@@ -23,6 +25,11 @@ class FarmerSignupView(CreateView):
         else:
             http_response = super().form_invalid(form)
         return http_response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['captcha_label'] = captcha_label()
+        return context
 
 
 # TODO: After login/logout implementation the view must be decorated login_required

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django import forms
+from captcha.fields import CaptchaField
 
 
 class AuthenticationUserForm(AuthenticationForm):
@@ -8,8 +9,8 @@ class AuthenticationUserForm(AuthenticationForm):
         self.auto_id = "%s"
         self.label_suffix = ''
         self.use_required_attribute = False
-
     username = UsernameField(required=True, label='E-mail', widget=forms.EmailInput(
                             attrs={'autofocus': True, 'placeholder': 'Введите Email', 'id': 'email'}))
+    captcha = CaptchaField()
 
 

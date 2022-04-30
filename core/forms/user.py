@@ -4,6 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core import validators
 
 from core.models import GreenUser
+from captcha.fields import CaptchaField
 
 
 class UserCreationForm(forms.ModelForm):
@@ -19,6 +20,8 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(min_length=8, label="Подтверждение пароля",
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Введите повторно пароль',
                                                                   'id': 'passwordRepeat'}))
+    captcha = CaptchaField()
+
     acceptConditions = forms.BooleanField(initial=True, widget=forms.CheckboxInput(attrs={'id': 'acceptConditions'}))
 
     class Meta:

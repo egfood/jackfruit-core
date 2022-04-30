@@ -143,3 +143,15 @@ button:hover{
     display: flex;
     justify-content: space-between;
 }
+.captcha_fields{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    width: 294px;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.captcha_fields :last-child {
+    width: 147px;
+    margin-bottom: 1px;
+}
