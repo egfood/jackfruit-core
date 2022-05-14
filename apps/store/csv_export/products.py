@@ -33,7 +33,7 @@ class ProductsCSVAssembler(BasicCSVAssembler):
 
             order_items_by_product = search_order_items.filter(product=p)
             if 'price_by_weight' in field_names_keys:
-                current_row['price_by_weight'] = f'{p.price} BYN за {p.unit}'
+                current_row['price_by_weight'] = f'{p.price} {settings.CURRENT_CURRENCY} за {p.unit}'
             if 'total_weight' in field_names_keys:
                 weights = [item.weight for item in
                            list(order_items_by_product)]
@@ -41,7 +41,7 @@ class ProductsCSVAssembler(BasicCSVAssembler):
             if 'total_price' in field_names_keys:
                 prices = [item.item_total for item in
                           list(order_items_by_product)]
-                current_row['total_price'] = f'{sum(prices)} BYN'
+                current_row['total_price'] = f'{sum(prices)} {settings.CURRENT_CURRENCY}'
             if 'orders_count' in field_names_keys:
                 current_row['orders_count'] = len(order_items_by_product)
             csv_rows.append(current_row)
