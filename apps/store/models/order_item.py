@@ -132,7 +132,7 @@ class FoodOrderItem(FoodAbstract):
 
     def save(self, *args, **kwargs):
         farmer_product = self.product
-        if isinstance(farmer_product, FarmerProduct) :
+        if isinstance(farmer_product, FarmerProduct):
             self.price = farmer_product.price
             self.value_per_price = farmer_product.value
             root_product = farmer_product.product

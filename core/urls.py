@@ -46,7 +46,6 @@ urlpatterns = [
                        ChildPasswordResetConfirmView.as_view(template_name='core/pages/confirm_password.html'),
                        name='password_reset_confirm'),
 
-                  re_path(r'^healthcheck/', include('health_check.urls')),
                   path('summernote/', include('django_summernote.urls')),
                   path('api/v1/farmer/', include(farmer_urls, namespace='farmer_api')),
                   path('api/v1/store/', include(store_urls, namespace='store_api')),

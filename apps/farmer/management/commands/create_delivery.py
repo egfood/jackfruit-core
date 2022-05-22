@@ -18,11 +18,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         total = options['total']
-        date_now = datetime.datetime.now(tz=datetime.timezone.utc)
+        delivery_date = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(days=9999)
         try:
             for i in range(total):
                 created_delivery = delivery.FoodDelivery.objects.create(
-                    date=date_now,
+                    date=delivery_date,
                     state=random.choice(delivery.FoodDelivery.DELIVERY_STATE_CHOICES[0])
                 )
                 self.stdout.write(self.style.SUCCESS(f" Delivery with status {created_delivery.state}"

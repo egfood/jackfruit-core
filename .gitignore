@@ -1,6 +1,6 @@
 /venv/
 /.idea/
-.env
+core/.env
 __pycache__
 core/__pycache__/
 /static
@@ -12,3 +12,4 @@ core/views/__pycache__/
 /media
 git
 db.sqlite3
+/py*/

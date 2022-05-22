@@ -13,47 +13,21 @@ Introduction to project, its purposes etc..
 
 ### Requirements
 
-* Python
-* Docker
-* docker-compose
+* Python 3.10+
 * Make
 * Specify env vars in IDE Run Configuration (example in `dev.env`)
 
-Init (is executed once)
+### How to prepare for development (without docker)
 
-```bash
-make i
-```
+1. go to project folder (in jackfruit-core folder)
+2. `cp dev.env core/.env`
+3. `python3 -m venv py310` (py310 - folder for a new virtual environment)
+4. `source py310/bin/activate`
+5. `pip install -r requirements.txt`
+6. `make i` - applies migrations, collects static and creates demo users (see email/password in output)
+7. `make csu` - creates a superuser
 
-Start (doesn't need if was executed the Init)
-
-```bash
-make s
-```
-
-Getting logs from running containers
-
-```bash
-make l
-```
-
-Stop containers
-
-```bash
-make stop
-```
-
-Restart containers
-
-```bash
-make r
-```
-
-Delete database volume
-
-```bash
-make d
-```
+After that you can start your server by PyCharm or your preferred IDE or via execute command `./manage.py runserver`'
 
 ## Flatpage templates
 

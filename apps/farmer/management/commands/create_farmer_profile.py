@@ -1,5 +1,4 @@
 import random
-import string
 
 from django.core.management.base import BaseCommand
 from django.db import IntegrityError
@@ -7,11 +6,7 @@ from django.db import IntegrityError
 from apps.farmer.models.profile import FarmerProfile
 from core.models import user
 from .create_buyer_profile import name_gen
-
-
-def email_gen():
-    random_user_email = ''.join(random.choice(string.ascii_lowercase) for x in range(10))
-    return f'{random_user_email}@mailforspam.com'
+from .generators import email_gen
 
 
 class Command(BaseCommand):
@@ -34,7 +29,7 @@ class Command(BaseCommand):
         user_password = '11111QqQ'
         try:
             for i in range(total):
-                create_green_user = user.GreenUser.objects.create_user(email=email_gen(),
+                create_green_user = user.GreenUser.objects.create_user(email=email_gen('farmer'),
                                                                        password=user_password,
                                                                        is_active=True)
                 farmer_profile = FarmerProfile.objects.create(service_zone='Minsk',

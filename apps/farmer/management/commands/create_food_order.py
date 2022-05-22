@@ -32,7 +32,7 @@ class Command(BaseCommand):
             try:
                 food_order_instance = order.FoodOrder.objects.create(
                     delivery=selected_delivery,
-                    state=random.choice(order.FoodOrder.ORDER_STATE_CHOICES)[0],
+                    state=random.choice(order.FoodOrder.ORDER_STATE.get_as_list())[0],
                     buyer=selected_buyer,
                     location=selected_location)
                 self.stdout.write(self.style.SUCCESS(f'FoodOrder created for buyer {selected_buyer.name} '

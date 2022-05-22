@@ -5,18 +5,14 @@ from django.core.management.base import BaseCommand
 from django.db import IntegrityError
 
 from apps.buyer.models import profile
+from .generators import email_gen
 from core.models import user
 from russian_names import RussianNames
 
 
 def name_gen():
-    random_user_name = RussianNames(count=1, patronymic=False, surname=False).get_person()
+    random_user_name = RussianNames(count=1, patronymic=False, surname=False, rare=True).get_person()
     return random_user_name
-
-
-def email_gen():
-    random_user_email = ''.join(random.choice(string.ascii_lowercase) for x in range(10))
-    return f'{random_user_email}@mailforspam.com'
 
 
 class Command(BaseCommand):
@@ -39,7 +35,7 @@ class Command(BaseCommand):
         user_password = '11111QqQ'
         try:
             for i in range(total):
-                selected_green_user = user.GreenUser.objects.create_user(email=email_gen(),
+                selected_green_user = user.GreenUser.objects.create_user(email=email_gen('buyer'),
                                                                          password=user_password,
                                                                          is_active=True)
                 buyer_profile = profile.BuyerProfile.objects.create(

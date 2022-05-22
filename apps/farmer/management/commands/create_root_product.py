@@ -4,6 +4,7 @@ from django.core.management import BaseCommand, call_command
 from django.db import IntegrityError
 
 from apps.store.models.product import RootProduct, ProductCategory
+from apps.store.models.trade_margin import TradeMargin
 
 
 class Command(BaseCommand):
@@ -21,6 +22,11 @@ class Command(BaseCommand):
         if ProductCategory.objects.all().count() == 0:
             call_command('create_product_category', '--total=1')
         selected_category = random.choice(ProductCategory.objects.all())
+        trade_margin_qs = TradeMargin.objects.all()
+        if trade_margin_qs.exists():
+            trade_margin = trade_margin_qs[0]
+        else:
+            trade_margin = TradeMargin.objects.create(backoffice_margin=70.0, dev_margin=30.0)
         try:
             for i in range(total):
                 name = random.choice(name_lst)
@@ -30,7 +36,8 @@ class Command(BaseCommand):
                     image=None,
                     is_visible=True,
                     description=', '.join([random.choice(description) for i in range(5)]),
-                    category=selected_category
+                    category=selected_category,
+                    trade_margin=trade_margin
                 )
                 self.stdout.write(self.style.SUCCESS(f'RootProduct {root_product_instance.name} created'))
         except IntegrityError:
