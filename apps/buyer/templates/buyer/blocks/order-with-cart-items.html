@@ -14,6 +14,6 @@
 {% include "core/blocks/pagination.html" %}
 
 <p class="totalSum" id="jorder-total-js">
-    Итого: <span class="jorder-total-text-js">{{ order_total }} </span>руб.
+    Итого: <span class="jorder-total-text-js">{{ order_total }} </span>{{ CURRENT_CURRENCY }}
     {% include 'buyer/blocks/order-spinner.html' %}
 </p>

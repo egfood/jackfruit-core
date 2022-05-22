@@ -9,7 +9,7 @@
 {% block top_menu %}
     <a href="{% url 'buyer:cart' %}" class="basket">
         <i class="fas fa-shopping-basket"></i>
-        <p id="totalSumm">{{ cart_total }} руб.</p>
+        <p id="totalSumm">{{ cart_total }} {{ CURRENT_CURRENCY }}</p>
     </a>
 {% endblock %}
 

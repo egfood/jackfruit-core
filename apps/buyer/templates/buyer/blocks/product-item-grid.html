@@ -35,7 +35,7 @@
         {% endif %}
 
         <div class="price">
-            <div>{{ fp.trade_price }} руб/{{ fp.value }}{{ fp.get_unit_display }}</div>
+            <div>{{ fp.trade_price }} {{ CURRENT_CURRENCY }}/{{ fp.value }}{{ fp.get_unit_display }}</div>
         </div>
     </div>
     <div class="jorder-item-container-js vegFrameOptions">

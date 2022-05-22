@@ -201,7 +201,7 @@ IS_REGISTRATION_WITHOUT_ACTIVATING = True
 REGISTRATION_WITHOUT_ACTIVATING_DEADLINE = datetime.datetime(2020, 7, 22, 00, 00, tzinfo=get_current_timezone())
 SHIPPING_COST = 4
 WEIGHT_UNIT_ABBREVIATION = "гр."
-CURRENT_CURRENCY = "Br"
+CURRENT_CURRENCY = env.str("CURRENT_CURRENCY", "BYN")
 CSV_EXPORT_COLUMN_NAMES = {
     "PRODUCTS_IN_DELIVERY": {
         'id': 'id', 'product': 'название', 'price_by_weight': f'цена за вес, {CURRENT_CURRENCY}',

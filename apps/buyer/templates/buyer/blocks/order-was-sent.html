@@ -13,10 +13,10 @@
         <li>Доставка: {{ delivery.date }}</li>
         <li>Текущий статус: {{ order.get_state_display }}</li>
         <li>Способ оплаты: {{ order.get_payment_type_display }}</li>
-        <li>Сумма заказа: {{ order_total }} руб.</li>
+        <li>Сумма заказа: {{ order_total }} {{ CURRENT_CURRENCY }}</li>
         <li>
             Итоговая сумма с учетом доставки:
-            <strong class="text-success text-black"> {{ order.total_cost }} руб.</strong>
+            <strong class="text-success text-black"> {{ order.total_cost }} {{ CURRENT_CURRENCY }}</strong>
         </li>
     </ul>
 </div>
