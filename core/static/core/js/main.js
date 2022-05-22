@@ -189,7 +189,7 @@ $(document).ready(function () {
         
     })
 
-    $("#profilePhone, #phoneNumber").inputmask({"mask": "+375(99) 999-99-99"});
+    $("#profilePhone, #phoneNumber").inputmask({"mask": "+\\9\\95(599) 99-99-99"});
     // $(".contactData button[type='reset']").click(function () {
     //     $(".contactData").fadeOut(200);
     //     $(".profileSettings").css("display", "flex");

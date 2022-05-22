@@ -7,7 +7,7 @@ from apps.farmer.models.profile import FarmerProfile
 class FarmerSignupProfileForm(forms.ModelForm):
     name = forms.CharField(required=True, label='Имя', widget=forms.TextInput(attrs={"id": "profileName"}))
     phone = forms.CharField(required=True, label='Телефон',
-                            widget=forms.TextInput(attrs={'placeholder': '+375 (xx) xxx-xx-xx ', "id": "profilePhone"}))
+                            widget=forms.TextInput(attrs={'placeholder': '+995 (5xx) xx-xx-xx ', "id": "profilePhone"}))
     region = forms.CharField(required=True, label='Населенный пункт (регион)',
                              widget=forms.TextInput(attrs={"id": "selectLocation"}))
     photo = forms.ImageField(required=False, validators=[validators.validate_image_file_extension],
@@ -23,7 +23,7 @@ class FarmerAreaProfileForm(forms.ModelForm):
                              widget=forms.ClearableFileInput(attrs={"style": 'display:none'}))
     name = forms.CharField(required=False, label='Имя', widget=forms.TextInput(attrs={"id": "profileName"}))
     phone = forms.CharField(required=False, label='Телефон',
-                            widget=forms.TextInput(attrs={'placeholder': '+375 (xx) xxx-xx-xx ', "id": "profilePhone"}))
+                            widget=forms.TextInput(attrs={'placeholder': '+995 (xx) xxx-xx-xx ', "id": "profilePhone"}))
     region = forms.CharField(required=False, label='Населенный пункт (регион)',
                              widget=forms.TextInput(attrs={"id": "location"}))
     service_zone = forms.CharField(required=False, label='Зона обслуживания',
