@@ -4,13 +4,15 @@ function load_profile_form_data(overlay_with_spinner, profile_api_url, profile_f
     overlay_with_spinner.show();
     $.get({url: profile_api_url})
         .done(function (result) {
-            $.each(result, function (key, value) {
-                if (key === 'photo') {
-                    profile_images.attr('src', value);
-                } else {
-                    $('[name="' + key + '"]', profile_form).val(value);
-                }
-            });
+            if (!profile_images.hasClass('jdefault-profile-photo-js')) {
+                $.each(result, function (key, value) {
+                    if (key === 'photo') {
+                        profile_images.attr('src', value);
+                    } else {
+                        $('[name="' + key + '"]', profile_form).val(value);
+                    }
+                });
+            }
             overlay_with_spinner.hide();
             wrapper_instance.removeClass('jform-changed');
         })

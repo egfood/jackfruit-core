@@ -49,8 +49,9 @@
                                     <img class="jimg-updated-on-upload-new-js" width="150" height="150"
                                          src="{{ field.value.url }}" alt="You own photo">
                                 {% else %}
-                                    <img class="jimg-updated-on-upload-new-js"
-                                         src="{% static "buyer/img/buyer.png" %}" alt="Buyer profile photo">
+                                    <img class="jimg-updated-on-upload-new-js jdefault-profile-photo-js"
+                                         width="150" height="150" alt="Buyer profile photo"
+                                         src="{% static "buyer/img/buyer.png" %}">
                                 {% endif %}
                                 <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
                                        style="display:none" accept="image/*" id="{{ field.id_for_label }}">

@@ -31,7 +31,7 @@
                                 <img class="jimg-updated-on-upload-new-js" src="{{ field.value.url }}"
                                      alt="You own photo" width="150" height="150">
                             {% else %}
-                                <img class="jimg-updated-on-upload-new-js"
+                                <img class="jimg-updated-on-upload-new-js jdefault-profile-photo-js"
                                      src="{% static "farmer/img/farmer2.png" %}" alt="Farmer profile photo">
                             {% endif %}
                             <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
