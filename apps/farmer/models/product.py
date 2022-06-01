@@ -8,6 +8,7 @@ from simple_history.models import HistoricalRecords
 from apps.store.models.product import RootProduct
 from core.models import FoodAbstract
 from .profile import FarmerProfile
+from ...store.price import rounding_up_to_multiplicity
 
 
 class FarmerProduct(FoodAbstract):
@@ -58,6 +59,6 @@ class FarmerProduct(FoodAbstract):
         if root_product_trade_margin is not None:
             from apps.store.models.trade_margin import TradeMargin
             trade_margin = TradeMargin.get_historical_total(root_product_trade_margin) / 100
-            return round(self.price * (1 + trade_margin), 2)
+            return rounding_up_to_multiplicity(self.price * (1 + trade_margin))
         else:
             return self.price

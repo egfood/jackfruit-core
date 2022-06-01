@@ -12,6 +12,7 @@ from apps.farmer.models.product import FarmerProduct
 from core.models import FoodAbstract
 from .product import RootProduct
 from .order import FoodOrder
+from ..price import rounding_up_to_multiplicity
 
 log = logging.getLogger(__name__)
 
@@ -85,10 +86,10 @@ class FoodOrderItem(FoodAbstract):
     def get_item_total(self, volume_from_buyer: Decimal, price: Decimal, value_per_price: Decimal) -> Decimal:
         base_total = volume_from_buyer * price / value_per_price
         if self.trade_margin is not None:
-            total = base_total * (1 + self.trade_margin_in_hundredths)
+            total = base_total * (Decimal('1.00') + self.trade_margin_in_hundredths)
         else:
             total = base_total
-        return round(total, 2)
+        return rounding_up_to_multiplicity(total)
 
     @cached_property
     def trade_margin_in_hundredths(self) -> Decimal:
