@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from simple_history.models import HistoricalRecords
 
+from apps.farmer.image_transformer import ImageTransformer
 from apps.store.models.product_category import ProductCategory
 from apps.store.models.trade_margin import TradeMargin
 from core.models.base import FoodAbstract
@@ -20,3 +21,8 @@ class RootProduct(FoodAbstract):
 
     def __str__(self):
         return f'Б. пр. #{self.id} - {self.name}'
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        it = ImageTransformer(self.image.path, settings.ROOT_PRODUCT_IMAGE_WIDTH, settings.ROOT_PRODUCT_IMAGE_HEIGHT)
+        it.transform()
