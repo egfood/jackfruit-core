@@ -24,5 +24,6 @@ class RootProduct(FoodAbstract):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
-        it = ImageTransformer(self.image.path, settings.ROOT_PRODUCT_IMAGE_WIDTH, settings.ROOT_PRODUCT_IMAGE_HEIGHT)
-        it.transform()
+        if self.image:
+            it = ImageTransformer(self.image.path, settings.ROOT_PRODUCT_IMAGE_WIDTH, settings.ROOT_PRODUCT_IMAGE_HEIGHT)
+            it.transform()
