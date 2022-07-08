@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+    color: #094036;
+}
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-image: url(images/2068\ 3.png);
+    background-position-x: right;
+    background-repeat: no-repeat;
+}
+.general{
+    width: 100%;
+    background-image: url(images/2068\ 2.png);
+    background-repeat: no-repeat;
+    flex: 1 0 auto;
+    margin-bottom: 100px;
+}
+.telegram{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+.telegram i.fa.fa-telegram{
+    font-size: 50px;
+}
+.telegram:hover i.fa.fa-telegram{
+    font-size: 60px;
+    font-size: 60px;
+    color: #0D7A8D;
+}
+
+.logo{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.logo span{
+    color: #fff;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+h1{
+    text-align: center;
+    font-size: 144px;
+    margin-bottom: 30px;
+    margin-top: 40px;
+    font-family: 'Jost', sans-serif;
+    color: #094036;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+.buttons button{
+    display: block;
+    width: 298px;
+    height: 60px;
+    border-radius: 60px;
+    background-color: #60B072;
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+.buttons button:hover{
+    background-color: #0D7A8D;
+}
+.content{
+    margin-top: 100px;
+    margin-left: 90px;
+    width: 800px;
+}
+.content h2{
+    font-size: 32px;
+}
+.content > div{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+.content p{
+    font-size: 20px;
+}
+svg.iconify.iconify--iconoir{
+    font-size: 38px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.farmToFolk{
+    font-weight: bold;
+}
+.farmToFolk:hover{
+    color: #0D7A8D;
+}
+footer{
+    height: 120px;
+    background-color: rgba(0, 0, 0, .8);
+    flex: 0 0 auto;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footerLogo{
+    margin-left: 20px;
+}
+.fotterContent{
+    display: flex;
+}
+.fotterContent a{
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.fotterContent i{
+    margin-right: 5px;
+    font-size: 28px;
+    color: #E5E5E5;
+}
+.fotterContent a{
+    font-size: 18px;
+    color: #E5E5E5;
+    text-decoration: none;
+}
+.fotterContent a:hover i{
+    color: #fff;
+}
+.fotterContent a:hover{
+    color: #fff;
+}

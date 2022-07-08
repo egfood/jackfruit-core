@@ -1,0 +1,42 @@
+@media (max-width: 1480px) {
+    body{
+        background-image: none;
+        
+    }
+    .content{
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    h1{
+        font-size: 100px;
+    }
+    
+    .buttons button{
+        width: 250px;
+        height: 50px;
+        font-size: 20px;
+    }
+    .telegram{
+        display: none;
+    }
+    .fotterContent a, .fotterContent i{
+        font-size: 18px;
+    }
+}
+@media (max-width: 680px) {
+    h1{
+        font-size: 80px;
+    }
+    .fotterContent{
+        height: 80%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .fotterContent a{
+        font-size: 14px;
+    }
+   
+}
