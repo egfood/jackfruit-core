@@ -3,8 +3,16 @@ from decimal import Decimal, getcontext, ROUND_HALF_UP
 from django.conf import settings
 
 
+def normalize_exp_str(value: str) -> str:
+    positive_exp = value.split("E+")
+    if len(positive_exp) == 2:
+        return str(float(positive_exp[0]) * 10 ** int(positive_exp[1]))
+    else:
+        return value
+
+
 def get_dynamic_precision(value: Decimal) -> int:
-    engineering_representation = value.to_eng_string()
+    engineering_representation = normalize_exp_str(value.to_eng_string())
     try:
         integer_digits, _ = engineering_representation.split(".")
     except ValueError:

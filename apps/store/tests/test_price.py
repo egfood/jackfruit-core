@@ -33,12 +33,12 @@ class PriceSamples:
 class RoundingToMultipleTest(TestCase):
     test_engine = PriceSamples(
         in_prices=tuple(
-            map(Decimal, "1.11 1.22 1.33 2.54 7.75 9.96 19.87 99.98 9999.99 100.00".split())
+            map(Decimal, "1.11 1.22 1.33 2.54 7.75 9.96 19.87 99.98 9999.99 100.00 4.64E+3".split())
         ),
         out_prices={
-            5: tuple(map(Decimal, "1.10 1.20 1.35 2.55 7.75 9.95 19.85 100.00 10000.00 100.00".split())),
-            10: tuple(map(Decimal, "1.10 1.20 1.30 2.50 7.80 10.0 19.9 100.00 10000.00 100.00".split())),
-            50: tuple(map(Decimal, "1.00 1.00 1.50 2.50 8.00 10.0 20.0 100.00 10000.00 100.00".split())),
+            5: tuple(map(Decimal, "1.10 1.20 1.35 2.55 7.75 9.95 19.85 100.00 10000.00 100.00 4640.00".split())),
+            10: tuple(map(Decimal, "1.10 1.20 1.30 2.50 7.80 10.0 19.9 100.00 10000.00 100.00 4640.00".split())),
+            50: tuple(map(Decimal, "1.00 1.00 1.50 2.50 8.00 10.0 20.0 100.00 10000.00 100.00 4640.00".split())),
         }
     )
 
