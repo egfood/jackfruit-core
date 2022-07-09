@@ -1,6 +1,9 @@
-<div class="nav-item ml-auto">
-    <a class="nav-link ml-auto" href="https://t.me/joinchat/Bc_KkxNGDtfbQsgzp891gA" target="_blank"
-       rel="noopener noreferrer" title="Перейти в наш Telegram канал">
-        <i class="fab fa-telegram fa-2x text-success"></i>
-    </a>
-</div>
+{% if telegram_link %}
+    <div class="nav-item ml-auto">
+        <a class="nav-link ml-auto" href="{{ telegram_link }}"
+           target="_blank"
+           rel="noopener noreferrer" title="Перейти в наш Telegram канал">
+            <i class="fab fa-telegram fa-2x text-success"></i>
+        </a>
+    </div>
+{% endif %}
