@@ -1,5 +1,8 @@
 $(document).ready(function () {
     let csrf = $('#jbasket-container-js').attr('data-csrf'),
+        spinner = $("#jorder-total-widget-js .jspinner-block-js"),
+        toast_error = $("#jorder-total-widget-toast-error-js"),
+        toast_error_body = $("#jorder-total-widget-toast-error-body-js"),
         is_send_api_request = false;
 
     $(".vegFrameMenu").click(function () {
@@ -33,6 +36,7 @@ $(document).ready(function () {
             })
                 .done(function (result) {
                     $('.jmessage-update-js', order_item_container).finish().fadeIn(100).delay(2000).fadeOut(1000);
+                    update_ui_total(toast_error, toast_error_body, spinner);
                     is_send_api_request = false;
                 })
                 .fail(function (result) {
@@ -60,10 +64,11 @@ $(document).ready(function () {
                 .done(function (result) {
                     in_basket_button.toggleClass('active');
                     $('.jmessage-removed-js', order_item_container).finish().fadeIn(100).delay(2000).fadeOut(1000);
+                    update_ui_total(toast_error, toast_error_body, spinner);
                     is_send_api_request = false;
                 })
                 .fail(function (result) {
-                    window.alert('DELTE request error! <Need toast message!>');
+                    window.alert('DELETE request error! <Need toast message!>');
                     is_send_api_request = false;
                 });
         } else if (is_order_item_exists_in_cart === false && is_send_api_request === false) {
@@ -84,6 +89,7 @@ $(document).ready(function () {
                     .done(function (result) {
                         in_basket_button.toggleClass('active');
                         $('.jmessage-added-js', order_item_container).finish().fadeIn(100).delay(2000).fadeOut(1000);
+                        update_ui_total(toast_error, toast_error_body, spinner);
                         is_send_api_request = false;
                     })
                     .fail(function (result) {

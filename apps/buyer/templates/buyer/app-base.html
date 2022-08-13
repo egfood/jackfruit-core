@@ -9,7 +9,13 @@
 {% block top_menu %}
     <a href="{% url 'buyer:cart' %}" class="basket">
         <i class="fas fa-shopping-basket"></i>
-        <p id="totalSumm">{{ cart_total }} {{ CURRENT_CURRENCY }}</p>
+        <div
+                id="jorder-total-widget-js"
+                data-api-order-total-url={{ order_total_api_url }}
+        >
+            <span class="jorder-total-widget-value-js">{{ cart_total }}</span> {{ CURRENT_CURRENCY }}
+            {% include 'buyer/blocks/inline-spinner.html' %}
+        </div>
     </a>
 {% endblock %}
 
@@ -24,6 +30,7 @@
 {% block app_modals %}
     {% include "buyer/popups/profile-detailed.html" %}
     {% include "buyer/popups/add-location-form.html" %}
+    {% include "buyer/toasts/order-total-info-update-error.html" %}
 {% endblock %}
 
 {% block app_footer_scripts %}

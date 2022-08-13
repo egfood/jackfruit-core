@@ -10,7 +10,7 @@ $(document).ready(function () {
         toast_update_order_item_error_body = $("#jorder-item-update-toast-error-body-js", toast_update_order_item_error),
         toast_update_order_item_success = $("#jorder-item-update-toast-successfully-js"),
         order_total = $("#jorder-total-js"),
-        order_total_spinner = $(".jorder-spinner-block-js", order_total),
+        order_total_spinner = $(".jspinner-block-js", order_total),
         spinner_block = $("#jmodal-spinner-block"),
         is_send_request_to_update_order = false,
         is_send_request_to_update_order_item = false,
@@ -65,7 +65,7 @@ $(document).ready(function () {
 
         if (is_send_request_to_update_order_item === false) {
             let order_item_input = $(this),
-                order_item_spinner = order_item_input.closest('tr').find('.jorder-spinner-block-js'),
+                order_item_spinner = order_item_input.closest('tr').find('.jspinner-block-js'),
                 spinners = order_item_spinner.add(order_total_spinner),
                 form_data = new FormData();
 

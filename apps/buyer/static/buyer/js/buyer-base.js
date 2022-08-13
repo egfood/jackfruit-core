@@ -22,8 +22,7 @@ function update_order_locations(spinner_block, order_form, toast_error, toast_er
         is_send_request_to_update_location = true;
 
         $.ajax({
-            url: order_form.attr("data-api-locations-list-url"),
-            type: "GET"
+            url: order_form.attr("data-api-locations-list-url"), type: "GET"
         })
             .done(function (result) {
                 is_send_request_to_update_location = false;
@@ -34,6 +33,33 @@ function update_order_locations(spinner_block, order_form, toast_error, toast_er
                 toast_error_body.text(result);
                 let toast = new bootstrap.Toast(toast_error);
                 is_send_request_to_update_location = false;
+                spinner_block.hide();
+                toast.show();
+            });
+    }
+}
+
+function update_ui_total(toast_error, toast_error_body, spinner_block) {
+    let is_send_request_to_update_total = false, widget = $("#jorder-total-widget-js");
+    if (is_send_request_to_update_total === false) {
+        spinner_block.show();
+        is_send_request_to_update_total = true;
+
+        $.ajax({
+            url: widget.attr("data-api-order-total-url"), type: "GET"
+        })
+            .done(function (result) {
+                is_send_request_to_update_total = false;
+                $(".jorder-total-widget-value-js", widget).text(result);
+                spinner_block.hide();
+            })
+            .fail(function (result) {
+                toast_error_body.text(
+                    "Упс! Что-то пошло не так. Мы не смогли обновить сумму вашей корзины в виджете. " +
+                    "Попробуйте перезагрузить страницу."
+                );
+                let toast = new bootstrap.Toast(toast_error);
+                is_send_request_to_update_total = false;
                 spinner_block.hide();
                 toast.show();
             });

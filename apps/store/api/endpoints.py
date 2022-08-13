@@ -5,23 +5,23 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView, ListCreateAPIView, RetrieveUpdateAPIView, get_object_or_404 as drf_get_object_or_404
 )
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from apps.farmer.models.product import FarmerProduct
-from apps.store.models.delivery import FoodDelivery
 from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
-from .exceptions import HasNoActiveDelivery
+from .mixins import NearestDeliveryMixin
 from .serializers import FoodOrderItemSerializer, LocationSerializer, FoodOrderSerializer
 from ..models.location import LocationStatus
 
 
-class OrderEndpoint(RetrieveUpdateAPIView):
+class OrderEndpoint(RetrieveUpdateAPIView, NearestDeliveryMixin):
     serializer_class = FoodOrderSerializer
 
     def get_object(self):
         queryset_kwargs = {
             'buyer': self.request.user.profile,
-            'delivery': FoodDelivery.get_nearest_delivery()
+            'delivery': self.delivery
         }
         queryset = self.serializer_class.Meta.model.objects.all()
         obj = drf_get_object_or_404(queryset, **queryset_kwargs)
@@ -31,18 +31,10 @@ class OrderEndpoint(RetrieveUpdateAPIView):
         serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE.awaiting_processing.name)
 
 
-class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView):
+class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView, NearestDeliveryMixin):
     serializer_class = FoodOrderItemSerializer
     lookup_url_kwarg = 'farmer_product_pk'
     lookup_field = 'product__pk'
-
-    @cached_property
-    def delivery(self):
-        delivery = FoodDelivery.get_nearest_delivery()
-        if delivery is None:
-            raise HasNoActiveDelivery
-        else:
-            return delivery
 
     def get_queryset(self):
         result, _ = FoodOrderItem.get_buyer_cart_items(self.request, self.delivery, need_order_creation=True)
@@ -100,3 +92,9 @@ class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
             qs_filter = qs_filter | Q(location_type=LocationStatus.office.name)
 
         return self.serializer_class.Meta.model.objects.filter(qs_filter)
+
+
+class OrderTotalEndpoint(APIView, NearestDeliveryMixin):
+    def get(self, request):
+        order = FoodOrder.get_order(delivery=self.delivery, buyer=self.request.user)
+        return Response(order.total_cost)

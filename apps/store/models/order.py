@@ -6,6 +6,7 @@ from django.db import models
 
 from apps.buyer.models.profile import BuyerProfile
 from core.models.base import FoodAbstract
+from core.models.user import GreenUser
 from core.status_engine import StatusEnum
 from .delivery import FoodDelivery
 from .location import Location
@@ -104,6 +105,10 @@ class FoodOrder(FoodAbstract):
     @cached_property
     def is_order_sent_by_user(self):
         return self.state in self.ORDER_STATES_WHEN_ORDER_WAS_SENT
+
+    @classmethod
+    def get_order(cls, delivery: FoodDelivery, buyer: GreenUser):
+        return cls.objects.filter(delivery=delivery, buyer=buyer.profile).first()
 
     def __str__(self):
         base = f'{self.delivery} для {self.buyer.name} (profile#{self.buyer.id})'
