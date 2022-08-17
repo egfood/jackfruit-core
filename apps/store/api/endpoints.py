@@ -1,16 +1,14 @@
-from functools import cached_property
-
 from django.db.models import Q
 from rest_framework.generics import (
-    RetrieveUpdateDestroyAPIView, ListCreateAPIView, RetrieveUpdateAPIView, get_object_or_404 as drf_get_object_or_404
+    ListCreateAPIView, RetrieveUpdateAPIView, get_object_or_404 as drf_get_object_or_404, GenericAPIView
 )
-from rest_framework.mixins import UpdateModelMixin
+from rest_framework.mixins import RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.store.models.order import FoodOrder
 from apps.store.models.order_item import FoodOrderItem
-from .mixins import NearestDeliveryMixin
+from .mixins import NearestDeliveryMixin, DataPreparedUpdateModelMixin
 from .serializers import FoodOrderItemSerializer, LocationSerializer, FoodOrderSerializer
 from ..models.location import LocationStatus
 
@@ -31,10 +29,20 @@ class OrderEndpoint(RetrieveUpdateAPIView, NearestDeliveryMixin):
         serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE.awaiting_processing.name)
 
 
-class OrderItemByFarmerProductEndpoint(RetrieveUpdateDestroyAPIView, NearestDeliveryMixin):
+class OrderItemByFarmerProductEndpoint(RetrieveModelMixin,
+                                       DataPreparedUpdateModelMixin,
+                                       DestroyModelMixin,
+                                       GenericAPIView,
+                                       NearestDeliveryMixin):
     serializer_class = FoodOrderItemSerializer
     lookup_url_kwarg = 'farmer_product_pk'
     lookup_field = 'product__pk'
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
     def get_queryset(self):
         result, _ = FoodOrderItem.get_buyer_cart_items(self.request, self.delivery, need_order_creation=True)
@@ -98,3 +106,9 @@ class OrderTotalEndpoint(APIView, NearestDeliveryMixin):
     def get(self, request):
         order = FoodOrder.get_order(delivery=self.delivery, buyer=self.request.user)
         return Response(order.total_cost)
+
+
+class OrderTotalCountEndpoint(APIView, NearestDeliveryMixin):
+    def get(self, request):
+        order = FoodOrder.get_order(delivery=self.delivery, buyer=self.request.user)
+        return Response(len(order.order_items_related))

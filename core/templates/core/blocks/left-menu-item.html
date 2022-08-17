@@ -2,6 +2,12 @@
    class="{% if selected == item.link %}activeMenuElement{% endif %}">
     <i class="{{ item.icon }}"></i><span>{{ item.title }}</span>
     {% if item.counter %}
-        <div class="countOrderedProduct">{{ item.counter }}</div>
+        <div
+                id="jorder-total-count-widget-js"
+                class="countOrderedProduct"
+                data-api-order-total-count-url="{{ order_total_count_api_url }}"
+        >
+            {{ item.counter }}
+        </div>
     {% endif %}
 </a>

@@ -51,6 +51,7 @@ class BuyerBasePagesView(BaseView):
         context['buyer_locations'] = Location.get_user_locations(self.request.user)
         context['buyer_profile_api_url'] = reverse("buyer-api:profile", kwargs={"pk": self.buyer_profile.id})
         context["order_total_api_url"] = reverse("store-api:order_total")
+        context["order_total_count_api_url"] = reverse("store-api:order_total_count")
         context['buyer_profile_form'] = BuyerAreaProfileForm(instance=self.buyer_profile)
         context['buyer_balance'] = BuyerBalance.get_text_total_balance(self.buyer_profile)
         context['cart_total'] = FoodOrderItem.get_buyer_cart_total(self.buyer_profile, self.nearest_delivery)

@@ -65,6 +65,7 @@ $(document).ready(function () {
                     in_basket_button.toggleClass('active');
                     $('.jmessage-removed-js', order_item_container).finish().fadeIn(100).delay(2000).fadeOut(1000);
                     update_ui_total(toast_error, toast_error_body, spinner);
+                    update_ui_count(toast_error, toast_error_body);
                     is_send_api_request = false;
                 })
                 .fail(function (result) {
@@ -90,6 +91,7 @@ $(document).ready(function () {
                         in_basket_button.toggleClass('active');
                         $('.jmessage-added-js', order_item_container).finish().fadeIn(100).delay(2000).fadeOut(1000);
                         update_ui_total(toast_error, toast_error_body, spinner);
+                        update_ui_count(toast_error, toast_error_body);
                         is_send_api_request = false;
                     })
                     .fail(function (result) {
