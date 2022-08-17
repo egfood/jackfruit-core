@@ -228,7 +228,7 @@ h2 {
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     background: #fff;
     height: 60px;
