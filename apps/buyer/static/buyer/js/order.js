@@ -84,6 +84,7 @@ $(document).ready(function () {
                 .done(function (result) {
                     is_send_request_to_update_order_item = false;
                     order_item_input.closest('tr').find('.jorder-item-total-js').text(result.item_total);
+                    update_ui_total(toast_error, toast_error_body, spinner_block)
 
                     $.ajax({
                         url: order_item_table.attr("data-api-order-url"),

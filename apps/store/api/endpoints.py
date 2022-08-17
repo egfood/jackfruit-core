@@ -44,6 +44,9 @@ class OrderItemByFarmerProductEndpoint(RetrieveModelMixin,
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
     def get_queryset(self):
         result, _ = FoodOrderItem.get_buyer_cart_items(self.request, self.delivery, need_order_creation=True)
         return result
