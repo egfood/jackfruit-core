@@ -1,7 +1,7 @@
 <a href="{{ item.link }}"
    class="{% if selected == item.link %}activeMenuElement{% endif %}">
     <i class="{{ item.icon }}"></i><span>{{ item.title }}</span>
-    {% if item.counter %}
+    {% if not item.counter == None %}
         <div
                 id="jorder-total-count-widget-js"
                 class="countOrderedProduct"
