@@ -40,7 +40,12 @@ $(document).ready(function () {
                     is_send_api_request = false;
                 })
                 .fail(function (result) {
-                    window.alert('[Update] PUT request error! <Need toast message!>');
+                    toast_error_body.text(
+                        "Упс! Что-то пошло не так. Мы не смогли изменить количество товара в вашей корзине. " +
+                        "Попробуйте перезагрузить страницу и попробовать снова."
+                    );
+                    let toast = new bootstrap.Toast(toast_error);
+                    toast.show();
                     is_send_api_request = false;
                 });
         }
@@ -69,7 +74,12 @@ $(document).ready(function () {
                     is_send_api_request = false;
                 })
                 .fail(function (result) {
-                    window.alert('DELETE request error! <Need toast message!>');
+                    toast_error_body.text(
+                        "Упс! Что-то пошло не так. Мы не смогли удалить товар из вашей корзины. " +
+                        "Попробуйте перезагрузить страницу и попробовать снова."
+                    );
+                    let toast = new bootstrap.Toast(toast_error);
+                    toast.show();
                     is_send_api_request = false;
                 });
         } else if (is_order_item_exists_in_cart === false && is_send_api_request === false) {
@@ -95,8 +105,13 @@ $(document).ready(function () {
                         is_send_api_request = false;
                     })
                     .fail(function (result) {
-                        window.alert('PUT request error! <Need toast message!>');
                         is_send_api_request = false;
+                        toast_error_body.text(
+                            "Упс! Что-то пошло не так. Мы не смогли добавить товар в вашу корзину. " +
+                            "Попробуйте перезагрузить страницу и попробовать снова."
+                        );
+                        let toast = new bootstrap.Toast(toast_error);
+                        toast.show();
                     });
             } else {
                 window.alert('Order item value of input is undefined! <Need toast message!>');
