@@ -6,6 +6,10 @@ $(document).ready(function () {
         send_order_popup = $("#jpopup-send-order-js"),
         toast_error = $("#jorder-creation-toast-error-js"),
         toast_error_body = $("#jorder-creation-toast-error-body-js", toast_error),
+        toast_page_success = $("#jorder-page-toast-successfully-js"),
+        toast_page_success_body = $("#jorder-page-toast-body-successfully-js", toast_page_success),
+        toast_page_error = $("#jorder-page-toast-error-js"),
+        toast_page_error_body = $("#jorder-page-toast-error-body-js", toast_page_error),
         toast_update_order_item_error = $("#jorder-item-update-toast-error-js"),
         toast_update_order_item_error_body = $("#jorder-item-update-toast-error-body-js", toast_update_order_item_error),
         toast_update_order_item_success = $("#jorder-item-update-toast-successfully-js"),
@@ -14,8 +18,10 @@ $(document).ready(function () {
         spinner_block = $("#jmodal-spinner-block"),
         is_send_request_to_update_order = false,
         is_send_request_to_update_order_item = false,
+        is_send_request_to_delete_order_item = false,
         order_total_text_items = $(".jorder-total-text-js"),
         order_item_table = $("#jorder-item-table-js"),
+        spinner = $("#jorder-total-widget-js .jspinner-block-js"),
         order_item_table_csrf = order_item_table.attr("data-csrf");
 
 
@@ -107,4 +113,54 @@ $(document).ready(function () {
         }
 
     });
+
+
+    $(".jorder-item-del-js").on("click", function () {
+
+        if (is_send_request_to_delete_order_item === false) {
+            let order_item = $(this).closest("tr");
+            is_send_request_to_delete_order_item = true;
+            $.ajax({
+                url: order_item.find(".jorder-item-js").attr("data-order-item-api-url"),
+                type: "DELETE",
+                headers: {'X-CSRFToken': order_item_table_csrf},
+                processData: false,
+                contentType: false,
+            })
+                .done(function (result) {
+                    update_ui_total(toast_update_order_item_error, toast_update_order_item_error_body, spinner);
+                    update_ui_count(toast_update_order_item_error, toast_update_order_item_error_body);
+                    order_item.remove();
+
+                    $.ajax({
+                        url: order_item_table.attr("data-api-order-url"),
+                        type: "GET"
+                    })
+                        .done(function (result) {
+                            order_total_text_items.text(result.total_cost);
+                            let toast = new bootstrap.Toast(toast_update_order_item_success);
+                            toast.show();
+                            spinners.removeClass('visible').addClass('invisible');
+                        })
+                        .fail(function (result) {
+                            order_table_updating_is_failed(result, spinners);
+                        });
+
+                    toast_page_success_body.text("Товар из вашей корзины успешно удален.")
+                    let toast = new bootstrap.Toast(toast_page_success);
+                    toast.show();
+                    is_send_request_to_delete_order_item = false;
+                })
+                .fail(function (result) {
+                    toast_page_error_body.text(
+                        "Упс! Что-то пошло не так. Мы не смогли удалить товар из вашей корзины. " +
+                        "Перезагрузите страницу и попробуйте снова."
+                    );
+                    let toast = new bootstrap.Toast(toast_page_error);
+                    toast.show();
+                    is_send_request_to_delete_order_item = false;
+                });
+        }
+    });
+
 });
