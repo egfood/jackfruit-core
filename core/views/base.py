@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
-from urllib.parse import ParseResult
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
-from core import settings
+from telegram import get_tg_link
 
 
 class BaseView(ABC, LoginRequiredMixin, TemplateView):
@@ -33,6 +32,5 @@ class BaseView(ABC, LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["left_sidebar_menu_items"] = self.left_sidebar_menu_items
         context["selected_left_menu_item"] = self.get_selected_left_menu_item(self.request)
-        tg_link = settings.TELEGRAM_CHANNEL_LINK
-        context["telegram_link"] = tg_link.geturl() if isinstance(tg_link, ParseResult) else None
+        context["telegram_link"] = get_tg_link()
         return context
