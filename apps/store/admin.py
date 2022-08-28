@@ -30,7 +30,6 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(FoodDelivery)
 class FoodDeliveryAdmin(admin.ModelAdmin, ExportCSVMixin):
-# class FoodDeliveryAdmin(admin.ModelAdmin):
     list_display = ('date', 'date_creation', 'date_updated', 'delivery_state_message')
     list_filter = ('date', 'date_creation', 'date_updated')
     ordering = ('date',)
@@ -71,14 +70,16 @@ class FoodOrderItemAdmin(admin.ModelAdmin):
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = (
-        'office_name', 'user', 'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value',
+        'short_name', 'user', 'location_type', 'city_type', 'city_value', 'city_district', 'street_type',
+        'street_value',
         'building', 'porch', 'floor', 'room', 'sort_key'
     )
     list_filter = ('user', 'location_type', 'city_value', 'city_district', 'street_value', 'building', 'sort_key')
     ordering = (
-        'office_name', 'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
+        'location_type', 'city_type', 'city_value', 'city_district', 'street_type', 'street_value', 'building', 'porch',
         'floor', 'room', 'sort_key'
     )
+
 
 @admin.register(TradeMargin)
 class TradeMarginAdmin(SimpleHistoryAdmin):

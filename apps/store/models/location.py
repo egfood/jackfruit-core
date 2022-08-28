@@ -120,3 +120,12 @@ class Location(FoodAbstract):
     @classmethod
     def get_user_locations(cls, user: GreenUser) -> QuerySet:
         return cls.objects.filter(user=user)
+
+    @cached_property
+    def short_name(self):
+        if self.is_office():
+            return f"Офис #{self.id} {self.office_name}"
+        elif self.is_private():
+            return f"Частный #{self.id} пользователя {self.user}"
+        else:
+            return f'Неопределенный адрес #{self.id}'

@@ -34,8 +34,7 @@ $(document).ready(function () {
                 data: new FormData(location_form[0]),
                 processData: false,
                 contentType: false,
-            })
-                .done(function (result) {
+                success: function (result) {
                     update_order_locations(spinner_block, order_form, order_toast_error, order_toast_error_body);
                     update_profile_locations(
                         spinner_block, locations_block, profile_toast_error, profile_toast_error_body
@@ -43,13 +42,15 @@ $(document).ready(function () {
                     is_send_request_to_create_location = false;
                     parent_popup.fadeIn(400);
                     location_popup.css("display", "none");
-                })
-                .fail(function (result) {
+                },
+                error: function (result) {
                     toast_error_body.text(result.responseText);
                     let toast = new bootstrap.Toast(toast_error);
                     is_send_request_to_create_location = false;
                     toast.show();
-                });
+                }
+            })
+
         }
     });
 
