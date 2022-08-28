@@ -26,7 +26,16 @@ class OrderEndpoint(RetrieveUpdateAPIView, NearestDeliveryMixin):
         return obj
 
     def perform_update(self, serializer):
-        serializer.save(state=self.serializer_class.Meta.model.ORDER_STATE.awaiting_processing.name)
+        """
+        TODO:
+            This interference with thе method should be cleaned up and a dependent javascript should be refactored to
+            not use this workaround.
+        """
+
+        state = serializer.validated_data.get("state")
+        if not state:
+            state = self.serializer_class.Meta.model.ORDER_STATE.awaiting_processing.name
+        serializer.save(state=state)
 
 
 class OrderItemByFarmerProductEndpoint(RetrieveModelMixin,
@@ -95,11 +104,11 @@ class LocationEndpoint(ListCreateAPIView, UpdateModelMixin):
     serializer_class = LocationSerializer
 
     def get_queryset(self):
-        is_added_location_type = self.request.query_params.get("add_location_type")
+        is_required_location_type = self.request.query_params.get("required_location_type")
 
         # Need to refactoring by pattern matching from Python 3.10
         qs_filter = Q(user=self.request.user)
-        if is_added_location_type == LocationStatus.office.name:
+        if is_required_location_type == LocationStatus.office.name:
             qs_filter = qs_filter | Q(location_type=LocationStatus.office.name)
 
         return self.serializer_class.Meta.model.objects.filter(qs_filter)

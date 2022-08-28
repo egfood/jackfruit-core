@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .endpoints import (
-    OrderItemByFarmerProductEndpoint, LocationEndpoint, OrderEndpoint, OrderTotalEndpoint, OrderTotalCountEndpoint
+    OrderItemByFarmerProductEndpoint, LocationEndpoint, OrderEndpoint, OrderTotalEndpoint, OrderTotalCountEndpoint,
 )
 
 app_name = 'store-api'

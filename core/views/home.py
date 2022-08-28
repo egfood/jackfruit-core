@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from telegram import get_tg_link
+from core.telegram import get_tg_link
 
 
 class HomeView(TemplateView):

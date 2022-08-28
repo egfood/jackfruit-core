@@ -9,8 +9,9 @@
 
         <h2>Оформление заказа</h2>
         <form id="jform-send-order-js" action=""
-              data-api-locations-list-url="{% url "store_api:location" %}?add_location_type=office"
-              data-api-order-update-url="{% url "store-api:order" %}" data-csrf="{{ csrf_token }}">
+              data-api-locations-list-url="{% url "store_api:location" %}?required_location_type=office"
+              data-api-order-update-url="{% url "store-api:order" %}" data-csrf="{{ csrf_token }}"
+              data-selected-location-id="{{ order.location.id }}">
 
             {{ order_form.location.label_tag }}
             <div style="cursor: pointer;" class="jshow-add-location-js">
@@ -36,10 +37,31 @@
                 </div>
 
             </div>
-            <div class="productPrice">Стоимость заказа
-                <span class="totalOrderPrice jorder-total-text-js">{{ order_total }}</span>
+            <div class="row">
+                <div class="col-5">
+                    <div class="productPrice float-start">Стоимость заказа
+                        <span class="totalOrderPrice jorder-total-text-js">{{ order_total }}</span>
+                        <span>{{ CURRENT_CURRENCY }}</span>
+                    </div>
+                </div>
+                <div class="col-2 display-6">
+                    +
+                </div>
+                <div class="col-5">
+                    <div class="float-end">Стоимость доставки
+                        <span id="jorder-delivery-cost-text-js">{{ order.delivery_cost }}</span>
+                        <span>{{ CURRENT_CURRENCY }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center my-4">
+                <hr>
+                &sum; Итого
+                <span class="totalOrderPrice" id="jorder-total-cost-text-js">{{ order.total_cost }}</span>
                 <span>{{ CURRENT_CURRENCY }}</span>
             </div>
+
             <div class="formButtons">
                 <button type="reset">Отменить</button>
                 <button id="jorder-form-submit-js" class="" type="submit">Подтвердить заказ</button>

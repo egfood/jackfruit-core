@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
-from telegram import get_tg_link
+from ..telegram import get_tg_link
 
 
 class BaseView(ABC, LoginRequiredMixin, TemplateView):

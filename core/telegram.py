@@ -1,7 +1,7 @@
 from typing import Optional
 from urllib.parse import ParseResult
 
-import settings
+from django.conf import settings
 
 
 def get_tg_link() -> Optional[ParseResult]:

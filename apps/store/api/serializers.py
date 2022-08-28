@@ -6,11 +6,11 @@ from apps.store.models.order_item import FoodOrderItem
 
 
 class FoodOrderSerializer(serializers.ModelSerializer):
-    state = serializers.HiddenField(default=ORDER_STATE.created)
+    # state = serializers.HiddenField(default=ORDER_STATE.created)
 
     class Meta:
         model = FoodOrder
-        fields = ['state', 'location', 'payment_type', 'total_cost']
+        fields = ['state', 'location', 'payment_type', 'total_cost', 'delivery_cost']
 
     def get_total_cost(self, instance):
         return instance.total_cost

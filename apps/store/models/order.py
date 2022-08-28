@@ -44,6 +44,7 @@ class FoodOrder(FoodAbstract):
 
     delivery = models.ForeignKey(FoodDelivery, verbose_name='Доставка', related_name='order',
                                  on_delete=models.CASCADE)
+    delivery_cost = models.DecimalField(verbose_name=f"Стоимость доставки", default=0, max_digits=5, decimal_places=2)
     state = models.CharField(verbose_name='Статус заказа', max_length=85, choices=ORDER_STATE.get_as_list(),
                              default=ORDER_STATE.created.name)
     buyer = models.ForeignKey(BuyerProfile, verbose_name='Пользователь', related_name='order',
@@ -56,9 +57,7 @@ class FoodOrder(FoodAbstract):
     @cached_property
     def total_cost(self):
         total_cost = sum([order_item.item_total for order_item in self.order_items_related])
-        if self.location:
-            return total_cost + settings.SHIPPING_COST if self.location.is_private() else total_cost
-        return total_cost
+        return total_cost + self.delivery_cost
 
     @property
     def total_weight(self):
@@ -109,6 +108,11 @@ class FoodOrder(FoodAbstract):
     @classmethod
     def get_order(cls, delivery: FoodDelivery, buyer: GreenUser):
         return cls.objects.filter(delivery=delivery, buyer=buyer.profile).first()
+
+    def save(self, *args, **kwargs):
+        if isinstance(self.location, Location):
+            self.delivery_cost = self.location.delivery_cost
+        super().save(*args, **kwargs)
 
     def __str__(self):
         base = f'{self.delivery} для {self.buyer.name} (profile#{self.buyer.id})'

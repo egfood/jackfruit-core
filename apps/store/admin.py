@@ -1,8 +1,8 @@
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
 
+from .models.delivery_cost import DeliveryCost
 from .admin_actions import ExportCSVMixin
-# TODO: The file must be reworked for updated models
 from .models.delivery import FoodDelivery
 from .models.location import Location
 from .models.order import FoodOrder
@@ -40,11 +40,15 @@ class FoodDeliveryAdmin(admin.ModelAdmin, ExportCSVMixin):
 @admin.register(FoodOrder)
 class FoodOrderAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'delivery', 'buyer', 'total_cost', 'location', 'state', 'payment_type', 'date_updated',
+        'id', 'delivery', 'buyer', 'delivery_cost', 'total_cost', 'location', 'state', 'payment_type', 'date_updated',
         'date_creation'
     )
-    list_filter = ('delivery', 'buyer', 'date_creation', 'date_updated', 'location', 'state', 'payment_type')
-    ordering = ('id', 'delivery', 'buyer', 'date_creation', 'date_updated', 'location', 'state', 'payment_type')
+    list_filter = (
+        'delivery', 'buyer', 'date_creation', 'delivery_cost', 'date_updated', 'location', 'state', 'payment_type'
+    )
+    ordering = (
+        'id', 'delivery', 'delivery_cost', 'buyer', 'date_creation', 'date_updated', 'location', 'state', 'payment_type'
+    )
 
 
 @admin.register(FoodOrderItem)
@@ -91,3 +95,10 @@ class TradeMarginAdmin(SimpleHistoryAdmin):
         return obj.total
 
     get_total.short_description = 'общая наценка, %'
+
+
+@admin.register(DeliveryCost)
+class DeliveryCostAdmin(SimpleHistoryAdmin):
+    list_display = ('value',)
+    history_list_display = ('value',)
+    ordering = ('value',)

@@ -22,6 +22,8 @@ $(document).ready(function () {
         order_total_text_items = $(".jorder-total-text-js"),
         order_item_table = $("#jorder-item-table-js"),
         spinner = $("#jorder-total-widget-js .jspinner-block-js"),
+        delivery_cost_text = $("#jorder-delivery-cost-text-js", order_form),
+        total_cost_text = $("#jorder-total-cost-text-js", order_form),
         order_item_table_csrf = order_item_table.attr("data-csrf");
 
 
@@ -33,9 +35,14 @@ $(document).ready(function () {
         spinners.removeClass('visible').addClass('invisible');
     }
 
+    function update_costs_by_location(){
+
+    }
+
     contact_form_reset.on('click', function () {
         contact_form.fadeOut(200);
         send_order_popup.css("display", "flex");
+        update_costs_by_location();
     });
 
     $("#jbtn-send-order").on('click', function () {
@@ -159,6 +166,35 @@ $(document).ready(function () {
                     let toast = new bootstrap.Toast(toast_page_error);
                     toast.show();
                     is_send_request_to_delete_order_item = false;
+                });
+        }
+    });
+
+    $("#id_location", order_form).on("change", function() {
+        let form = new FormData(order_form[0]);
+
+        if (is_send_request_to_update_order === false && form.location !== "-1") {
+            form.set("state", "created");
+            is_send_request_to_update_order = true;
+
+            $.ajax({
+                url: order_form.attr("data-api-order-update-url"),
+                type: "PATCH",
+                headers: {'X-CSRFToken': order_form.attr('data-csrf')},
+                data: form,
+                processData: false,
+                contentType: false,
+            })
+                .done(function (result) {
+                    is_send_request_to_update_order = false;
+                    delivery_cost_text.text(result.delivery_cost);
+                    total_cost_text.text(result.total_cost);
+                })
+                .fail(function (result) {
+                    toast_error_body.text(result.responseText);
+                    let toast = new bootstrap.Toast(toast_error);
+                    is_send_request_to_update_order = false;
+                    toast.show();
                 });
         }
     });

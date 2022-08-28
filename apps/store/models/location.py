@@ -6,6 +6,7 @@ from django.db.models import QuerySet
 
 from core.models import FoodAbstract, GreenUser
 from core.status_engine import StatusEnum
+from .delivery_cost import DeliveryCost
 
 
 class LocationStatus(StatusEnum):
@@ -129,3 +130,12 @@ class Location(FoodAbstract):
             return f"Частный #{self.id} пользователя {self.user}"
         else:
             return f'Неопределенный адрес #{self.id}'
+
+    @cached_property
+    def delivery_cost(self):
+        if self.is_office():
+            return 0
+        elif self.is_private():
+            return DeliveryCost.get_delivery_cost()
+        else:
+            raise Exception("Can not return delivery cost for unknown location")

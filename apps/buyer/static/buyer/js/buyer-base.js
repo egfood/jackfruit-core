@@ -1,14 +1,22 @@
 (function ($, window) {
-    $.fn.replaceOptions = function (options) {
+    $.fn.replaceOptions = function (options, selected_id) {
         var self, $option;
 
         this.empty();
         self = this;
 
+        options.unshift({id: -1, short_address: "<Выберите адрес>"})
+        if (selected_id === ""){
+            selected_id = "-1";
+        }
+
         $.each(options, function (index, option) {
             $option = $("<option></option>")
                 .attr("value", option.id)
                 .text(option.short_address);
+            if (parseInt(selected_id) ===  option.id){
+                $option.attr("selected", "");
+            }
             self.append($option);
         });
     };
@@ -26,7 +34,7 @@ function update_order_locations(spinner_block, order_form, toast_error, toast_er
         })
             .done(function (result) {
                 is_send_request_to_update_location = false;
-                $("#id_location", order_form).replaceOptions(result);
+                $("#id_location", order_form).replaceOptions(result, order_form.attr("data-selected-location-id"));
                 spinner_block.hide();
             })
             .fail(function (result) {
