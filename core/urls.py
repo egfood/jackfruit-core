@@ -50,7 +50,6 @@ urlpatterns = [
                   path('api/v1/farmer/', include(farmer_urls, namespace='farmer_api')),
                   path('api/v1/store/', include(store_urls, namespace='store_api')),
                   path('api/v1/buyer/', include(buyer_urls, namespace='buyer_api')),
-                  path('captcha/', include('captcha.urls')),
               ] + static(str(settings.VERSION), document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

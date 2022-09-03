@@ -15,4 +15,4 @@ russian-names==0.1.2
 django-simple-history==3.0.0
 json-logging==1.2.2
 django-storages==1.12.3
-django-simple-captcha==0.5.17
+django-recaptcha==3.0.0
