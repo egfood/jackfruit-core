@@ -3,7 +3,7 @@ from django import forms
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
 
-import settings
+from django.conf import settings
 
 
 class AuthenticationUserForm(AuthenticationForm):
