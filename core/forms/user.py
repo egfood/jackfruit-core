@@ -1,8 +1,7 @@
 from django import forms
 
 from django.contrib.auth.password_validation import validate_password
-from django.core import validators
-
+from django.conf import settings
 from core.models import GreenUser
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
@@ -24,6 +23,10 @@ class UserCreationForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     acceptConditions = forms.BooleanField(initial=True, widget=forms.CheckboxInput(attrs={'id': 'acceptConditions'}))
+
+    # ReCaptchaField fix for correct validation forever in local development
+    if getattr(settings, 'DEBUG', False):
+        captcha.clean = lambda x: True
 
     class Meta:
         model = GreenUser
