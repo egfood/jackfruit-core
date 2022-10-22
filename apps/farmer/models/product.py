@@ -8,7 +8,7 @@ from simple_history.models import HistoricalRecords
 from apps.store.models.product import RootProduct
 from core.models import FoodAbstract
 from .profile import FarmerProfile
-from ...store.price import rounding_up_to_multiplicity
+from apps.store.price import rounding_up_to_multiplicity
 
 
 class FarmerProduct(FoodAbstract):
@@ -17,6 +17,7 @@ class FarmerProduct(FoodAbstract):
         ('gm', 'гр.'),
         ('pс', 'шт.'),
         ('L.', 'л'),
+        ('p.', 'порция'),
     )
     SIZE_CHOICES = (
         ('s', 'Маленький'),
