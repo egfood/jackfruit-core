@@ -20,3 +20,6 @@ sh:
 	./manage.py shell
 
 i: m cs du
+
+vcs:
+	./manage.py versioned_collectstatic
