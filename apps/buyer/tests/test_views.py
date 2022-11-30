@@ -22,6 +22,7 @@ class BuyerPagesTests(TestCase):
             "name": "Test User",
             "phone": "+375-00000000",
         }
+        # Buyer profile shady use in tests below for correct working code
         profile = BuyerProfile(**buyer_profile_data)
         profile.save()
         self.client.login(password=self.user_data["password"], email=self.user_data["email"])
