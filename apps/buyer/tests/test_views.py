@@ -26,7 +26,7 @@ class BuyerPagesTests(TestCase):
         profile.save()
         self.client.login(password=self.user_data["password"], email=self.user_data["email"])
 
-    def test_about_page_uses_correct_template(self):
+    def test_cart_page_uses_correct_template(self):
         resource = self.client.get(reverse('buyer:cart'))
         self.assertTemplateUsed(resource, 'buyer/pages/buyer-cart.html')
 
