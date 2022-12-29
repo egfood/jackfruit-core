@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     border: 0;
@@ -6,10 +6,12 @@
     font-family: 'Jost', sans-serif;
     color: #094036;
 }
-html{
+
+html {
     height: 100%;
 }
-body{
+
+body {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -18,27 +20,31 @@ body{
     background-repeat: no-repeat;
     background-position-y: 400px;
 }
-.general{
+
+.general {
     width: 100%;
     background-image: url(../img/2068_2.png);
     background-repeat: no-repeat;
     flex: 1 0 auto;
     margin-bottom: 100px;
 }
-.telegram{
+
+.telegram {
     position: fixed;
     top: 20px;
     right: 20px;
 }
-.telegram i.fa-telegram{
+
+.telegram i.fa-telegram {
     font-size: 50px;
 }
-.telegram:hover i.fa-telegram{
+
+.telegram:hover i.fa-telegram {
     font-size: 60px;
     color: #0D7A8D;
 }
 
-.logo{
+.logo {
     position: absolute;
     left: 20px;
     top: 20px;
@@ -46,13 +52,14 @@ body{
     display: flex;
     align-items: center;
 }
-.logo span{
+
+.logo span {
     color: #fff;
     font-size: 24px;
     margin-left: 10px;
 }
 
-h1{
+h1 {
     text-align: center;
     font-size: 144px;
     margin-bottom: 30px;
@@ -60,12 +67,14 @@ h1{
     font-family: 'Jost', sans-serif;
     color: #094036;
 }
-.buttons{
+
+.buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.buttons button{
+
+.buttons button {
     display: block;
     width: 298px;
     height: 60px;
@@ -76,40 +85,51 @@ h1{
     font-size: 24px;
     cursor: pointer;
 }
-.buttons button:hover{
+
+.buttons button:hover {
     background-color: #0D7A8D;
 }
-.buttons a{
+
+.buttons a {
     text-decoration: none;
 }
-.content{
+
+/*Ilya changed here*/
+.content {
     margin-top: 100px;
-    margin-left: 90px;
-    width: 800px;
+    margin-left: 12%;
+    width: 80%;
 }
-.content h2{
+
+.content h2 {
     font-size: 32px;
 }
-.content > div{
+
+.content > div {
     display: flex;
     align-items: center;
     margin-top: 40px;
 }
-.content p{
+
+.content p {
     font-size: 20px;
 }
-svg.iconify.iconify--iconoir{
+
+svg.iconify.iconify--iconoir {
     font-size: 38px;
     margin-left: 20px;
     cursor: pointer;
 }
-.contentLink{
+
+.contentLink {
     font-weight: bold;
 }
-.contentLink:hover{
+
+.contentLink:hover {
     color: #0D7A8D;
 }
-footer{
+
+footer {
     height: 120px;
     background-color: rgba(0, 0, 0, .8);
     flex: 0 0 auto;
@@ -118,72 +138,89 @@ footer{
     justify-content: space-between;
     align-items: center;
 }
-.footerLogo{
+
+.footerLogo {
     margin-left: 20px;
 }
-.fotterContent{
+
+.fotterContent {
     display: flex;
 }
-.fotterContent a{
+
+.fotterContent a {
     margin: 0 20px;
     display: flex;
     align-items: center;
 }
-.fotterContent i{
+
+.fotterContent i {
     margin-right: 5px;
     font-size: 28px;
     color: #dedede;
 }
-.fotterContent a{
+
+.fotterContent a {
     font-size: 18px;
     color: #dedede;
     text-decoration: none;
 }
-.fotterContent a:hover i{
+
+.fotterContent a:hover i {
     color: #fff;
 }
-.fotterContent a:hover{
+
+.fotterContent a:hover {
     color: #fff;
 }
 
 @media (max-width: 768px) {
-    h1{
+    h1 {
         font-size: 20px;
     }
-    .generalContent{
+
+    .generalContent {
         width: 100%;
         padding: 20px 60px;
     }
-    .bgPic{
+
+    .bgPic {
         display: none;
     }
-    .logo{
+
+    .logo {
         margin-bottom: 40px;
     }
 
 }
+
 @media (max-width: 500px) {
-    input, button{
+    input, button {
         width: 100%;
     }
-    .generalContent{
+
+    .generalContent {
         width: 100%;
         padding: 20px 20px;
     }
-    .logo{
+
+    .logo {
         margin-bottom: 40px;
     }
-    button[type="submit"]{
+
+    button[type="submit"] {
         margin-bottom: 20px;
     }
-    h1{
+
+    h1 {
         text-align: center;
     }
-    .privatCab{
+
+    .privatCab {
         font-size: 14px;
 
     }
-    .privatCab i{
+
+    .privatCab i {
         font-size: 14px;
     }
 }

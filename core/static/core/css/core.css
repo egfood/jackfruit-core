@@ -6,3 +6,115 @@
 .jbtn button:hover {
     background-color: #0D7A8D;
 }
+
+/*main page*/
+
+.content {
+    margin-top: 100px;
+    margin-left: 10%;
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-top: 100px;
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        margin-top: 0 !important;
+        padding-bottom: 20px !important;
+        padding-top: 20px !important;
+    }
+
+    .fotterContent {
+        display: block !important;
+    }
+
+    .bgPic {
+        display: none !important;
+    }
+
+    .generalContent {
+        padding: 5% !important;
+        width: 100% !important;
+    }
+
+    .logo {
+
+        margin-bottom: 15px !important;
+
+    }
+
+    .telegram {
+        position: absolute !important;
+        top: 10px !important;
+
+    }
+
+    .popupWindow {
+        width: 100%;
+    }
+
+    .header {
+        justify-content: space-between !important;
+    }
+
+    #jprofileHeader {
+        display: none !important;
+    }
+
+    .table td img {
+
+        object-fit: cover !important;
+
+    }
+
+    .sectionsMenu {
+        display: none !important;
+    }
+
+    .content p.panel {
+        background: rgba(255, 255, 255, 0.7);
+        padding: 5%;
+        border-radius: 5%;
+    }
+
+    .general h1 {
+        background: rgba(255, 255, 255, 0.7);
+    }
+
+    .fotterContent {
+        display: block;
+    }
+
+    .mainMenu.active {
+        height: 100% !important;
+    }
+
+    .tableOrders .farmer {
+        display: none !important;
+    }
+
+    .mainMenu #exit {
+        bottom: 10% !important;
+    }
+
+    .calendarWrap {
+        text-align: left !important;
+    }
+
+    #id_location {
+        width: 70% !important;
+    }
+
+    .close {
+        z-index: 9 !important;
+        top: 23px !important;
+    }
+
+
+}
