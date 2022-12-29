@@ -1,75 +1,91 @@
 @media (max-height: 500px) {
-    .mainMenu #exit{
+    .mainMenu #exit {
         position: relative;
         bottom: 0;
     }
 }
 
-@media(min-width: 769px) {
-    .mainMenu{
+@media (min-width: 769px) {
+    .mainMenu {
         height: 100%;
     }
 }
 
 
 @media (max-width: 1024px) {
-    .mainContentWrap{
+    .mainContentWrap {
         padding-left: 182px;
     }
-    .mainMenu{
+
+    .mainMenu {
         width: 182px;
     }
-    .openCloseMenu{
+
+    .openCloseMenu {
         width: 60px;
     }
-    .maincontentWrapPadding{
+
+    .maincontentWrapPadding {
         padding-left: 60px;
     }
-    .mainMenu nav a span{
+
+    .mainMenu nav a span {
         font-size: 13px;
     }
-    .logo{
+
+    .logo {
         width: 135px;
     }
-    .logo span{
+
+    .logo span {
         font-size: 18px;
     }
-    .table{
+
+    .table {
         font-size: 12px;
     }
 }
+
 @media (max-width: 768px) {
-    .mainContentWrap{
-        padding-left: 0;
+    .mainContentWrap {
+        padding-left: 0 !important;
     }
+
     /* .mainContent{
         padding-top: 0;
     } */
-    #langSwitch{
+    #langSwitch {
         font-size: 14px;
         height: 28px;
     }
-    .logo{
+
+    .logo {
         display: none;
     }
-    .sectionsMenu{
+
+    .sectionsMenu {
         display: none;
     }
-    .mainMenu.active{
+
+    .mainMenu.active {
         position: fixed;
     }
-    .openCloseMenu nav a span{
+
+    .openCloseMenu nav a span {
         display: inline;
     }
-    .openCloseMenu nav a{
+
+    .openCloseMenu nav a {
         text-align: left;
         padding-left: 20px;
     }
-    .mainMenu #exit{
+
+    .mainMenu #exit {
         position: relative;
         bottom: 0;
     }
-    .burger{
+
+    .burger {
         display: block;
         position: relative;
         width: 30px;
@@ -77,204 +93,250 @@
         z-index: 3;
         cursor: pointer;
     }
-    .burger:before, .burger:after{
-     content: "";
-     background-color: #121F2D;
-     position: absolute;
-     width: 100%;
-     height: 2px;
-     left: 0;
-  }
-  .burger:before{
-     top: 0;
-     transition: .1s ease;
-  }
-  .burger:after{
-     bottom: 0;
-     transition: .1s ease;
-  }
-  .burger span{
-      position: absolute;
-      background-color:#121F2D;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      top: 9px;
- 
-  }
-  .burger_active{
-      top: 9px;
-  }
-  .burger_active span{
-     background-color: transparent;
-  }
-  .burger_active::before{
-      transform: rotate(45deg);
-      transition: .4s ease;
-  }
-  .burger_active::after{
-     transform: rotate(-45deg);
-     transition: .4s ease;
-     top: 0;
 
-  }
-  .profileSettings{
-      flex-direction: column;
-      flex-wrap: wrap;
-  }
-  .profileSettings form label{
-      font-size: 12px;
-  }
-  .profileSettings input, .profileSettings select{
-      height: 35px;
-  }
-  .profileSettingsMenu nav a {
-    padding: 5px;
-}
-  .profilePhotoForm img{
-      width: 100px;
-  }
-  .profileSettingsMenu{
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 10px;
-      
-  }
-  .profileSettingsMenu h2{
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-  }
-.profilePhotoForm{
-    float: none;
-    text-align: center;
-    margin-right: 0;
-    margin-bottom: 0;
-}
-#profileName, #profilePhone {
-    margin-bottom: 10px;
-    width: 100%;
-}
-#location, #serviceZone, #farmName {
-    width: 100%;
-    margin-bottom: 10px;
-}
-.changePhoto{
-    bottom: 5px;
-    left: 255px;
-}
-
-.popup h2{
-    font-size: 20px;
-}
-.popup input, .popup select{
-    height: 35px;
-    margin-bottom: 15px;
-}
-.rubInsideInput {
-    height: 35px;
-    top: 21px;
-    line-height: 35px;
-}
-.mainMenu{
-    top: -200%;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    padding: 0;
-    margin: 60px 0 0 0;
-    transition: all .3s ease 0s;
-    z-index: 2;
-}
-.mainMenu.active{    
-    top: 0;
-}
-
-.table{
-    font-size: 12px;
-} 
-
-.productOptions{
-    flex-direction: column;
-}
-
-.selectWrapper::before{
-    top: 13px;
-}
-.selectWrapper.selectWrapperLang::before{
-    top: 10px;
-}
-.selectWrapper.sortSelectWrapper::before{
-    top: 16px;
-}
-
-} 
-@media (max-width: 500px) {
-    h1{
-        font-size: 24px!important;
+    .burger:before, .burger:after {
+        content: "";
+        background-color: #121F2D;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
     }
-    .mainContent h2{
+
+    .burger:before {
+        top: 0;
+        transition: .1s ease;
+    }
+
+    .burger:after {
+        bottom: 0;
+        transition: .1s ease;
+    }
+
+    .burger span {
+        position: absolute;
+        background-color: #121F2D;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+
+    }
+
+    .burger_active {
+        top: 9px;
+    }
+
+    .burger_active span {
+        background-color: transparent;
+    }
+
+    .burger_active::before {
+        transform: rotate(45deg);
+        transition: .4s ease;
+    }
+
+    .burger_active::after {
+        transform: rotate(-45deg);
+        transition: .4s ease;
+        top: 0;
+
+    }
+
+    .profileSettings {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .profileSettings form label {
+        font-size: 12px;
+    }
+
+    .profileSettings input, .profileSettings select {
+        height: 35px;
+    }
+
+    .profileSettingsMenu nav a {
+        padding: 5px;
+    }
+
+    .profilePhotoForm img {
+        width: 100px;
+    }
+
+    .profileSettingsMenu {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+
+    }
+
+    .profileSettingsMenu h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .profilePhotoForm {
+        float: none;
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+
+    #profileName, #profilePhone {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    #location, #serviceZone, #farmName {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .changePhoto {
+        bottom: 5px;
+        left: 255px;
+    }
+
+    .popup h2 {
+        font-size: 20px;
+    }
+
+    .popup input, .popup select {
+        height: 35px;
+        margin-bottom: 15px;
+    }
+
+    .rubInsideInput {
+        height: 35px;
+        top: 21px;
+        line-height: 35px;
+    }
+
+    .mainMenu {
+        top: -200%;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        margin: 60px 0 0 0;
+        transition: all .3s ease 0s;
+        z-index: 2;
+    }
+
+    .mainMenu.active {
+        top: 0;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    .productOptions {
+        flex-direction: column;
+    }
+
+    .selectWrapper::before {
+        top: 13px;
+    }
+
+    .selectWrapper.selectWrapperLang::before {
+        top: 10px;
+    }
+
+    .selectWrapper.sortSelectWrapper::before {
+        top: 16px;
+    }
+
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 24px !important;
+    }
+
+    .mainContent h2 {
         font-size: 20px;
         font-weight: bold;
     }
-    .pageSwitch{
+
+    .pageSwitch {
         margin-left: 0;
     }
-    .profileHeader{
+
+    .profileHeader {
         margin-left: 20px;
     }
-    .table{
+
+    .table {
         font-size: 10px;
     }
-    .table td img{
+
+    .table td img {
         width: 50px;
     }
-    #showPageCount{
+
+    #showPageCount {
         margin-bottom: 10px;
     }
-    .centralImgWrap img{
+
+    .centralImgWrap img {
         margin: 0 0 20px 0;
     }
-    .addPruductsButtonPlus{
+
+    .addPruductsButtonPlus {
         top: 157px;
     }
-    .stars img{
+
+    .stars img {
         width: 10px;
     }
-    .profileSettings{
+
+    .profileSettings {
         font-size: 12px;
         padding: 15px;
     }
-    .profileSettings input, .profileSettings select{
+
+    .profileSettings input, .profileSettings select {
         height: 30px;
     }
-    .profilePhotoForm img{
+
+    .profilePhotoForm img {
         width: 80px;
     }
+
     .changePhoto {
         bottom: 0px;
-        left: 155px; 
+        left: 155px;
     }
-    .popup{
+
+    .popup {
         font-size: 12px;
     }
-    .popup h2{
+
+    .popup h2 {
         font-size: 18px;
     }
-    .popup input, .popup select{
+
+    .popup input, .popup select {
         height: 30px;
         margin-bottom: 10px;
     }
-    .popup form span{
+
+    .popup form span {
         font-size: 12px;
     }
-    .popup label{
+
+    .popup label {
         font-size: 12px;
     }
-    .table input[type="checkbox"]{
+
+    .table input[type="checkbox"] {
         width: 13px;
         height: 13px;
     }
+
     .rubInsideInput {
         height: 30px;
         top: 18px;
@@ -282,31 +344,35 @@
         padding-left: 15px;
     }
 
-    .selectWrapper::before{
+    .selectWrapper::before {
         top: 11px;
     }
-    .selectWrapper{
+
+    .selectWrapper {
         width: 280px;
     }
-    .selectWrapper.selectWrapperLang{
+
+    .selectWrapper.selectWrapperLang {
         width: 70px;
     }
-    .tableOrders .fa-pagelines{
+
+    .tableOrders .fa-pagelines {
         margin-left: 16px;
         font-size: 18px;
     }
-    .tableOrders .selectWrapper{
+
+    .tableOrders .selectWrapper {
         width: 110px;
     }
 
 
-    .editForm{
+    .editForm {
         width: 280px
     }
 }
 
 @media (max-height: 500px) {
-    .profileSettings, .popupWindow{
+    .profileSettings, .popupWindow {
         overflow: scroll;
         flex-direction: row;
         height: 80%;
