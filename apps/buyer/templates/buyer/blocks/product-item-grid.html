@@ -11,7 +11,8 @@
     </div>
 
     {% if fp.product.image %}
-        <img class="img-fluid" width="175" src="{{ fp.product.image.url }}" alt="{{ fp.product.name }}">
+        <img data-bs-target="#jpopup-product-description-{{ fp.id }}-js" type="button" data-bs-toggle="modal"
+             class="img-fluid" width="175" src="{{ fp.product.image.url }}" alt="{{ fp.product.name }}">
     {% endif %}
 
     <h3>{{ fp.product.name }}</h3>
