@@ -6,23 +6,23 @@
         <div class="farmer">
             <img class="farmerUnhovered" src="{% static 'buyer/img/farmer3_edited.jpg' %}" alt="Farmer">
             <img class="farmerHovered" src="{% static 'buyer/img/farmer3.png' %}" alt="Farmer">
-            <span>{{ fp.farmer.name }}</span>
+            <span>{{ farmer_product.farmer.name }}</span>
         </div>
     </div>
 
-    {% if fp.product.image %}
-        <img data-bs-target="#jpopup-product-description-{{ fp.id }}-js" type="button" data-bs-toggle="modal"
-             class="img-fluid" width="175" src="{{ fp.product.image.url }}" alt="{{ fp.product.name }}">
+    {% if farmer_product.product.image %}
+        <img data-bs-target="#jpopup-product-description-{{ farmer_product.id }}-js" type="button" data-bs-toggle="modal"
+             class="img-fluid" width="175" src="{{ farmer_product.product.image.url }}" alt="{{ farmer_product.product.name }}">
     {% endif %}
 
-    <h3>{{ fp.product.name }}</h3>
+    <h3>{{ farmer_product.product.name }}</h3>
     <div class="starsAndPriceWrap">
 
-        {% if fp.rating %}
+        {% if farmer_product.rating %}
             <div class="stars">
-                <span id="myAppraisal">{{ fp.rating }}</span>
+                <span id="myAppraisal">{{ farmer_product.rating }}</span>
                 {% for i in max_rating|times %}
-                    {% if forloop.counter <= fp.rating %}
+                    {% if forloop.counter <= farmer_product.rating %}
                         <div class="goldStar"></div>
                     {% else %}
                         <div class="grayStar"></div>
@@ -36,13 +36,15 @@
         {% endif %}
 
         <div class="price">
-            <div>{{ fp.trade_price }} {{ CURRENT_CURRENCY }}/{{ fp.value }}{{ fp.get_unit_display }}</div>
+            <div>
+                {{ farmer_product.trade_price }} {{ CURRENT_CURRENCY }}/{{ farmer_product.value }}{{ farmer_product.get_unit_display }}
+            </div>
         </div>
     </div>
     <div class="jorder-item-container-js vegFrameOptions">
-        <div class="inBasket{% if fp.order_item_value %} active{% endif %}">
+        <div class="inBasket{% if farmer_product.order_item_value %} active{% endif %}">
             <i class="jorder-item-in-backet-js fas fa-shopping-basket"
-               data-product-api="{% url "store-api:order-item" farmer_product_pk=fp.pk %}">
+               data-product-api="{% url "store-api:order-item" farmer_product_pk=farmer_product.pk %}">
             </i>
         </div>
         <div class="jmessage-added-js basketMessage">
@@ -63,19 +65,23 @@
         <div class="ordered">
             <div class="number">
                 <span class="minus">-</span>
-                <input data-product-api="{% url "store-api:order-item" farmer_product_pk=fp.pk %}"
+                <input data-product-api="{% url "store-api:order-item" farmer_product_pk=farmer_product.pk %}"
                        class="jproduct-value-input-js" type="text"
-                       value="{% if fp.order_item_value %}{{ fp.order_item_value }}{% else %}1{% endif %}"/>
+                       value="{% if farmer_product.order_item_value %}{{ farmer_product.order_item_value }}{% else %}1{% endif %}"/>
                 <span class="plus">+</span>
             </div>
         </div>
-        <div class="unit">{{ fp.get_unit_display }}</div>
-        <div class="jbtn">
-            <button data-bs-target="#jpopup-product-description-{{ fp.id }}-js" type="button" data-bs-toggle="modal"
-                    class="jproduct-description fw-normal ms-2 fs-6 mb-0 p-1">
-                Подробнее
-            </button>
-        </div>
+        <div class="unit">{{ farmer_product.get_unit_display }}</div>
+
+        {% if farmer_product.product.description %}
+            <div class="jbtn">
+                <button data-bs-target="#jpopup-product-description-{{ farmer_product.id }}-js"
+                        type="button" data-bs-toggle="modal"
+                        class="jproduct-description fw-normal ms-2 fs-6 mb-0 p-1">
+                    i
+                </button>
+            </div>
+        {% endif %}
 
     </div>
 

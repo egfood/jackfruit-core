@@ -1,16 +1,16 @@
-<div class="modal fade" id="jpopup-product-description-{{ fp.id }}-js" data-bs-backdrop="static"
-     data-bs-keyboard="false" tabindex="-1" aria-labelledby="jpopup-product-description-label-{{ fp.id }}-js"
+<div class="modal fade" id="jpopup-product-description-{{ farmer_product.id }}-js" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1" aria-labelledby="jpopup-product-description-label-{{ farmer_product.id }}-js"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="jpopup-product-description-label-{{ fp.id }}-js">
-                    Подробнее об продукте {{ fp.product.name }}
+                <h5 class="modal-title" id="jpopup-product-description-label-{{ farmer_product.id }}-js">
+                    Подробнее об продукте {{ farmer_product.product.name }}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{ fp.product.description }}
+                {{ farmer_product.product.description }}
             </div>
             <div class="modal-footer jbtn">
                 <button type="button" data-bs-dismiss="modal">Закрыть</button>
