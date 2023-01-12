@@ -35,10 +35,13 @@
 
     <div id="jbasket-container-js" class="productContainer" data-csrf="{{ csrf_token }}">
 
-        {% for fp in farmer_products %}
+        {% for farmer_product in farmer_products %}
 
             {% include 'buyer/blocks/product-item-grid.html' %}
-            {% include 'buyer/popups/product-description.html' %}
+
+            {% if farmer_product.product.description %}
+                {% include 'buyer/popups/product-description.html' %}
+            {% endif %}
 
         {% endfor %}
     </div>
