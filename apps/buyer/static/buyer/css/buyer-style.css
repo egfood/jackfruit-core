@@ -649,10 +649,10 @@ span.name {
 
 .close {
     position: absolute;
-    right: 40px;
-    top: 15px;
-    width: 10px;
-    height: 10px;
+    right: 15px;
+    top: 15px !important;
+    width: 30px;
+    height: 30px;
     opacity: 0.3;
 }
 
@@ -1035,6 +1035,11 @@ button img {
     z-index: 4;
     border-radius: 4px;
     box-shadow: 0px 2px 7px rgba(38, 43, 46, 0.08);
+}
+
+.jform-wide {
+    overflow-y: auto;
+    height: 350px;
 }
 
 .jform-wide > div {
