@@ -1,4 +1,4 @@
-## Egreen (Rambutan version)
+## Egreen (Jackfruit version)
 
 Introduction to project, its purposes etc..
 
