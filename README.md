@@ -13,7 +13,7 @@ Introduction to project, its purposes etc..
 
 ### Requirements
 
-* Python 3.10+
+* Python 3.10 (see issue with 3.11 follow the link https://github.com/egfood/jackfruit-core/issues/68)
 * Make
 * Specify env vars in IDE Run Configuration (example in `dev.env`)
 
