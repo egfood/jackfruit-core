@@ -32,6 +32,7 @@ urlpatterns = [
                   path('core-admin/', admin.site.urls, name='admin'),
                   path('farmer/', include('apps.farmer.urls', namespace='farmer')),
                   path('buyer/', include('apps.buyer.urls', namespace='buyer')),
+                  path('store/', include('apps.store.urls', namespace='store')),
                   path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
                        name="robots_txt"),
                   path('login/', CustomLoginView.as_view(), name='login'),
