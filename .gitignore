@@ -13,3 +13,5 @@ core/views/__pycache__/
 git
 db.sqlite3
 /py*/
+/apps/store/frontend/node_modules/
+/apps/store/frontend/build/
