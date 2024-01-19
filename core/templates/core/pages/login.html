@@ -1,7 +1,7 @@
 {% extends 'core/base-with-left-image.html' %}
 
 {% block meta_description %}
-    Страница входа на сайт для предоставления сервиса по доставке фермерских продуктов.
+    Страница входа на сайт для предоставления сервиса по доставке компьютерной техники.
 {% endblock %}
 
 {% block title %}Войти{% endblock %}
@@ -22,7 +22,7 @@
         <div class="noAccount">
             Нет аккаунта?
             <ul>
-                <li><a href="{% url 'farmer:signup' %}">Регистрация фермером</a></li>
+                <li><a href="{% url 'farmer:signup' %}">Регистрация Продавца</a></li>
                 <li><a href="{% url 'buyer:signup' %}">Регистрация покупателем</a></li>
             </ul>
         </div>

@@ -1,21 +1,21 @@
 {% extends 'farmer/app-base.html' %}
 
-{% block title %}Страница Фермера{% endblock %}
-{% block h1 %}Страница Фермера{% endblock %}
+{% block title %}Страница Продавца{% endblock %}
+{% block h1 %}Страница Продавца{% endblock %}
 
 {% block page_content %}
 
-    <h3>Каталог вашей продукции {{ user.first_name }}</h3>
+    <h3>Каталог ваших товаров {{ user.first_name }}</h3>
     <div class="row">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Продукция</th>
+                <th scope="col">Товар</th>
                 <th scope="col">Цена</th>
-                <th scope="col">Вес цены (г.)</th>
+                <th scope="col">Вес</th>
                 <th scope="col">Упаковка</th>
-                <th scope="col">Минимальный заказ (г.)</th>
+                <th scope="col">Минимальный заказ</th>
                 <th scope="col">Доступен</th>
                 <th scope="col"><a href="{% url 'farmer:add_product' %}" title="Добавить"><i class="far fa-plus-square">
                     Добавить</i></a></th>

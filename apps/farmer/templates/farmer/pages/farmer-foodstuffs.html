@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Мои продукты{% endblock %}
+{% block title %}Мои товары{% endblock %}
 
 {% block page_styles %}
     <link rel="stylesheet" href="{% static 'farmer/css/myProducts.css' %}">
@@ -12,8 +12,8 @@
 {% block page_content %}
 
     <div class="myProducts">
-        <h1>Мои продукты</h1>
-        <button class="addProduct"><span>+</span> Добавить продукт</button>
+        <h1>Мои товары</h1>
+        <button class="addProduct"><span>+</span> Добавить товар</button>
     </div>
 
     {% include 'farmer/blocks/foodstuffs/product-table.html' %}
